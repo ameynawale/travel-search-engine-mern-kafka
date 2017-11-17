@@ -102,6 +102,29 @@ app.post('/signup',function(req,res){
 });
 
 app.post('/hotel', function(req, res) {
+    console.log(req.body.hotelID);
+
+
+    kafka.make_request('hotelDes_topic',{"ID":req.body.hotelID}, function(err,results) {
+        console.log('in result');
+        console.log(results);
+
+        if (err) {
+            res.status(500).send();
+        }
+        else {
+            if (results.code == 200) {
+                //  done(null,true,results/*{username: username, password: password}*/);
+                console.log(results.value);
+
+                var res1 = results.value;
+
+                res.status(201).send({file: res1});
+            }
+        }
+    });
+});
+app.post('/hotelDetails', function(req, res) {
     console.log(req.body.city);
     console.log(req.body.fromDate);
     console.log(req.body.toDate);
@@ -112,8 +135,7 @@ app.post('/hotel', function(req, res) {
         "roomCount": req.body.roomCount}, function(err,results) {
         console.log('in result');
         console.log(results);
-        onsole.log('in result');
-        console.log(results);
+
         if (err) {
             res.status(500).send();
         }
@@ -121,17 +143,13 @@ app.post('/hotel', function(req, res) {
             if (results.code == 200) {
                 //  done(null,true,results/*{username: username, password: password}*/);
                 console.log(results.value);
-                var resarr = [];
+
                 var res1 = results.value;
-                //  if(res1.length!== 0)
-                //  {
-                resarr = res1.split('<br>');
-                res1.length = res1.length - 1;
-                console.log(resarr);
-                //   }
-                res.status(201).send({file: resarr});
+
+                res.status(201).send({file: res1});
             }
         }
     });
 });
+
 module.exports = app;
