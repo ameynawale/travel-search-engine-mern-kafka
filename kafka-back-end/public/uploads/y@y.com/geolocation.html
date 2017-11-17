@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<p>Click the button to find the location.</p>
+
+<button onclick="getCoords()">Track</button>
+<p id="demo"></p>
+
+<script>
+var x = document.getElementById("demo");
+function getCoords() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(DisplayPos, DisplayErr);
+    } else { 
+        document.getElementById("demo").innerHTML = "Geolocation is not supported by this browser.";
+    }
+}
+
+function DisplayPos(POS) {
+    document.getElementById("demo").innerHTML = "Latitude: " + POS.coords.latitude + 
+    "<br>" + "Longitude: " + POS.coords.longitude;
+}
+
+function DisplayErr(err)
+{
+switch(error.code) {
+        case error.PERMISSION_DENIED:
+            document.getElementById("demo").innerHTML = "User didnot approve the Geolocation."
+            break;
+        case error.UNKNOWN_ERROR:
+            document.getElementById("demo").innerHTML = "An unknown error occurred."
+            break;  
+            }
+}
+</script>
+
+</body>
+</html>
