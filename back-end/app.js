@@ -156,7 +156,7 @@ app.post('/hotelDetails', function(req, res) {
 });
 
 app.post('/bookHotel', function(req, res) {
-    console.log(req.body.city);
+    console.log(req.body.hotelID);
     console.log(req.body.fromDate);
     console.log(req.body.toDate);
     console.log(req.body.guestCount);
@@ -183,3 +183,4 @@ app.post('/bookHotel', function(req, res) {
         }
     });
 });
+module.exports = app;
