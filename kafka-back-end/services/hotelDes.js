@@ -18,18 +18,13 @@ function handle_request(msg, callback) {
         else {
             if (results.length > 0) {
                 console.log("results");
-
                 res.value = "200";
                 res.message = results;
-
             }
             else {
-
                 console.log("no hotels fetched with the given preferences");
-
                 res.value = "404";
                 res.message = "No hotel exists with the criteria";
-
             }
         }
     }, getUser);

@@ -3,12 +3,13 @@ var mongoURL = "mongodb://localhost:27017/login";
 var bcrypt = require('bcrypt');
 var crypto = require('crypto');
 var mysql = require("./mysql");
+
 function handle_request(msg, callback){
 
     //var res = {};
     console.log("In handle request:" + JSON.stringify(msg));
-
-    var getUser="select * from hotelDetails where location='"+ msg.city+"'and fromDate='"+ msg.from+"'and toDate= '"+ msg.to+"'and roomCount='" +msg.roomCount +"'";
+//calculate the noOfDays
+    var getUser="select price from hotelDetails where hotelID='"+ msg.ID+"' ";
     console.log("Query is:"+getUser);
 
     mysql.fetchData(function(err,results){
@@ -19,16 +20,16 @@ function handle_request(msg, callback){
         {
             if(results.length > 0){
                 console.log("results");
+                var bill_amount = results.price * msg.roomCount;  //*noOfDays;
                 res.value = "200";
-                res.message= results;
-
+                res.message= bill_amount;
 
             }
             else {
 
-                console.log("no hotels fetched with the given preferences");
+                console.log("Hotel doesnt exist");
                 res.value= "404";
-                res.message="No hotel exists with the criteria";
+                res.message="Hotel doesnt exist";
 
             }
         }

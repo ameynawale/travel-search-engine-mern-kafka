@@ -101,7 +101,37 @@ app.post('/signup',function(req,res){
 	})(req,res);
 });
 
+
 app.post('/hotel', function(req, res) {
+    console.log(req.body.city);
+    console.log(req.body.fromDate);
+    console.log(req.body.toDate);
+    console.log(req.body.guestCount);
+    console.log(req.body.roomCount);
+
+    kafka.make_request('hotel_topic',{"city":req.body.city,"from":req.body.fromDate, "to":req.body.toDate, "guestCount": req.body.guestCount,
+        "roomCount": req.body.roomCount}, function(err,results) {
+        console.log('in result');
+        console.log(results);
+
+        if (err) {
+            res.status(500).send();
+        }
+        else {
+            if (results.code == 200) {
+                //  done(null,true,results/*{username: username, password: password}*/);
+                console.log(results.value);
+
+                var res1 = results.value;
+
+                res.status(201).send({file: res1, city:req.body.city,fromDate:req.body.fromDate, toDate:req.body.toDate, guestCount: req.body.guestCount,
+                    roomCount: req.body.roomCount});
+            }
+        }
+    });
+});
+
+app.post('/hotelDetails', function(req, res) {
     console.log(req.body.hotelID);
 
 
@@ -124,15 +154,16 @@ app.post('/hotel', function(req, res) {
         }
     });
 });
-app.post('/hotelDetails', function(req, res) {
+
+app.post('/bookHotel', function(req, res) {
     console.log(req.body.city);
     console.log(req.body.fromDate);
     console.log(req.body.toDate);
     console.log(req.body.guestCount);
     console.log(req.body.roomCount);
 
-    kafka.make_request('hotel_topic',{"city":req.body.city,"from":req.body.fromDate, "to":req.body.toDate, "guestCount": req.body.guestCount,
-        "roomCount": req.body.roomCount}, function(err,results) {
+    kafka.make_request('hotelBook_topic',{"ID": req.body.hotelID, "guestCount": req.body.guestCount, "roomCount": req.body.roomCount, "fromDate" : req.body.fromDate,
+    "toDate": req.body.toDate}, function(err,results) {
         console.log('in result');
         console.log(results);
 
@@ -146,10 +177,9 @@ app.post('/hotelDetails', function(req, res) {
 
                 var res1 = results.value;
 
-                res.status(201).send({file: res1});
+                res.status(201).send({file: res1, ID: req.body.hotelID, guestCount: req.body.guestCount, roomCount: req.body.roomCount, fromDate : req.body.fromDate,
+                    toDate: req.body.toDate});
             }
         }
     });
 });
-
-module.exports = app;
