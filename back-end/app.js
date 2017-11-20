@@ -207,7 +207,7 @@ app.post('/bookHotel', function(req, res) {
 
                 var res1 = results.value;
 
-                res.status(201).send({file: res1, ID: req.body.hotelID, guestCount: req.body.guestCount, roomCount: req.body.roomCount, fromDate : req.body.fromDate,
+                res.status(201).send({file: res1,message: "booking confirmed with booking ID: ", ID: req.body.hotelID, guestCount: req.body.guestCount, roomCount: req.body.roomCount, fromDate : req.body.fromDate,
                     toDate: req.body.toDate, cardNo : req.body.cardNo});
             }
         }

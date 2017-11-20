@@ -9,9 +9,10 @@ function handle_request(msg, callback){
     console.log("In handle request:" + JSON.stringify(msg));
 
     var getUser="insert into transactionHotels(hotelID,amount, noOfRooms, noOfGuests, cardNo) values ('"+msg.ID+"','" + msg.billAmount+"','" + msg.roomCount+"','" + msg.guestCount+"','" + msg.cardNo+"')";
-    console.log("Query is:"+getUser);
+    console.log("Query is:"+getUser); // TO CHECK HOW TO INSERT BOOKING id , SHOULD BE INSERT IT EXPLICITLY OR IT WILL AUTO INCREMENT IT? SHULD SEND BOOKING ID
+                                      // AS A RESPONSE TO BACKEND. AND SEND IT FRONT END FROM THERE
 
-    mysql.fetchData(function(err,results){
+    mysql.fetchData(function(err,results){ // WHAT WILL THE RESULTS PRINT. HAVE TO CHECK.
         if(err){
             throw err;
         }
