@@ -183,4 +183,35 @@ app.post('/bookHotel', function(req, res) {
         }
     });
 });
+
+app.post('/bookHotel', function(req, res) {
+    console.log(req.body.hotelID);
+    console.log(req.body.fromDate);
+    console.log(req.body.toDate);
+    console.log(req.body.guestCount);
+    console.log(req.body.roomCount);
+    console.log(req.body.cardNo);
+
+    kafka.make_request('hotelPay_topic',{"ID": req.body.hotelID, "guestCount": req.body.guestCount, "roomCount": req.body.roomCount, "fromDate" : req.body.fromDate,
+        "toDate": req.body.toDate, "billAmount": req.body.billAmount, "cardNo":req.body.cardNo}, function(err,results) {
+        console.log('in result');
+        console.log(results);
+
+        if (err) {
+            res.status(500).send();
+        }
+        else {
+            if (results.code == 200) {
+                //  done(null,true,results/*{username: username, password: password}*/);
+                console.log(results.value);
+
+                var res1 = results.value;
+
+                res.status(201).send({file: res1, ID: req.body.hotelID, guestCount: req.body.guestCount, roomCount: req.body.roomCount, fromDate : req.body.fromDate,
+                    toDate: req.body.toDate, cardNo : req.body.cardNo});
+            }
+        }
+    });
+});
+
 module.exports = app;
