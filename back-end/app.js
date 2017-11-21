@@ -12,7 +12,7 @@ var users = require('./routes/users');
 var mongoSessionURL = "mongodb://localhost:27017/sessions";
 var expressSessions = require("express-session");
 var mongoStore = require("connect-mongo/es5")(expressSessions);
-
+var kafka = require('./routes/kafka/client');
 var app = express();
 
 // view engine setup
@@ -117,17 +117,17 @@ app.post('/hotel', function(req, res) {
         if (err) {
             res.status(500).send();
         }
-        else {
-            if (results.code == 200) {
-                //  done(null,true,results/*{username: username, password: password}*/);
-                console.log(results.value);
 
-                var res1 = results.value;
+            if (results.value == 200) {
+                //  done(null,true,results/*{username: username, password: password}*/);
+                console.log(results.message);
+
+                var res1 = results.message;
 
                 res.status(201).send({file: res1, city:req.body.city,fromDate:req.body.fromDate, toDate:req.body.toDate, guestCount: req.body.guestCount,
                     roomCount: req.body.roomCount});
             }
-        }
+
     });
 });
 
@@ -184,7 +184,7 @@ app.post('/bookHotel', function(req, res) {
     });
 });
 
-app.post('/bookHotel', function(req, res) {
+app.post('/payHotel', function(req, res) {
     console.log(req.body.hotelID);
     console.log(req.body.fromDate);
     console.log(req.body.toDate);
