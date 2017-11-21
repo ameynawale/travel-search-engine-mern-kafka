@@ -2,36 +2,39 @@ var mongo = require("./mongo");
 var mongoURL = "mongodb://localhost:27017/login";
 var bcrypt = require('bcrypt');
 var crypto = require('crypto');
-
+var mysql = require("./mysql");
 function handle_request(msg, callback){
 
     //var res = {};
     console.log("In handle request:" + JSON.stringify(msg));
-    mongo.myconnect(mongoURL, function () {
-        console.log('Connected to mongo at: ' + mongoURL);
-        var coll = mongo.collection('login');
-        key = "273"
-        var hash = crypto.createHmac('sha512', key); //encrytion using SHA512
-        hash.update(msg.password);
-        msg.password = hash.digest('hex');
-        coll.findOne({username: msg.username, password: msg.password}, function (err, user) {
-            if (user) {
-                //  done(null,user/* {username: username, password: password}*/);
-                res.code = "200";
-                res.value = "Success Login";
-                console.log(user);
-                console.log(res.value);
 
-            } else {
-                //    done(null, false);
-                res.code = "401";
-                res.value = "Failed Login";
-                console.log(res.value);
+    var getUser="select * from hotelDetails where location='"+ msg.city+"'and fromDate='"+ msg.from+"'and toDate= '"+ msg.to+"'and roomCount='" +msg.roomCount +"'";
+    console.log("Query is:"+getUser);
+
+    mysql.fetchData(function(err,results){
+        if(err){
+            throw err;
+        }
+        else
+        {
+            if(results.length > 0){
+                console.log("results");
+
+                res.value = "200";
+                res.message= results;
+
             }
-            console.log("inside try:" + res);
-            callback(null, res);
-        });
-    })
+            else {
+
+                console.log("no hotels fetched with the given preferences");
+
+                res.value= "404";
+                res.message="No hotel exists with the criteria";
+
+            }
+        }
+    },getUser);
+
     /*   }
    catch (e){
        done(e,{});
