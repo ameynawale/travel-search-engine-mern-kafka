@@ -187,7 +187,7 @@ app.post('/hotelDetails', function(req, res) {
         if (err) {
             res.status(500).send();
         }
-        else {
+
             if (results.value == 200) {
                 //  done(null,true,results/*{username: username, password: password}*/);
                 console.log(results.message);
@@ -196,7 +196,22 @@ app.post('/hotelDetails', function(req, res) {
 
                 res.status(201).send({file: res1});
             }
+            if (results.value == 404) {
+            //  done(null,true,results/*{username: username, password: password}*/);
+            console.log(results.message);
+
+            var res1 = results.message;
+
+            res.status(201).send({
+                file: res1,
+                city: req.body.city,
+                fromDate: req.body.fromDate,
+                toDate: req.body.toDate,
+                guestCount: req.body.guestCount,
+                roomCount: req.body.roomCount
+            });
         }
+
     });
 });
 
@@ -216,17 +231,32 @@ app.post('/bookHotel', function(req, res) {
         if (err) {
             res.status(500).send();
         }
-        else {
+
             if (results.value == 200) {
                 //  done(null,true,results/*{username: username, password: password}*/);
                 console.log(results.message[0]);
 
-                var res1 = results.message[0];
-                console.log(res1.amount);
-                var bill_amount = res1.amount * days * req.body.roomCount;
+                var res1 = results.message[0]; //fetching the price, since there is only one item in an array
+                                console.log(res1.amount); // taking the amount
+                var bill_amount = res1.amount * days * req.body.roomCount; // calculating bill summary
                 res.status(201).send({bill_amount: bill_amount, ID: req.body.hotelID, guestCount: req.body.guestCount, roomCount: req.body.roomCount, fromDate : req.body.fromDate,
                     toDate: req.body.toDate});
-            }
+
+                if (results.value == 404) {
+                    //  done(null,true,results/*{username: username, password: password}*/);
+                    console.log(results.message);
+
+                    var res1 = results.message;
+
+                    res.status(201).send({
+                        file: res1,
+                        city: req.body.city,
+                        fromDate: req.body.fromDate,
+                        toDate: req.body.toDate,
+                        guestCount: req.body.guestCount,
+                        roomCount: req.body.roomCount
+                    });
+                }
         }
     });
 });
@@ -240,23 +270,37 @@ app.post('/payHotel', function(req, res) {
     console.log(req.body.cardNo);
 
     kafka.make_request('hotelPay_topic',{"ID": req.body.hotelID, "guestCount": req.body.guestCount, "roomCount": req.body.roomCount, "fromDate" : req.body.fromDate,
-        "toDate": req.body.toDate, "billAmount": req.body.billAmount, "cardNo":req.body.cardNo}, function(err,results) {
+        "toDate": req.body.toDate, "billAmount": req.body.billAmount, "cardNo":req.body.cardNo, "username": req.session.user}, function(err,results) {
         console.log('in result');
         console.log(results);
 
         if (err) {
             res.status(500).send();
         }
-        else {
+
             if (results.value == 200) {
                 //  done(null,true,results/*{username: username, password: password}*/);
-                console.log(results.message);
+                console.log("in 200 " + results.message);
 
-                var res1 = results.messsage;
+                var res1 = results.message;
 
-                res.status(201).send({file: res1,message: "booking confirmed with booking ID: ", ID: req.body.hotelID, guestCount: req.body.guestCount, roomCount: req.body.roomCount, fromDate : req.body.fromDate,
+                res.status(201).send({file: res1, message: "booking confirmed with booking ID: ", ID: req.body.hotelID, guestCount: req.body.guestCount, roomCount: req.body.roomCount, fromDate : req.body.fromDate,
                     toDate: req.body.toDate, cardNo : req.body.cardNo});
-            }
+                if (results.value == 401) {
+                    //  done(null,true,results/*{username: username, password: password}*/);
+                    console.log(results.message);
+
+                    var res1 = results.message;
+
+                    res.status(201).send({
+                        file: res1,
+                        city: req.body.city,
+                        fromDate: req.body.fromDate,
+                        toDate: req.body.toDate,
+                        guestCount: req.body.guestCount,
+                        roomCount: req.body.roomCount
+                    });
+                }
         }
     });
 });
