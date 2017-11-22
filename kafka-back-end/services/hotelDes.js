@@ -5,10 +5,10 @@ var crypto = require('crypto');
 var mysql = require("./mysql");
 function handle_request(msg, callback) {
 
-    //var res = {};
+    var res = {};
     console.log("In handle request:" + JSON.stringify(msg));
 
-    var getUser = "select * from hotelDetails where HotelId ='" + msg.ID + "'";
+    var getUser = "select * from hoteldetails where hotelId ='" + msg.ID + "'";
     console.log("Query is:" + getUser);
 
     mysql.fetchData(function (err, results) {
@@ -17,7 +17,7 @@ function handle_request(msg, callback) {
         }
         else {
             if (results.length > 0) {
-                console.log("results");
+                console.log(results);
                 res.value = "200";
                 res.message = results;
             }
@@ -26,6 +26,8 @@ function handle_request(msg, callback) {
                 res.value = "404";
                 res.message = "No hotel exists with the criteria";
             }
+            console.log("inside try:" + res);
+            callback(null, res);
         }
     }, getUser);
 

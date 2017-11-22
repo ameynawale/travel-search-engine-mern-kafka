@@ -5,7 +5,7 @@ var crypto = require('crypto');
 var mysql = require("./mysql");
 function handle_request(msg, callback){
 
-    //var res = {};
+    var res = {};
     console.log("In handle request:" + JSON.stringify(msg));
 
     var getUser="insert into transactionHotels(hotelID,amount, noOfRooms, noOfGuests, cardNo) values ('"+msg.ID+"','" + msg.billAmount+"','" + msg.roomCount+"','" + msg.guestCount+"','" + msg.cardNo+"')";
@@ -19,7 +19,7 @@ function handle_request(msg, callback){
         else
         {
             if(results.length > 0){
-                console.log("results");
+                console.log(results);
                 res.value = "200";
                 res.message= results;
 
@@ -32,6 +32,8 @@ function handle_request(msg, callback){
                 res.message="invalid details";
 
             }
+            console.log("inside try:" + res);
+            callback(null, res);
         }
     },getUser);
 

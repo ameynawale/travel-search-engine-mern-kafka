@@ -6,10 +6,10 @@ var mysql = require("./mysql");
 
 function handle_request(msg, callback){
 
-    //var res = {};
+    var res = {};
     console.log("In handle request:" + JSON.stringify(msg));
 //calculate the noOfDays
-    var getUser="select price from hotelDetails where hotelID='"+ msg.ID+"' ";
+    var getUser="select amount from hotelDetails where hotelID='"+ msg.ID+"' ";
     console.log("Query is:"+getUser);
 
     mysql.fetchData(function(err,results){
@@ -19,10 +19,11 @@ function handle_request(msg, callback){
         else
         {
             if(results.length > 0){
-                console.log("results");
-                var bill_amount = results.price * msg.roomCount;  //*noOfDays;
+                console.log(results);
+               // var bill_amount = results.amount * msg.roomCount;  //*noOfDays;
+
                 res.value = "200";
-                res.message= bill_amount;
+                res.message= results;
 
             }
             else {
@@ -32,6 +33,8 @@ function handle_request(msg, callback){
                 res.message="Hotel doesnt exist";
 
             }
+            console.log("inside try:" + res);
+            callback(null, res);
         }
     },getUser);
 

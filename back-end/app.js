@@ -59,6 +59,25 @@ passport.deserializeUser(function(id, done) {
   });
 });
 
+function days_between(date1, date2) {
+
+    // The number of milliseconds in one day
+    var ONE_DAY = 1000 * 60 * 60 * 24
+     var date1P = Date.parse(date1);
+    var date2P = Date.parse(date2);
+    console.log(date1P);
+    console.log(date2P);
+    // Convert both dates to milliseconds
+   /* var date1_ms = date1P.getTime();
+    var date2_ms = date2P.getTime();*/
+
+    // Calculate the difference in milliseconds
+    var difference_ms = Math.abs(date1P - date2P)
+
+    // Convert back to days and return
+    return Math.round(difference_ms/ONE_DAY)
+
+}
 app.use('/', routes);
 app.use('/users', users);
 
@@ -108,27 +127,53 @@ app.post('/hotel', function(req, res) {
     console.log(req.body.toDate);
     console.log(req.body.guestCount);
     console.log(req.body.roomCount);
+   if (req.body.fromDate <= req.body.toDate) {
+       kafka.make_request('hotel_topic', {
+           "city": req.body.city, "from": req.body.fromDate, "to": req.body.toDate, "guestCount": req.body.guestCount,
+           "roomCount": req.body.roomCount
+       }, function (err, results) {
+           console.log('in result');
+           console.log(results);
 
-    kafka.make_request('hotel_topic',{"city":req.body.city,"from":req.body.fromDate, "to":req.body.toDate, "guestCount": req.body.guestCount,
-        "roomCount": req.body.roomCount}, function(err,results) {
-        console.log('in result');
-        console.log(results);
+           if (err) {
+               res.status(500).send(results.message);
+           }
 
-        if (err) {
-            res.status(500).send();
-        }
+           if (results.value == 200) {
+               //  done(null,true,results/*{username: username, password: password}*/);
+               console.log(results.message);
 
-            if (results.value == 200) {
-                //  done(null,true,results/*{username: username, password: password}*/);
-                console.log(results.message);
+               var res1 = results.message;
 
-                var res1 = results.message;
+               res.status(201).send({
+                   file: res1,
+                   city: req.body.city,
+                   fromDate: req.body.fromDate,
+                   toDate: req.body.toDate,
+                   guestCount: req.body.guestCount,
+                   roomCount: req.body.roomCount
+               });
+           }
+           if (results.value == 404) {
+               //  done(null,true,results/*{username: username, password: password}*/);
+               console.log(results.message);
 
-                res.status(201).send({file: res1, city:req.body.city,fromDate:req.body.fromDate, toDate:req.body.toDate, guestCount: req.body.guestCount,
-                    roomCount: req.body.roomCount});
-            }
+               var res1 = results.message;
 
-    });
+               res.status(201).send({
+                   file: res1,
+                   city: req.body.city,
+                   fromDate: req.body.fromDate,
+                   toDate: req.body.toDate,
+                   guestCount: req.body.guestCount,
+                   roomCount: req.body.roomCount
+               });
+           }
+       });
+   }
+   else{
+       res.status(500).send("please enter valid dates");
+   }
 });
 
 app.post('/hotelDetails', function(req, res) {
@@ -143,11 +188,11 @@ app.post('/hotelDetails', function(req, res) {
             res.status(500).send();
         }
         else {
-            if (results.code == 200) {
+            if (results.value == 200) {
                 //  done(null,true,results/*{username: username, password: password}*/);
-                console.log(results.value);
+                console.log(results.message);
 
-                var res1 = results.value;
+                var res1 = results.message;
 
                 res.status(201).send({file: res1});
             }
@@ -166,18 +211,20 @@ app.post('/bookHotel', function(req, res) {
     "toDate": req.body.toDate}, function(err,results) {
         console.log('in result');
         console.log(results);
-
+       var days = days_between(req.body.toDate,req.body.fromDate);
+       console.log("days" + days);
         if (err) {
             res.status(500).send();
         }
         else {
-            if (results.code == 200) {
+            if (results.value == 200) {
                 //  done(null,true,results/*{username: username, password: password}*/);
-                console.log(results.value);
+                console.log(results.message[0]);
 
-                var res1 = results.value;
-
-                res.status(201).send({file: res1, ID: req.body.hotelID, guestCount: req.body.guestCount, roomCount: req.body.roomCount, fromDate : req.body.fromDate,
+                var res1 = results.message[0];
+                console.log(res1.amount);
+                var bill_amount = res1.amount * days * req.body.roomCount;
+                res.status(201).send({bill_amount: bill_amount, ID: req.body.hotelID, guestCount: req.body.guestCount, roomCount: req.body.roomCount, fromDate : req.body.fromDate,
                     toDate: req.body.toDate});
             }
         }
@@ -201,11 +248,11 @@ app.post('/payHotel', function(req, res) {
             res.status(500).send();
         }
         else {
-            if (results.code == 200) {
+            if (results.value == 200) {
                 //  done(null,true,results/*{username: username, password: password}*/);
-                console.log(results.value);
+                console.log(results.message);
 
-                var res1 = results.value;
+                var res1 = results.messsage;
 
                 res.status(201).send({file: res1,message: "booking confirmed with booking ID: ", ID: req.body.hotelID, guestCount: req.body.guestCount, roomCount: req.body.roomCount, fromDate : req.body.fromDate,
                     toDate: req.body.toDate, cardNo : req.body.cardNo});
