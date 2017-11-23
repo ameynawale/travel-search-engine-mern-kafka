@@ -5,6 +5,12 @@ import Login from "./Login";
 import Message from "./Message";
 import Welcome from "./Welcome";
 import SignUp from "./SignUp";
+import Header from "./admin/Header";
+import LeftPanel from "./admin/LeftPanel";
+import FullPage from "./admin/FullPage";
+import AddFlight from "./admin/AddFlight";
+import AddHotel from "./admin/AddHotel";
+import AddCar from "./admin/AddCar";
 
 class NewerHomePage extends Component {
 
@@ -96,6 +102,24 @@ class NewerHomePage extends Component {
                 )}/>
                 <Route exact path='/signup' render={() => (
                 		<SignUp handleSignUp={this.handleSignUp}/>)	
+                }/>
+                <Route exact path='/admin/flights/addFlight' render={() => (
+                    <div>
+                        <AddFlight/>
+                    </div>
+                )
+                }/>
+                <Route exact path='/admin/hotels/addHotel' render={() => (
+                    <div>
+                        <AddHotel/>
+                    </div>
+                )
+                }/>
+                <Route exact path='/admin/cars/addCar' render={() => (
+                    <div>
+                        <AddCar/>
+                    </div>
+                )
                 }/>
                 </div>
         );
