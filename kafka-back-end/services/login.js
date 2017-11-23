@@ -1,6 +1,6 @@
 var mongo = require("./mongo");
 var mongoURL = "mongodb://localhost:27017/login";
-var bcrypt = require('bcrypt');
+//var bcrypt = require('bcrypt');
 var crypto = require('crypto');
 
 function handle_request(msg, callback){
