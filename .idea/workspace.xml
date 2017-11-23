@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="97158941-6c7b-4391-b904-b384583a521d" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/kafka-back-end/services/flightAdd.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/kafka-back-end/services/hotelAdd.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/back-end/app.js" afterPath="$PROJECT_DIR$/back-end/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kafka-back-end/server.js" afterPath="$PROJECT_DIR$/kafka-back-end/server.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kafka-back-end/services/hotel.js" afterPath="$PROJECT_DIR$/kafka-back-end/services/hotel.js" />
-    </list>
+    <list default="true" id="97158941-6c7b-4391-b904-b384583a521d" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -103,7 +97,7 @@
       <file leaf-file-name="hotel.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/kafka-back-end/services/hotel.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
+            <state relative-caret-position="-935">
               <caret line="8" column="57" lean-forward="false" selection-start-line="8" selection-start-column="54" selection-end-line="8" selection-end-column="57" />
               <folding />
             </state>
@@ -261,20 +255,19 @@
       <workItem from="1510883155266" duration="16939000" />
       <workItem from="1511166725364" duration="58000" />
       <workItem from="1511167063770" duration="5307000" />
-      <workItem from="1511460113965" duration="1077000" />
+      <workItem from="1511460113965" duration="2682000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="23381000" />
+    <option name="totallyTimeSpent" value="24986000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32974428" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32974428" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -617,7 +610,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/kafka-back-end/services/hotel.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
+        <state relative-caret-position="-935">
           <caret line="8" column="57" lean-forward="false" selection-start-line="8" selection-start-column="54" selection-end-line="8" selection-end-column="57" />
           <folding />
         </state>
