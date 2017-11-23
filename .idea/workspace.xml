@@ -127,6 +127,8 @@
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
               </folding>
+<<<<<<< HEAD
+=======
             </state>
           </provider>
         </entry>
@@ -140,10 +142,27 @@
                 <element signature="e#0#39#0" expanded="true" />
               </folding>
 
+>>>>>>> 09a23169210f6c54414fafec2d1155dd896bed99
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
+      <file leaf-file-name="AddCar.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/front-end/src/Components/admin/AddCar.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2525">
+              <caret line="101" column="75" lean-forward="false" selection-start-line="101" selection-start-column="75" selection-end-line="101" selection-end-column="75" />
+              <folding>
+                <element signature="e#0#39#0" expanded="true" />
+              </folding>
+
+            </state>
+          </provider>
+        </entry>
+      </file>
+=======
+>>>>>>> 09a23169210f6c54414fafec2d1155dd896bed99
 
       <file leaf-file-name="users.js" pinned="false" current-in-tab="false">
         <entry file="file://$USER_HOME$/Desktop/loginreactappwithout connectionpooling/users.js">
@@ -394,11 +413,15 @@
 =======
       <workItem from="1511460113965" duration="1077000" />
 
+<<<<<<< HEAD
+>>>>>>> 09a23169210f6c54414fafec2d1155dd896bed99
+=======
 >>>>>>> 09a23169210f6c54414fafec2d1155dd896bed99
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
+<<<<<<< HEAD
 <<<<<<< HEAD
     <option name="totallyTimeSpent" value="24986000" />
   </component>
@@ -418,10 +441,24 @@
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+=======
+
+    <option name="totallyTimeSpent" value="23381000" />
+
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-11" y="-11" width="1942" height="1054" extended-state="6" />
+    <layout>
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+>>>>>>> 09a23169210f6c54414fafec2d1155dd896bed99
 
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
 
+<<<<<<< HEAD
+>>>>>>> 09a23169210f6c54414fafec2d1155dd896bed99
+=======
 >>>>>>> 09a23169210f6c54414fafec2d1155dd896bed99
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -825,8 +862,11 @@
     <entry file="file://$PROJECT_DIR$/front-end/src/App.js">
       <provider selected="true" editor-type-id="text-editor">
 <<<<<<< HEAD
+<<<<<<< HEAD
         <state relative-caret-position="-935">
 =======
+=======
+>>>>>>> 09a23169210f6c54414fafec2d1155dd896bed99
 
         <state relative-caret-position="136">
 >>>>>>> 09a23169210f6c54414fafec2d1155dd896bed99
@@ -854,6 +894,8 @@
         <state relative-caret-position="25">
           <caret line="3" column="12" lean-forward="true" selection-start-line="3" selection-start-column="12" selection-end-line="3" selection-end-column="12" />
 
+<<<<<<< HEAD
+=======
           <folding />
         </state>
       </provider>
@@ -934,10 +976,94 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
           <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+>>>>>>> 09a23169210f6c54414fafec2d1155dd896bed99
           <folding />
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
+    <entry file="file://$PROJECT_DIR$/front-end/src/css/admin.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="25">
+          <caret line="9" column="13" lean-forward="true" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/front-end/src/assets/css/bootstrap.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-47">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/front-end/src/assets/css/bootstrap-theme.min.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-47">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/front-end/src/assets/css/checkbox3.min.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/front-end/src/assets/css/custom-styles.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="149" column="16" lean-forward="false" selection-start-line="149" selection-start-column="16" selection-end-line="149" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/front-end/src/assets/css/font-awesome.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-47">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/front-end/src/assets/img/bg-img.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/front-end/src/assets/css/select2.min.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-47">
+          <caret line="0" column="1134" lean-forward="true" selection-start-line="0" selection-start-column="1134" selection-end-line="0" selection-end-column="1134" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/front-end/src/Components/admin/FullPage.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="103" column="0" lean-forward="false" selection-start-line="103" selection-start-column="0" selection-end-line="103" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+            <element signature="e#229#265#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/front-end/src/assets/css/admin.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+=======
+>>>>>>> 09a23169210f6c54414fafec2d1155dd896bed99
     <entry file="file://$PROJECT_DIR$/front-end/src/Components/NewerHomePage.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-2175">
