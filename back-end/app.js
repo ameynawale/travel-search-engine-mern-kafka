@@ -130,7 +130,7 @@ app.post('/hotel', function(req, res) {
    if (req.body.fromDate <= req.body.toDate) {
        kafka.make_request('hotel_topic', {
            "city": req.body.city, "from": req.body.fromDate, "to": req.body.toDate, "guestCount": req.body.guestCount,
-           "roomCount": req.body.roomCount
+           "roomCount": req.body.roomCount, "username":req.body.username
        }, function (err, results) {
            console.log('in result');
            console.log(results);
@@ -160,7 +160,7 @@ app.post('/hotel', function(req, res) {
 
                var res1 = results.message;
 
-               res.status(201).send({
+               res.status(404).send({
                    file: res1,
                    city: req.body.city,
                    fromDate: req.body.fromDate,
@@ -202,7 +202,7 @@ app.post('/hotelDetails', function(req, res) {
 
             var res1 = results.message;
 
-            res.status(201).send({
+            res.status(401).send({
                 file: res1,
                 city: req.body.city,
                 fromDate: req.body.fromDate,
@@ -248,7 +248,7 @@ app.post('/bookHotel', function(req, res) {
 
                     var res1 = results.message;
 
-                    res.status(201).send({
+                    res.status(404).send({
                         file: res1,
                         city: req.body.city,
                         fromDate: req.body.fromDate,
@@ -292,7 +292,7 @@ app.post('/payHotel', function(req, res) {
 
                     var res1 = results.message;
 
-                    res.status(201).send({
+                    res.status(401).send({
                         file: res1,
                         city: req.body.city,
                         fromDate: req.body.fromDate,
@@ -305,4 +305,51 @@ app.post('/payHotel', function(req, res) {
     });
 });
 
+app.post('/admin/flights/addFlight', function(req, res) {
+    console.log(req.body.flightName);
+    console.log(req.body.operator);
+    console.log(req.body.departureTime);
+    console.log(req.body.arrivalTime);
+    console.log(req.body.fromCity);
+    console.log(req.body.toCity);
+    console.log(req.body.fromDate);
+    console.log(req.body.price);
+    console.log(req.body.seatCount);
+    console.log(req.body.seatType);
+
+    kafka.make_request('flightAdd_topic',{"flightName": req.body.flightName, "operator": req.body.operator, "departureTime": req.body.departureTime, "arrivalTime" : req.body.arrivalTime,
+        "fromCity": req.body.fromCity, "toCity": req.body.toCity, "fromDate":req.body.fromDate, "price": req.body.price, "seatCount":req.body.seatCount, "seatType": req.body.seatType }, function(err,results) {
+        console.log('in result');
+        console.log(results);
+
+        if (err) {
+            res.status(500).send();
+        }
+
+        if (results.value == 200) {
+            //  done(null,true,results/*{username: username, password: password}*/);
+            console.log("in 200 " + results.message);
+
+            var res1 = results.message;
+
+            res.status(201).send({file: res1, "flightName": req.body.flightName, "operator": req.body.operator, "departureTime": req.body.departureTime, "arrivalTime" : req.body.arrivalTime,
+                "fromCity": req.body.fromCity, "toCity": req.body.toCity, "fromDate":req.body.fromDate, "price": req.body.price, "seatCount":req.body.seatCount, "seatType": req.body.seatType});
+            if (results.value == 401) {
+                //  done(null,true,results/*{username: username, password: password}*/);
+                console.log(results.message);
+
+                var res1 = results.message;
+
+                res.status(401).send({
+                    file: res1,
+                    city: req.body.city,
+                    fromDate: req.body.fromDate,
+                    toDate: req.body.toDate,
+                    guestCount: req.body.guestCount,
+                    roomCount: req.body.roomCount
+                });
+            }
+        }
+    });
+});
 module.exports = app;
