@@ -5,7 +5,7 @@ import './App.css';
 // import NewHomePage from "./components/NewHomePage";
 
 import {BrowserRouter} from 'react-router-dom';
-import NewerHomePage from "./components/NewerHomePage";
+import NewerHomePage from "./Components/NewerHomePage";
 
 
 // import HomePage from "./components/HomePage";
