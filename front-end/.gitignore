@@ -19,3 +19,5 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+/C:/My Projects/travel-search-engine-mern-kafka/.idea/workspace.xml

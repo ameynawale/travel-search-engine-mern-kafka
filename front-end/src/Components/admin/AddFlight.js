@@ -3,6 +3,13 @@ import PropTypes from 'prop-types';
 import * as API from '../../api/API';
 import {NotificationContainer, NotificationManager} from 'react-notifications';
 //import '../../css/admin.css';
+import '../../assets/css/custom-styles.css';
+import '../../assets/css/bootstrap.css';
+//import '../../assets/css/bootstrap-theme.min.css';
+//import '../../assets/css/checkbox3.min.css';
+//import '../../assets/css/font-awesome.css';
+//import '../../assets/css/select2.min.css';
+
 
 class AddFlight extends Component {
 
@@ -330,7 +337,7 @@ class AddFlight extends Component {
                                             <button
                                                 className="btn btn-primary"
                                                 type="button"
-                                                onClick={() => this.props.addListing(this.state)}>
+                                                onClick={() => this.addListing(this.state)}>
                                                 Add
                                             </button>
                                         </div>

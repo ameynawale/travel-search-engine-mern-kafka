@@ -8,7 +8,7 @@ function handle_request(msg, callback) {
     var res = {};
     console.log("In handle request:" + JSON.stringify(msg));
 
-    var getUser = "insert into flightdetails(flightName, operator, departureTime,arrivalTime,fromCity,toCity,fromDate,price,seatsCount,seatType) values('" + msg.flightName + "','" + msg.operator + "','" + msg.departureTime + "','" + msg.arrivalTime + "','" + msg.fromCity + "','" + msg.toCity + "','" + msg.fromDate + "','" + msg.price + "','" + msg.seatCount + "','" + msg.seatType + "')";
+    var getUser = "insert into flightdetails(flightName, operator, departureTime,fromCity,toCity,fromDate,price,seatCount,seatType) values('" + msg.flightName + "','" + msg.operator + "','" + msg.departureTime + "','" + msg.fromCity + "','" + msg.toCity + "','" + msg.fromDate + "','" + msg.price + "','" + msg.seatCount + "','" + msg.seatType + "')";
     console.log("Query is:" + getUser);
 
     mysql.fetchData(function (err, results) {

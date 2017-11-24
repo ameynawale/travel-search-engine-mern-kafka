@@ -11,6 +11,16 @@ import FullPage from "./admin/FullPage";
 import AddFlight from "./admin/AddFlight";
 import AddHotel from "./admin/AddHotel";
 import AddCar from "./admin/AddCar";
+import SearchFlight from "./admin/SearchFlight";
+import SearchHotel from "./admin/SearchHotel";
+import SearchCar from "./admin/SearchCar";
+import EditFlight from "./admin/EditFlight";
+import EditHotel from "./admin/EditHotel";
+import EditCar from "./admin/EditCar";
+import FlightDetails from "./admin/FlightDetails";
+import HotelDetails from "./admin/HotelDetails";
+import CarDetails from "./admin/CarDetails";
+import SearchBill from "./admin/SearchBill";
 
 class NewerHomePage extends Component {
 
@@ -20,8 +30,30 @@ class NewerHomePage extends Component {
         username: '',
         firstName: '',
         lastName: '',
-        password: ''
+        password: '',
+        flightID: '',
+        carID: '',
+        hotelID: ''
     };
+
+    /*searchListing = (listingDetails) => {
+        API.doLogin(listingDetails)
+            .then((res) => {
+                if (res.status === 200) {
+                    this.setState({
+                        isLoggedIn: true,
+                        message: "Welcome to my App..!!",
+                        username: userdata.username
+                    });
+                    this.props.history.push("/welcome");
+                } else if (status === 401) {
+                    this.setState({
+                        isLoggedIn: false,
+                        message: "Wrong username or password. Try again..!!"
+                    });
+                }
+            });
+    };*/
 
     handleSubmit = (userdata) => {
         API.doLogin(userdata)
@@ -56,6 +88,22 @@ class NewerHomePage extends Component {
     				});
     			}
     		});
+    };
+
+    searchBills = (userdata) => {
+        API.searchBills(userdata)
+            .then((res) => {
+                if(res.status === 201){
+                    this.setState({
+                        message: 'Sign Up successful! Please login!!'
+                    });
+                    this.props.history.push('/login');
+                } else if (res.status === 401){
+                    this.setState({
+                        message: 'User already exists! Please try with different details!!'
+                    });
+                }
+            });
     };
 
     handleLogout = () => {
@@ -118,6 +166,66 @@ class NewerHomePage extends Component {
                 <Route exact path='/admin/cars/addCar' render={() => (
                     <div>
                         <AddCar/>
+                    </div>
+                )
+                }/>
+                <Route exact path='/admin/flights/searchFlight' render={() => (
+                    <div>
+                        <SearchFlight/>
+                    </div>
+                )
+                }/>
+                <Route exact path='/admin/hotels/searchHotel' render={() => (
+                    <div>
+                        <SearchHotel/>
+                    </div>
+                )
+                }/>
+                <Route exact path='/admin/cars/searchCar' render={() => (
+                    <div>
+                        <SearchCar/>
+                    </div>
+                )
+                }/>
+                <Route exact path='/admin/flights/flightDetails' render={() => (
+                    <div>
+                        <FlightDetails/>
+                    </div>
+                )
+                }/>
+                <Route exact path='/admin/hotels/hotelDetails' render={() => (
+                    <div>
+                        <HotelDetails/>
+                    </div>
+                )
+                }/>
+                <Route exact path='/admin/cars/carDetails' render={() => (
+                    <div>
+                        <CarDetails/>
+                    </div>
+                )
+                }/>
+                <Route exact path='/admin/flights/editFlight' render={() => (
+                    <div>
+                        <EditFlight/>
+                    </div>
+                )
+                }/>
+                <Route exact path='/admin/hotels/editHotel' render={() => (
+                    <div>
+                        <EditHotel/>
+                    </div>
+                )
+                }/>
+                <Route exact path='/admin/cars/editCar' render={() => (
+                    <div>
+                        <EditCar/>
+                    </div>
+                )
+                }/>
+                <Route exact path='/admin/bills/searchBill' render={() => (
+                    <div>
+                        <SearchBill/>
                     </div>
                 )
                 }/>
