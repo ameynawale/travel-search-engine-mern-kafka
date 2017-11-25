@@ -102,9 +102,23 @@ export const logout = () =>
         credentials:'include'
     }).then(res => {
         return res.status;
-        res.data;
+        //res.data;
     })
         .catch(error => {
             console.log("This is error");
+            return error;
+        });
+
+export const searchListing = (payload) =>
+    fetch(`${api}/admin/flights/fetchFlight`,{
+        method: 'POST',
+        headers: {
+            ...headers,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+    }).then(res => res.json())
+        .catch(error => {
+            console.log("This is error.");
             return error;
         });

@@ -5,29 +5,35 @@ import {NotificationContainer, NotificationManager} from 'react-notifications';
 //import '../../css/admin.css';
 import '../../assets/css/custom-styles.css';
 import '../../assets/css/bootstrap.css';
+import '../../assets/css/GridStyles.css';
+import '../../assets/css/ResizeStyles.css';
+import {Responsive, WidthProvider} from 'react-grid-layout';
+const ResponsiveReactGridLayout = WidthProvider(Responsive);
+
 //import '../../assets/css/bootstrap-theme.min.css';
 //import '../../assets/css/checkbox3.min.css';
 //import '../../assets/css/font-awesome.css';
 //import '../../assets/css/select2.min.css';
 
 
-class SearchFlight extends Component {
-
-    /*constructor(props){
-        super(props);
-        this.state = {
-            flightID: '',
-            flightName: ''
-        };
-    }*/
+class Reports extends Component {
 
     static propTypes = {
-        searchListing: PropTypes.func.isRequired
+        handleSignUp: PropTypes.func.isRequired
     };
 
     state = {
-        flightID: '',
-        flightName: ''
+        flightName: '',
+        operator: '',
+        departureTime: '',
+        arrivalTime:'',
+        fromCity: '',
+        toCity: '',
+        fromDate: '',
+        price: '',
+        seatCount: '',
+        seatType: '',
+        message: ''
     };
 
     addListing = (recordDetails) => {
@@ -68,12 +74,25 @@ class SearchFlight extends Component {
 
     componentWillMount(){
         this.setState({
-            flightID: '',
-            flightName: ''
+            flightName: '',
+            operator: '',
+            departureTime: '',
+            arrivalTime:'',
+            fromCity: '',
+            toCity: '',
+            price: '',
+            seatCount: '',
+            seatType: '',
+            fromDate: ''
         });
     }
 
     render() {
+        var layout = [
+            {i: 'a', x: 0, y: 0, w: 1, h: 2, static: true},
+            {i: 'b', x: 1, y: 0, w: 3, h: 2, minW: 2, maxW: 4},
+            {i: 'c', x: 4, y: 0, w: 1, h: 2}
+        ];
         return (
             <div id="wrapper">
                 <div>
@@ -116,13 +135,13 @@ class SearchFlight extends Component {
                                     <a href="#"><i className="fa fa-sitemap"></i> Edit listing<span className="fa arrow"></span></a>
                                     <ul className="nav nav-second-level">
                                         <li>
-                                            <a href="/admin/flights/searchFlight">Flights</a>
+                                            <a href="chart.html">Flights</a>
                                         </li>
                                         <li>
-                                            <a href="/admin/hotels/searchHotel">Hotels</a>
+                                            <a href="morris-chart.html">Hotels</a>
                                         </li>
                                         <li>
-                                            <a href="/admin/cars/searchCar">Cars</a>
+                                            <a href="morris-chart.html">Cars</a>
                                         </li>
                                     </ul>
                                 </li>
@@ -146,63 +165,16 @@ class SearchFlight extends Component {
 
                         <div className="row col-md-offset-right-4">
                             <div className="col-md-8">
-
-                                <form>
-                                    <div className="form-group">
-                                        <h4><strong>SEARCH FLIGHT</strong></h4>
-                                    </div>
-                                    <div>
-                                        <div display="block" className="col-md-6">
-                                            <label style={{float:'right'}}>Enter Flight ID:</label>
-                                        </div>
-                                        <div className="form-group col-md-6">
-                                            <input
-                                                className="form-control"
-                                                type="text"
-                                                label="flightID"
-                                                name="flightID"
-                                                placeholder="Flight ID"
-                                                value={this.state.flightID}
-                                                onChange={(event) => {
-                                                    this.setState({
-                                                        flightID: event.target.value
-                                                    });
-                                                }}
-                                            />
-                                        </div>
-                                    </div>
-                                    <h5>OR</h5>
-                                    <div>
-                                        <div display="block" className="col-md-6">
-                                            <label style={{float:'right'}}>Enter Flight Name:</label>
-                                        </div>
-                                        <div className="form-group col-md-6">
-                                            <input
-                                                className="form-control"
-                                                type="text"
-                                                label="flightName"
-                                                name="flightName"
-                                                placeholder="Flight Name"
-                                                value={this.state.flightName}
-                                                onChange={(event) => {
-                                                    this.setState({
-                                                        flightName: event.target.value
-                                                    });
-                                                }}
-                                            />
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div className="form-group">
-                                            <button
-                                                className="btn btn-primary"
-                                                type="button"
-                                                onClick={() => this.props.searchListing(this.state)}>
-                                                Search
-                                            </button>
-                                        </div>
-                                    </div>
-                                </form>
+                                <div className="form-group">
+                                    <h4><strong>REPORTS</strong></h4>
+                                </div>
+                                <ResponsiveReactGridLayout className="layout react-grid-item react-grid-placeholder react-resizable-handle" layouts={layout}
+                                                           breakpoints={{lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0}}
+                                                           cols={{lg: 12, md: 10, sm: 6, xs: 4, xxs: 2}}>
+                                    <div key="1">1</div>
+                                    <div key="2">2</div>
+                                    <div key="3">3</div>
+                                </ResponsiveReactGridLayout>
                             </div>
 
                         </div>
@@ -214,4 +186,4 @@ class SearchFlight extends Component {
     }
 }
 
-export default SearchFlight;
+export default Reports;
