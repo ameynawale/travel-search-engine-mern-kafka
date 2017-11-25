@@ -21,6 +21,7 @@ import FlightDetails from "./admin/FlightDetails";
 import HotelDetails from "./admin/HotelDetails";
 import CarDetails from "./admin/CarDetails";
 import SearchBill from "./admin/SearchBill";
+import Reports from "./admin/Reports";
 
 class NewerHomePage extends Component {
 
@@ -31,27 +32,42 @@ class NewerHomePage extends Component {
         firstName: '',
         lastName: '',
         password: '',
-        flightID: '',
         carID: '',
-        hotelID: ''
+        hotelID: '',
+        flightDetails: ''
     };
 
-    /*searchListing = (listingDetails) => {
-        API.doLogin(listingDetails)
+    searchListing = (listingDetails) => {
+        API.searchListing(listingDetails)
             .then((res) => {
-                if (res.status === 200) {
+                //if (res.status === 201) {
                     this.setState({
-                        isLoggedIn: true,
-                        message: "Welcome to my App..!!",
-                        username: userdata.username
+                        flightDetails: res.file
                     });
-                    this.props.history.push("/welcome");
-                } else if (status === 401) {
-                    this.setState({
+                    this.props.history.push("/admin/flights/flightDetails");
+                //} else if (res.status === 401) {
+                  /*  this.setState({
                         isLoggedIn: false,
                         message: "Wrong username or password. Try again..!!"
                     });
-                }
+*/
+            });
+    };
+
+    /*editListing = (listingDetails) => {
+        API.searchListing(listingDetails)
+            .then((res) => {
+                //if (res.status === 201) {
+                this.setState({
+                    flightDetails: res.file
+                });
+                this.props.history.push("/admin/flights/flightDetails/editPage");
+                //} else if (res.status === 401) {
+                /!*  this.setState({
+                      isLoggedIn: false,
+                      message: "Wrong username or password. Try again..!!"
+                  });
+*!/
             });
     };*/
 
@@ -90,7 +106,7 @@ class NewerHomePage extends Component {
     		});
     };
 
-    searchBills = (userdata) => {
+    /*searchBills = (userdata) => {
         API.searchBills(userdata)
             .then((res) => {
                 if(res.status === 201){
@@ -104,7 +120,7 @@ class NewerHomePage extends Component {
                     });
                 }
             });
-    };
+    };*/
 
     handleLogout = () => {
         console.log('logout called');
@@ -171,7 +187,7 @@ class NewerHomePage extends Component {
                 }/>
                 <Route exact path='/admin/flights/searchFlight' render={() => (
                     <div>
-                        <SearchFlight/>
+                        <SearchFlight searchListing={this.searchListing}/>
                     </div>
                 )
                 }/>
@@ -189,7 +205,13 @@ class NewerHomePage extends Component {
                 }/>
                 <Route exact path='/admin/flights/flightDetails' render={() => (
                     <div>
-                        <FlightDetails/>
+                        <FlightDetails flightDetails={this.state.flightDetails}/>
+                    </div>
+                )
+                }/>
+                <Route exact path='/admin/flights/flightDetails/editPage' render={() => (
+                    <div>
+                        <EditFlight flightDetails={this.state.flightDetails}/>
                     </div>
                 )
                 }/>
@@ -226,6 +248,12 @@ class NewerHomePage extends Component {
                 <Route exact path='/admin/bills/searchBill' render={() => (
                     <div>
                         <SearchBill/>
+                    </div>
+                )
+                }/>
+                <Route exact path='/admin/reports' render={() => (
+                    <div>
+                        <Reports/>
                     </div>
                 )
                 }/>

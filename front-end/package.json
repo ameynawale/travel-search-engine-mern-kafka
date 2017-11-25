@@ -8,6 +8,7 @@
     "react-document-head": "^1.0.1",
     "react-dom": "^15.6.1",
     "react-dropdown": "^1.3.2",
+    "react-grid-layout": "^0.16.0",
     "react-helmet": "^5.2.0",
     "react-notifications": "^1.4.3",
     "react-router-dom": "^4.2.2",
