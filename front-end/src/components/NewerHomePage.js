@@ -22,6 +22,7 @@ import HotelDetails from "./admin/HotelDetails";
 import CarDetails from "./admin/CarDetails";
 import SearchBill from "./admin/SearchBill";
 import Reports from "./admin/Reports";
+import ReactiveGrid from  './admin/ReactiveGrid';
 
 class NewerHomePage extends Component {
 
@@ -44,7 +45,10 @@ class NewerHomePage extends Component {
                     this.setState({
                         flightDetails: res.file
                     });
-                    this.props.history.push("/admin/flights/flightDetails");
+                    if(listingDetails.isSearchFlight)
+                        this.props.history.push("/admin/flights/flightDetails");
+                    else
+                        this.props.history.push("/admin/flights/flightDetails/editPage");
                 //} else if (res.status === 401) {
                   /*  this.setState({
                         isLoggedIn: false,
@@ -54,7 +58,7 @@ class NewerHomePage extends Component {
             });
     };
 
-    /*editListing = (listingDetails) => {
+   /* editListing = (listingDetails) => {
         API.searchListing(listingDetails)
             .then((res) => {
                 //if (res.status === 201) {
@@ -63,14 +67,14 @@ class NewerHomePage extends Component {
                 });
                 this.props.history.push("/admin/flights/flightDetails/editPage");
                 //} else if (res.status === 401) {
-                /!*  this.setState({
+            /!*      this.setState({
                       isLoggedIn: false,
                       message: "Wrong username or password. Try again..!!"
                   });
 *!/
             });
-    };*/
-
+    };
+*/
     handleSubmit = (userdata) => {
         API.doLogin(userdata)
             .then((status) => {
@@ -89,7 +93,7 @@ class NewerHomePage extends Component {
                 }
             });
     };
-    
+
     handleSignUp = (userdata) => {
     	API.doSignUp(userdata)
     		.then((res) => {
@@ -211,7 +215,7 @@ class NewerHomePage extends Component {
                 }/>
                 <Route exact path='/admin/flights/flightDetails/editPage' render={() => (
                     <div>
-                        <EditFlight flightDetails={this.state.flightDetails}/>
+                        <EditFlight flightDetails={this.state.flightDetails} editListing={this.editListing}/>
                     </div>
                 )
                 }/>
@@ -253,7 +257,7 @@ class NewerHomePage extends Component {
                 }/>
                 <Route exact path='/admin/reports' render={() => (
                     <div>
-                        <Reports/>
+                        <ReactiveGrid/>
                     </div>
                 )
                 }/>

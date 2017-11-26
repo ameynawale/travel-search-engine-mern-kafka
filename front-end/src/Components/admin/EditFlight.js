@@ -146,88 +146,183 @@ class SearchFlight extends Component {
 
                                 <form>
                                     <div className="form-group">
-                                        <h4><strong>EDIT FLIGHT DETAILS</strong></h4>
+                                        <h4><strong>EDIT FLIGHT</strong></h4>
                                     </div>
                                     <div>
-                                        <div>
-                                            <div display="block" className="col-md-6">
-                                                <label style={{float:'right'}}>Flight ID:</label>
-                                            </div>
-                                            <div className="form-group col-md-6">
-                                                <label style={{float:'left'}}>{this.state.flightID}</label>
-                                            </div>
+                                        <div display="block" className="col-md-6">
+                                            <label style={{float:'right'}}>Flight ID:</label>
                                         </div>
-                                        <div>
-                                            <div display="block" className="col-md-6">
-                                                <label style={{float:'right'}}>Flight Name:</label>
-                                            </div>
-                                            <div className="form-group col-md-6">
-                                                <label style={{float:'left'}}>{this.state.flightName}</label>
-                                            </div>
+                                        <div display="block" className="col-md-6">
+                                            <label style={{float:'left'}}>{this.state.flightID}</label>
                                         </div>
-                                        <div>
-                                            <div display="block" className="col-md-6">
-                                                <label style={{float:'right'}}>Flight Operator:</label>
-                                            </div>
-                                            <div className="form-group col-md-6">
-                                                <label style={{float:'left'}}>{this.state.operator}</label>
-                                            </div>
+                                    </div>
+                                    <div>
+                                        <div display="block" className="col-md-6">
+                                            <label style={{float:'right'}}>Flight Name:</label>
                                         </div>
-                                        <div>
-                                            <div display="block" className="col-md-6">
-                                                <label style={{float:'right'}}>Departure City:</label>
-                                            </div>
-                                            <div className="form-group col-md-6">
-                                                <label style={{float:'left'}}>{this.state.fromCity}</label>
-                                            </div>
+                                        <div display="block" className="col-md-6">
+                                            <label style={{float:'left'}}>{this.state.flightName}</label>
                                         </div>
-                                        <div>
-                                            <div display="block" className="col-md-6">
-                                                <label style={{float:'right'}}>Arrival City:</label>
-                                            </div>
-                                            <div className="form-group col-md-6">
-                                                <label style={{float:'left'}}>{this.state.toCity}</label>
-                                            </div>
+                                    </div>
+                                    <div>
+                                        <div display="block" className="col-md-6">
+                                            <label style={{float:'right'}}>Flight Operator:</label>
                                         </div>
-                                        <div>
-                                            <div display="block" className="col-md-6">
-                                                <label style={{float:'right'}}>Departure date:</label>
-                                            </div>
-                                            <div className="form-group col-md-6">
-                                                <label style={{float:'left'}}>{this.state.fromDate}</label>
-                                            </div>
+                                        <div className="form-group col-md-6">
+                                            <input
+                                                className="form-control"
+                                                type="text"
+                                                label="operator"
+                                                placeholder={this.state.operator}
+                                                value={this.state.operator}
+                                                onChange={(event) => {
+                                                    this.setState({
+                                                        operator: event.target.value
+                                                    });
+                                                }}
+                                            />
                                         </div>
-                                        <div>
-                                            <div display="block" className="col-md-6">
-                                                <label style={{float:'right'}}>Departure time:</label>
-                                            </div>
-                                            <div className="form-group col-md-6">
-                                                <label style={{float:'left'}}>{this.state.time}</label>
-                                            </div>
+                                    </div>
+                                    <div>
+                                        <div display="block" className="col-md-6">
+                                            <label style={{float:'right'}}>Departure City:</label>
                                         </div>
-                                        <div>
-                                            <div display="block" className="col-md-6">
-                                                <label style={{float:'right'}}>Price:</label>
-                                            </div>
-                                            <div className="form-group col-md-6">
-                                                <label style={{float:'left'}}>{this.state.price}</label>
-                                            </div>
+                                        <div className="form-group col-md-6">
+                                            <input
+                                                className="form-control"
+                                                type="text"
+                                                label="fromCity"
+                                                placeholder={this.state.fromCity}
+                                                value={this.state.fromCity}
+                                                onChange={(event) => {
+                                                    this.setState({
+                                                        fromCity: event.target.value
+                                                    });
+                                                }}
+                                            />
                                         </div>
-                                        <div>
-                                            <div display="block" className="col-md-6">
-                                                <label style={{float:'right'}}>Seat Count:</label>
-                                            </div>
-                                            <div className="form-group col-md-6">
-                                                <label style={{float:'left'}}>{this.state.seatCount}</label>
-                                            </div>
+                                    </div>
+                                    <div>
+                                        <div display="block" className="col-md-6">
+                                            <label style={{float:'right'}}>Arrival City:</label>
                                         </div>
+                                        <div className="form-group col-md-6">
+                                            <input
+                                                className="form-control"
+                                                type="text"
+                                                label="toCity"
+                                                placeholder={this.state.toCity}
+                                                value={this.state.toCity}
+                                                onChange={(event) => {
+                                                    this.setState({
+                                                        toCity: event.target.value
+                                                    });
+                                                }}
+                                            />
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div display="block" className="col-md-6">
+                                            <label style={{float:'right'}}>Departure date:</label>
+                                        </div>
+                                        <div className="form-group col-md-6">
+                                            <input
+                                                className="form-control"
+                                                type="datetime-local"
+                                                label="fromDate"
+                                                placeholder={this.state.fromDate}
+                                                value={this.state.fromDate}
+                                                onChange={(event) => {
+                                                    this.setState({
+                                                        fromDate: event.target.value
+                                                    });
+                                                }}
+                                            />
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div display="block" className="col-md-6">
+                                            <label style={{float:'right'}}>Departure time:</label>
+                                        </div>
+                                        <div className="form-group col-md-6">
+                                            <input
+                                                className="form-control"
+                                                type="text"
+                                                label="departureTime"
+                                                placeholder={this.state.departureTime}
+                                                value={this.state.departureTime}
+                                                onChange={(event) => {
+                                                    this.setState({
+                                                        departureTime: event.target.value
+                                                    });
+                                                }}
+                                            />
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div display="block" className="col-md-6">
+                                            <label style={{float:'right'}}>Price:</label>
+                                        </div>
+                                        <div className="form-group col-md-6">
+                                            <input
+                                                className="form-control"
+                                                type="text"
+                                                label="price"
+                                                placeholder={this.state.price}
+                                                value={this.state.price}
+                                                onChange={(event) => {
+                                                    this.setState({
+                                                        price: event.target.value
+                                                    });
+                                                }}
+                                            />
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div display="block" className="col-md-6">
+                                            <label style={{float:'right'}}>Seat Type:</label>
+                                        </div>
+                                        <div className="form-group col-md-6">
+                                            <input
+                                                className="form-control"
+                                                type="text"
+                                                label="seatType"
+                                                placeholder={this.state.seatType}
+                                                value={this.state.seatType}
+                                                onChange={(event) => {
+                                                    this.setState({
+                                                        seatType: event.target.value
+                                                    });
+                                                }}
+                                            />
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div display="block" className="col-md-6">
+                                            <label style={{float:'right'}}>Seat Count:</label>
+                                        </div>
+                                        <div className="form-group col-md-6">
+                                            <input
+                                                className="form-control"
+                                                type="text"
+                                                label="seatCount"
+                                                placeholder={this.state.seatCount}
+                                                value={this.state.seatCount}
+                                                onChange={(event) => {
+                                                    this.setState({
+                                                        seatCount: event.target.value
+                                                    });
+                                                }}
+                                            />
+                                        </div>
+                                    </div>
+                                    <div>
                                         <div className="form-group">
                                             <button
                                                 className="btn btn-primary"
                                                 type="button"
-                                                onClick={() => this.props.history.push("/admin/flights/flightDetails/editPage")}
-                                            >
-                                                Edit
+                                                onClick={() => this.addListing(this.state)}>
+                                                Save
                                             </button>
                                         </div>
                                     </div>

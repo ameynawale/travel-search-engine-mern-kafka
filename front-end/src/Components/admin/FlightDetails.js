@@ -11,7 +11,7 @@ import '../../assets/css/bootstrap.css';
 //import '../../assets/css/select2.min.css';
 
 
-class SearchFlight extends Component {
+class FlightDetails extends Component {
 
     constructor(props){
         super(props);
@@ -25,12 +25,14 @@ class SearchFlight extends Component {
             fromDate: this.props.flightDetails.fromDate,
             toDate: this.props.flightDetails.toDate,
             seatCount: this.props.flightDetails.seatsCount,
-            price: this.props.flightDetails.amount
+            price: this.props.flightDetails.amount,
+            isSearchFlight: false
         };
     }
 
     static propTypes = {
-        flightDetails: PropTypes.array.isRequired
+        flightDetails: PropTypes.array.isRequired,
+        searchListing: PropTypes.func.isRequired
     };
 
     addListing = (recordDetails) => {
@@ -225,7 +227,7 @@ class SearchFlight extends Component {
                                             <button
                                                 className="btn btn-primary"
                                                 type="button"
-                                                onClick={() => "/admin/flights/flightDetails/editPage"}
+                                                onClick={() => this.props.searchListing(this.state)}
                                                 >
                                                 Edit
                                             </button>
@@ -243,4 +245,4 @@ class SearchFlight extends Component {
     }
 }
 
-export default SearchFlight;
+export default FlightDetails;

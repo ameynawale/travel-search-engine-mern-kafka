@@ -27,7 +27,8 @@ class SearchFlight extends Component {
 
     state = {
         flightID: '',
-        flightName: ''
+        flightName: '',
+        isSearchFlight: true
     };
 
     addListing = (recordDetails) => {

@@ -9,6 +9,7 @@ import '../../assets/css/GridStyles.css';
 import '../../assets/css/ResizeStyles.css';
 import {Responsive, WidthProvider} from 'react-grid-layout';
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
+var ReactGridLayout = require('react-grid-layout');
 
 //import '../../assets/css/bootstrap-theme.min.css';
 //import '../../assets/css/checkbox3.min.css';
@@ -168,13 +169,13 @@ class Reports extends Component {
                                 <div className="form-group">
                                     <h4><strong>REPORTS</strong></h4>
                                 </div>
-                                <ResponsiveReactGridLayout className="layout react-grid-item react-grid-placeholder react-resizable-handle" layouts={layout}
-                                                           breakpoints={{lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0}}
-                                                           cols={{lg: 12, md: 10, sm: 6, xs: 4, xxs: 2}}>
-                                    <div key="1">1</div>
-                                    <div key="2">2</div>
-                                    <div key="3">3</div>
-                                </ResponsiveReactGridLayout>
+                                <div style={{left: 200, right: 200, top: 200, bottom: 200}}>
+                                    <ReactGridLayout className="layout" layout={layout} cols={12} rowHeight={30} width={1200}>
+                                        <div key="a">this is the first block</div>
+                                        <div key="b">this is the second block</div>
+                                        <div key="c">this is the third block</div>
+                                    </ReactGridLayout>
+                                </div>
                             </div>
 
                         </div>
