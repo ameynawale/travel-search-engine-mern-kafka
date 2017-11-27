@@ -1,24 +1,164 @@
 .App {
-  text-align: center;
+    text-align: center;
 }
 
 .App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+    float: left;
+    height: 35px;
+    padding-top: 10px;
+    padding-left: 130px;
+}
+.space {
+
+    padding-top: 35px;
+}
+.myAccount {
+    padding-top: 10px;
+    padding-right: 10px;
+    color: white;
+    float:right;
+}
+.iconImage {
+    height: 35px;
+    color: white;
+    padding-top: 10px;
+    padding-right: 160px;
+    float: right;
+}
+.dashboard {
+    height: 150px;
+    width: 800px;
+    background-color: #e4e5ea;
+    margin-left: -70px;
+    margin-top: -11px;
+    padding-right: 30px;
+
 }
 
+.formFields1 {
+    height: 30px;
+
+}
+.Enter{
+
+    background-color: #FF690F;
+}
+.formFields {
+    padding-top: 15px;
+    float: none;
+}
+
+
+.footer {
+    position: inherit;
+    left: 0;
+    bottom: 0;
+    width: 1340px;
+    height: 200px;
+    background-color: black;
+    color: white;
+    text-align: center;
+}
+.BackgroundImage{
+    display: flex;
+
+    width: 400px;
+    height: 500px;
+    padding-left: 0px;
+    right: 0;
+    left: 0;
+    top: 0;
+
+}
+
+.mainform {
+
+    float:none;
+
+}
+.mainbtn {
+
+    border-radius: 0;
+}
+
+.searchbtn {
+
+    height: 50px;
+    width: 60px;
+    background-color: #FF690F;
+
+}
+
+.Kayak {
+    display: flex;
+
+    width: 400px;
+
+}
+
+.Statement{
+    text-align: center;
+    padding-top: 100px;
+
+}
+.Hotels{
+    float: left;
+    padding-top: 5px;
+    padding-left: 35px;
+}
+.Flights{
+    float: left;
+    padding-top: 5px;
+    padding-left: 35px;
+}
+
+.Cars{
+    float: left;
+    padding-top: 5px;
+    padding-left: 35px;
+}
+
+.Rentals{
+    float: left;
+    padding-top: 5px;
+    padding-left: 35px;
+}
+.Cruisers{
+    float: left;
+    padding-top: 5px;
+    padding-left: 35px;
+}
+.dropdown-container {
+    float: left;
+    padding-top: 5px;
+    padding-left: 35px;
+
+}
+/*.transform(
+scale(1, 0));
+.transition(
+-webkit-transform ease 250ms);
+.transition(
+transform ease 250ms);
+}*/
+
+.Packages{
+    float: left;
+    padding-top: 5px;
+    padding-left: 35px;
+}
 .App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+    background-color: #222;
+    height: 150px;
+    padding: 20px;
+    color: white;
 }
 
 .App-intro {
-  font-size: large;
+    font-size: large;
 }
 
 @keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
 }
