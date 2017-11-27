@@ -3,7 +3,7 @@ import { Route, withRouter } from 'react-router-dom';
 import * as API from '../api/API';
 import Login from "./Login";
 import Message from "./Message";
-import Welcome from "./Welcome";
+import Welcome from "./user/Welcome";
 import SignUp from "./SignUp";
 import Header from "./admin/Header";
 import LeftPanel from "./admin/LeftPanel";
@@ -23,6 +23,11 @@ import CarDetails from "./admin/CarDetails";
 import SearchBill from "./admin/SearchBill";
 import Reports from "./admin/Reports";
 import ReactiveGrid from  './admin/ReactiveGrid';
+import Highcharts from './admin/Highcharts';
+import Flights from './user/Flights';
+import Cars from './user/Cars';
+import Hotels from './user/Hotels';
+import AddFlight1 from './user/AddFlight';
 
 class NewerHomePage extends Component {
 
@@ -42,39 +47,39 @@ class NewerHomePage extends Component {
         API.searchListing(listingDetails)
             .then((res) => {
                 //if (res.status === 201) {
-                    this.setState({
-                        flightDetails: res.file
-                    });
-                    if(listingDetails.isSearchFlight)
-                        this.props.history.push("/admin/flights/flightDetails");
-                    else
-                        this.props.history.push("/admin/flights/flightDetails/editPage");
+                this.setState({
+                    flightDetails: res.file
+                });
+                if(listingDetails.isSearchFlight)
+                    this.props.history.push("/admin/flights/flightDetails");
+                else
+                    this.props.history.push("/admin/flights/flightDetails/editPage");
                 //} else if (res.status === 401) {
-                  /*  this.setState({
-                        isLoggedIn: false,
-                        message: "Wrong username or password. Try again..!!"
-                    });
+                /*  this.setState({
+                      isLoggedIn: false,
+                      message: "Wrong username or password. Try again..!!"
+                  });
 */
             });
     };
 
-   /* editListing = (listingDetails) => {
-        API.searchListing(listingDetails)
-            .then((res) => {
-                //if (res.status === 201) {
-                this.setState({
-                    flightDetails: res.file
-                });
-                this.props.history.push("/admin/flights/flightDetails/editPage");
-                //} else if (res.status === 401) {
-            /!*      this.setState({
-                      isLoggedIn: false,
-                      message: "Wrong username or password. Try again..!!"
-                  });
-*!/
-            });
-    };
-*/
+    /* editListing = (listingDetails) => {
+         API.searchListing(listingDetails)
+             .then((res) => {
+                 //if (res.status === 201) {
+                 this.setState({
+                     flightDetails: res.file
+                 });
+                 this.props.history.push("/admin/flights/flightDetails/editPage");
+                 //} else if (res.status === 401) {
+             /!*      this.setState({
+                       isLoggedIn: false,
+                       message: "Wrong username or password. Try again..!!"
+                   });
+ *!/
+             });
+     };
+ */
     handleSubmit = (userdata) => {
         API.doLogin(userdata)
             .then((status) => {
@@ -94,20 +99,39 @@ class NewerHomePage extends Component {
             });
     };
 
+    /*getSearchResults = (userdata) => {
+        API.getFlights(userdata)
+            .then((res) => {
+                if (res) {
+                    this.setState({
+                        isLoggedIn: true,
+                        message: "Welcome to my App..!!",
+                        username: userdata.username
+                    });
+                    this.props.history.push("/welcome");
+                } else if (status === 401) {
+                    this.setState({
+                        isLoggedIn: false,
+                        message: "Wrong username or password. Try again..!!"
+                    });
+                }
+            });
+    };*/
+
     handleSignUp = (userdata) => {
-    	API.doSignUp(userdata)
-    		.then((res) => {
-    			if(res.status === 201){
-    				this.setState({
-    					message: 'Sign Up successful! Please login!!'
-    				});
-    				this.props.history.push('/login');
-    			} else if (res.status === 401){
-    				this.setState({
-    					message: 'User already exists! Please try with different details!!'
-    				});
-    			}
-    		});
+        API.doSignUp(userdata)
+            .then((res) => {
+                if(res.status === 201){
+                    this.setState({
+                        message: 'Sign Up successful! Please login!!'
+                    });
+                    this.props.history.push('/login');
+                } else if (res.status === 401){
+                    this.setState({
+                        message: 'User already exists! Please try with different details!!'
+                    });
+                }
+            });
     };
 
     /*searchBills = (userdata) => {
@@ -145,17 +169,22 @@ class NewerHomePage extends Component {
             <div className="container-fluid">
                 <Route exact path="/" render={() => (
                     <div>
-                        <Message message="You have landed on my App !!"/>
-                        <button className="btn btn-success" onClick={() => {
-                            this.props.history.push("/login");
-                        }}>
-                            Login
-                        </button><br/><br/>
-                        <button className='btn btn-success' onClick={()=>{
-                        	this.props.history.push("/signup");
-                        }}>
-                        New Users? Sign Up
-                        </button>
+                        <Welcome/>
+                    </div>
+                )}/>
+                <Route exact path="/flights" render={() => (
+                    <div>
+                        <Flights/>
+                    </div>
+                )}/>
+                <Route exact path="/hotels" render={() => (
+                    <div>
+                        <Hotels/>
+                    </div>
+                )}/>
+                <Route exact path="/cars" render={() => (
+                    <div>
+                        <Cars/>
                     </div>
                 )}/>
 
@@ -169,7 +198,7 @@ class NewerHomePage extends Component {
                     <Welcome handleLogout={this.handleLogout} username={this.state.username} firstName={this.state.firstName} lastName={this.state.lastName} password={this.state.password}/>
                 )}/>
                 <Route exact path='/signup' render={() => (
-                		<SignUp handleSignUp={this.handleSignUp}/>)	
+                    <SignUp handleSignUp={this.handleSignUp}/>)
                 }/>
                 <Route exact path='/admin/flights/addFlight' render={() => (
                     <div>
@@ -261,7 +290,13 @@ class NewerHomePage extends Component {
                     </div>
                 )
                 }/>
-                </div>
+                <Route exact path='/admin/highcharts' render={() => (
+                    <div>
+                        <Highcharts/>
+                    </div>
+                )
+                }/>
+            </div>
         );
     }
 }
