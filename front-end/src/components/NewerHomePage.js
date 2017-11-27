@@ -47,39 +47,39 @@ class NewerHomePage extends Component {
         API.searchListing(listingDetails)
             .then((res) => {
                 //if (res.status === 201) {
-                this.setState({
-                    flightDetails: res.file
-                });
-                if(listingDetails.isSearchFlight)
-                    this.props.history.push("/admin/flights/flightDetails");
-                else
-                    this.props.history.push("/admin/flights/flightDetails/editPage");
+                    this.setState({
+                        flightDetails: res.file
+                    });
+                    if(listingDetails.isSearchFlight)
+                        this.props.history.push("/admin/flights/flightDetails");
+                    else
+                        this.props.history.push("/admin/flights/flightDetails/editPage");
                 //} else if (res.status === 401) {
-                /*  this.setState({
-                      isLoggedIn: false,
-                      message: "Wrong username or password. Try again..!!"
-                  });
+                  /*  this.setState({
+                        isLoggedIn: false,
+                        message: "Wrong username or password. Try again..!!"
+                    });
 */
             });
     };
 
-    /* editListing = (listingDetails) => {
-         API.searchListing(listingDetails)
-             .then((res) => {
-                 //if (res.status === 201) {
-                 this.setState({
-                     flightDetails: res.file
-                 });
-                 this.props.history.push("/admin/flights/flightDetails/editPage");
-                 //} else if (res.status === 401) {
-             /!*      this.setState({
-                       isLoggedIn: false,
-                       message: "Wrong username or password. Try again..!!"
-                   });
- *!/
-             });
-     };
- */
+   /* editListing = (listingDetails) => {
+        API.searchListing(listingDetails)
+            .then((res) => {
+                //if (res.status === 201) {
+                this.setState({
+                    flightDetails: res.file
+                });
+                this.props.history.push("/admin/flights/flightDetails/editPage");
+                //} else if (res.status === 401) {
+            /!*      this.setState({
+                      isLoggedIn: false,
+                      message: "Wrong username or password. Try again..!!"
+                  });
+*!/
+            });
+    };
+*/
     handleSubmit = (userdata) => {
         API.doLogin(userdata)
             .then((status) => {
@@ -119,19 +119,19 @@ class NewerHomePage extends Component {
     };*/
 
     handleSignUp = (userdata) => {
-        API.doSignUp(userdata)
-            .then((res) => {
-                if(res.status === 201){
-                    this.setState({
-                        message: 'Sign Up successful! Please login!!'
-                    });
-                    this.props.history.push('/login');
-                } else if (res.status === 401){
-                    this.setState({
-                        message: 'User already exists! Please try with different details!!'
-                    });
-                }
-            });
+    	API.doSignUp(userdata)
+    		.then((res) => {
+    			if(res.status === 201){
+    				this.setState({
+    					message: 'Sign Up successful! Please login!!'
+    				});
+    				this.props.history.push('/login');
+    			} else if (res.status === 401){
+    				this.setState({
+    					message: 'User already exists! Please try with different details!!'
+    				});
+    			}
+    		});
     };
 
     /*searchBills = (userdata) => {
@@ -198,7 +198,7 @@ class NewerHomePage extends Component {
                     <Welcome handleLogout={this.handleLogout} username={this.state.username} firstName={this.state.firstName} lastName={this.state.lastName} password={this.state.password}/>
                 )}/>
                 <Route exact path='/signup' render={() => (
-                    <SignUp handleSignUp={this.handleSignUp}/>)
+                		<SignUp handleSignUp={this.handleSignUp}/>)	
                 }/>
                 <Route exact path='/admin/flights/addFlight' render={() => (
                     <div>
@@ -296,7 +296,7 @@ class NewerHomePage extends Component {
                     </div>
                 )
                 }/>
-            </div>
+                </div>
         );
     }
 }
