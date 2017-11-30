@@ -122,3 +122,17 @@ export const searchListing = (payload) =>
             console.log("This is error.");
             return error;
         });
+
+export const getDashboardDetails = (payload) =>
+    fetch(`${api}/admin/dashboard`,{
+        method: 'POST',
+        headers: {
+            ...headers,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+    }).then(res => res.json())
+        .catch(error => {
+            console.log("This is error.");
+            return error;
+        });
