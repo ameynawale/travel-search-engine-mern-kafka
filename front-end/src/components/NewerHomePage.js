@@ -23,12 +23,15 @@ import CarDetails from "./admin/CarDetails";
 import SearchBill from "./admin/SearchBill";
 import Reports from "./admin/Reports";
 import ReactiveGrid from  './admin/ReactiveGrid';
-import Highcharts from './admin/Highcharts';
+import Highcharts1 from './admin/Highcharts';
 import Flights from './user/Flights';
 import Cars from './user/Cars';
 import Hotels from './user/Hotels';
 import AddFlight1 from './user/AddFlight';
 import AdminDashboard from './admin/AdminDashboard';
+import Highcharts from './admin/HighchartsTest';
+import HighchartsTest1 from './admin/HighchartsTest1';
+import hotelListDisplay from './user/hotelListDisplay';
 
 class NewerHomePage extends Component {
 
@@ -41,7 +44,8 @@ class NewerHomePage extends Component {
         password: '',
         carID: '',
         hotelID: '',
-        flightDetails: ''
+        flightDetails: '',
+        hotels: ''
     };
 
     searchListing = (listingDetails) => {
@@ -100,6 +104,7 @@ class NewerHomePage extends Component {
             });
     };
 
+
     getAdminDashboard = () => {
         API.getDashboardDetails()
             .then((res) => {
@@ -114,6 +119,21 @@ class NewerHomePage extends Component {
                       message: "Wrong username or password. Try again..!!"
                   });
 */
+
+    searchHotel = (searchCriteria) => {
+        API.getHotel(searchCriteria)
+            .then((res) => {
+                //if (status === 201) {
+                    this.setState({
+                        hotels: res.file
+                    });
+                    this.props.history.push("/hotelListDisplay");
+                //} else if (status === 401) {
+                  /*  this.setState({
+                        isLoggedIn: false,
+                        message: "Wrong username or password. Try again..!!"
+                    });
+                }*/
             });
     };
 
@@ -197,7 +217,12 @@ class NewerHomePage extends Component {
                 )}/>
                 <Route exact path="/hotels" render={() => (
                     <div>
-                        <Hotels/>
+                        <Hotels searchHotel={this.searchHotel}/>
+                    </div>
+                )}/>
+                <Route exact path="/hotelListDisplay" render={() => (
+                    <div>
+                        <hotelListDisplay hotels={this.state.hotels}/>
                     </div>
                 )}/>
                 <Route exact path="/cars" render={() => (
@@ -310,7 +335,7 @@ class NewerHomePage extends Component {
                 }/>
                 <Route exact path='/admin/highcharts' render={() => (
                     <div>
-                        <Highcharts/>
+                        <HighchartsTest1/>
                     </div>
                 )
                 }/>

@@ -12,6 +12,9 @@ import icon from './icon.png';
 
 class Hotels extends Component {
 
+    static propTypes = {
+        searchHotel: PropTypes.func.isRequired
+    };
 /*
     state = {
         username : '',
@@ -19,8 +22,17 @@ class Hotels extends Component {
         password: ''
 
 
-    };
+    };*/
+    state={
+        city: '',
+        fromDate: '',
+        toDate: '',
+        guestCount: '',
+        roomCount: '',
+        username: 'first@last.com'
+    }
 
+/*
     constructor(props) {
         super(props);
         //this.home = this.home.bind(this);
@@ -106,13 +118,49 @@ class Hotels extends Component {
 
                                         <div className="dashboard">
 
-                                            <input type="text" placeholder="City" className="formFields" style={{marginLeft: "5px", width:"180px", marginTop: "35px"}}/>
-                                            <input type="date" className="formFields" style={{ width:"180px"}}/>
-                                            <input type="date" className="formFields" style={{ width:"180px"}}/>
-                                            <input type="number" className="formFields" name="Guests"  min="1" max="16"/>
-                                            <input type="number" className="formFields" name="Rooms"  min="1" max="8"/>
+                                            <input type="text" placeholder="City" className="formFields" style={{marginLeft: "5px", width:"180px", marginTop: "35px"}}
+                                                   value={this.state.city}
+                                                   onChange={(event) => {
+                                                       this.setState({
+                                                           city: event.target.value
+                                                       });
+                                                   }}
+                                            />
+                                            <input type="date" className="formFields" style={{ width:"180px"}}
+                                                   value={this.state.fromDate}
+                                                   onChange={(event) => {
+                                                       this.setState({
+                                                           fromDate: event.target.value
+                                                       });
+                                                   }}
+                                            />
+                                            <input type="date" className="formFields" style={{ width:"180px"}}
+                                                   value={this.state.toDate}
+                                                   onChange={(event) => {
+                                                       this.setState({
+                                                           toDate: event.target.value
+                                                       });
+                                                   }}
+                                            />
+                                            <input type="number" className="formFields" name="Guests"  min="1" max="16"
+                                                   value={this.state.guestCount}
+                                                   onChange={(event) => {
+                                                       this.setState({
+                                                           guestCount: event.target.value
+                                                       });
+                                                   }}
+                                            />
+                                            <input type="number" className="formFields" name="Rooms"  min="1" max="8"
+                                                   value={this.state.roomCount}
+                                                   onChange={(event) => {
+                                                       this.setState({
+                                                           roomCount: event.target.value
+                                                       });
+                                                   }}
+                                            />
 
-                                            <button className="searchbtn btn-search" type="button" onClick={() => this.search(this.state)}>
+                                            <button className="searchbtn btn-search" type="button"
+                                                    onClick={() => this.props.searchHotel(this.state)}>
                                                 <h3> <b>--></b> </h3>
                                             </button>
 
