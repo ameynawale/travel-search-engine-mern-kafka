@@ -28,6 +28,7 @@ import Flights from './user/Flights';
 import Cars from './user/Cars';
 import Hotels from './user/Hotels';
 import AddFlight1 from './user/AddFlight';
+import AdminDashboard from './admin/AdminDashboard';
 import Highcharts from './admin/HighchartsTest';
 import HighchartsTest1 from './admin/HighchartsTest1';
 import hotelListDisplay from './user/hotelListDisplay';
@@ -102,6 +103,22 @@ class NewerHomePage extends Component {
                 }
             });
     };
+
+
+    getAdminDashboard = () => {
+        API.getDashboardDetails()
+            .then((res) => {
+                //if (res.status === 201) {
+                this.setState({
+                    dashboardDetails: res.message
+                });
+                this.props.history.push("/admin/dashboard");
+                //} else if (res.status === 401) {
+                /*  this.setState({
+                      isLoggedIn: false,
+                      message: "Wrong username or password. Try again..!!"
+                  });
+*/
 
     searchHotel = (searchCriteria) => {
         API.getHotel(searchCriteria)
@@ -228,7 +245,7 @@ class NewerHomePage extends Component {
                 }/>
                 <Route exact path='/admin/flights/addFlight' render={() => (
                     <div>
-                        <AddFlight/>
+                        <AddFlight getAdminDashboard={this.getAdminDashboard}/>
                     </div>
                 )
                 }/>
@@ -319,6 +336,12 @@ class NewerHomePage extends Component {
                 <Route exact path='/admin/highcharts' render={() => (
                     <div>
                         <HighchartsTest1/>
+                    </div>
+                )
+                }/>
+                <Route exact path='/admin/dashboard' render={() => (
+                    <div>
+                        <AdminDashboard/>
                     </div>
                 )
                 }/>

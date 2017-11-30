@@ -14,7 +14,7 @@ import '../../assets/css/bootstrap.css';
 class AddFlight extends Component {
 
     static propTypes = {
-        handleSignUp: PropTypes.func.isRequired
+        getAdminDashboard: PropTypes.func.isRequired
     };
 
     state = {
@@ -89,6 +89,7 @@ class AddFlight extends Component {
                     <nav className="navbar navbar-default top-navbar" role="navigation">
                         <div className="navbar-header header-left">
                             <a className="navbar-brand" href="index.html"><strong>Kayak Administrator</strong></a>
+                            <button onClick={() => this.props.getAdminDashboard()}>dashboard</button>
 
                         </div>
 
