@@ -12,13 +12,14 @@ class AddHotel extends Component {
 
     state = {
         hotelName: '',
-        location: '',
+        city: '',
         fromDate: '',
         toDate: '',
-        time: '',
         availableRooms: '',
-        bookedRooms: '',
-        guestCount: '',
+        guestCount: '2',
+        starHotel: 4,
+        ratings: 5,
+        amount: '',
         message: ''
     };
 
@@ -58,7 +59,7 @@ class AddHotel extends Component {
         };
     };
 
-    componentWillMount(){
+    /*componentWillMount(){
         this.setState({
             hotelName: '',
             location: '',
@@ -69,7 +70,7 @@ class AddHotel extends Component {
             bookedRooms: '',
             guestCount: ''
         });
-    }
+    }*/
 
     render() {
         return (
@@ -171,18 +172,18 @@ class AddHotel extends Component {
                                     </div>
                                     <div>
                                         <div display="block" className="col-md-6">
-                                            <label style={{float:'right'}}>Location:</label>
+                                            <label style={{float:'right'}}>City:</label>
                                         </div>
                                         <div className="form-group col-md-6">
                                             <input
                                                 className="form-control"
                                                 type="text"
-                                                label="location"
-                                                placeholder="Enter Location"
-                                                value={this.state.location}
+                                                label="city"
+                                                placeholder="Enter City"
+                                                value={this.state.city}
                                                 onChange={(event) => {
                                                     this.setState({
-                                                        location: event.target.value
+                                                        city: event.target.value
                                                     });
                                                 }}
                                             />
@@ -195,7 +196,7 @@ class AddHotel extends Component {
                                         <div className="form-group col-md-6">
                                             <input
                                                 className="form-control"
-                                                type="text"
+                                                type="date"
                                                 label="fromDate"
                                                 placeholder="MM/DD/YYYY"
                                                 value={this.state.fromDate}
@@ -214,32 +215,13 @@ class AddHotel extends Component {
                                         <div className="form-group col-md-6">
                                             <input
                                                 className="form-control"
-                                                type="text"
+                                                type="date"
                                                 label="toDate"
                                                 placeholder="MM/DD/YYYY"
                                                 value={this.state.toDate}
                                                 onChange={(event) => {
                                                     this.setState({
                                                         toDate: event.target.value
-                                                    });
-                                                }}
-                                            />
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div display="block" className="col-md-6">
-                                            <label style={{float:'right'}}>Arrival time:</label>
-                                        </div>
-                                        <div className="form-group col-md-6">
-                                            <input
-                                                className="form-control"
-                                                type="text"
-                                                label="time"
-                                                placeholder="Enter time"
-                                                value={this.state.time}
-                                                onChange={(event) => {
-                                                    this.setState({
-                                                        time: event.target.value
                                                     });
                                                 }}
                                             />
@@ -265,11 +247,30 @@ class AddHotel extends Component {
                                         </div>
                                     </div>
                                     <div>
+                                        <div display="block" className="col-md-6">
+                                            <label style={{float:'right'}}>Cost:</label>
+                                        </div>
+                                        <div className="form-group col-md-6">
+                                            <input
+                                                className="form-control"
+                                                type="text"
+                                                label="amount"
+                                                placeholder="Enter Cost of Room"
+                                                value={this.state.amount}
+                                                onChange={(event) => {
+                                                    this.setState({
+                                                        amount: event.target.value
+                                                    });
+                                                }}
+                                            />
+                                        </div>
+                                    </div>
+                                    <div>
                                         <div className="form-group">
                                             <button
                                                 className="btn btn-primary"
                                                 type="button"
-                                                onClick={() => this.props.addListing(this.state)}>
+                                                onClick={() => this.addListing(this.state)}>
                                                 Add
                                             </button>
                                         </div>

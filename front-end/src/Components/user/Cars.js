@@ -12,25 +12,22 @@ import icon from './icon.png';
 
 class Cars extends Component {
 
-    /*static propTypes = {
-        username: PropTypes.string.isRequired,
-        handleLogout: PropTypes.func.isRequired,
-        password: PropTypes.string.isRequired,
-    };*/
-
-    state = {
-        username : '',
-        email: [],
-        password: ''
-
-
+    static propTypes = {
+        searchCar: PropTypes.func.isRequired
     };
 
-    constructor(props) {
+    state = {
+        location: '',
+        startDate: '',
+        endDate: '',
+        seatCount: ''
+    };
+
+    /*constructor(props) {
         super(props);
         //this.home = this.home.bind(this);
     }
-
+*/
 
 
 
@@ -70,9 +67,9 @@ class Cars extends Component {
                                 <nav>
                                     <div className="navWide">
                                         <div className="wideDiv">
-                                            <a className= " Hotels text-white" href="#"> <h4>Hotels</h4> </a>
-                                            <a className= "Flights text-white" href="#"> <h4>Flights</h4> </a>
-                                            <a className= "Cars text-white" href="#"> <h4>Cars</h4> </a>
+                                            <a href="/hotels" className=" Hotels text-white" > <h4>Hotels</h4> </a>
+                                            <a href="/flights" className= "Flights text-white" > <h4>Flights</h4> </a>
+                                            <a href="/cars" className= "Cars text-white" > <h4>Cars</h4> </a>
                                             <a className= "Packages text-white" href="#"> <h4>Packages</h4> </a>
                                             <a className= "Rentals text-white" href="#"> <h4>Rentals</h4> </a>
                                             <a className= "Cruisers text-white" href="#"> <h4>Cruisers</h4> </a>
@@ -107,14 +104,50 @@ class Cars extends Component {
 
                                         <div className="dashboard">
 
-                                            <input type="text" placeholder="origin" className="formFields" style={{marginLeft: "5px", width:"180px", marginTop: "35px"}}/>
-                                            <input type="text" placeholder="destination" className="formFields" style={{width:"180px"}}/>
-                                            <input type="datetime-local" className="formFields" style={{width: "180px"}}/>
+                                            <input type="text"
+                                                   placeholder="location"
+                                                   className="formFields"
+                                                   style={{marginLeft: "5px", width:"200px", marginTop: "35px"}}
+                                                   onChange={(event) => {
+                                                       this.setState({
+                                                           location: event.target.value
+                                                       });
+                                                   }}
+                                            />
+                                            <input type="date"
+                                                   className="formFields1"
+                                                   style={{width: "200px"}}
+                                                   onChange={(event) => {
+                                                       this.setState({
+                                                           startDate: event.target.value
+                                                       });
+                                                   }}
+                                            />
+                                            <input type="date"
+                                                   className="formFields1"
+                                                   style={{width: "200px"}}
+                                                   onChange={(event) => {
+                                                       this.setState({
+                                                           endDate: event.target.value
+                                                       });
+                                                   }}
+                                            />
+                                            <input type="text"
+                                                   className="formFields1"
+                                                   style={{width: "200px"}}
+                                                   placeholder="No. of Seats"
+                                                   onChange={(event) => {
+                                                       this.setState({
+                                                           seatCount: event.target.value
+                                                       });
+                                                   }}
+                                            />
 
 
 
 
-                                            <button className="searchbtn btn-search" type="button" onClick={() => this.search(this.state)}>
+                                            <button className="searchbtn btn-search" type="button"
+                                                    onClick={() => this.props.searchCar(this.state)}>
                                                 <h3> <b>--></b> </h3>
                                             </button>
 
@@ -420,35 +453,7 @@ class Cars extends Component {
 
 
                 </div>
-                {/*<div className="container-fluid">*/}
 
-                {/*<Switch>*/}
-                {/*<Route exact path="/Hotels" component={ () => <Hotels/> }/>*/}
-                {/*<Route exact path="/Cars" component={ () => <Cars/> }/>*/}
-                {/*<Route path="/Flights" component={"Flights"}/>*/}
-                {/*</Switch>*/}
-                {/*</div>*/}
-
-
-                <Route exact path="/hotels" render = { () =>
-                    (
-                        <div>
-
-                            <Hotels/>
-                        </div>
-                    )
-
-                }/>
-
-                <Route exact path="/flights" render = { () =>
-                    (
-                        <div>
-
-                            <Flights/>
-                        </div>
-                    )
-
-                }/>
 
 
             </div>

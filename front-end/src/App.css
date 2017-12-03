@@ -35,8 +35,13 @@
 
 }
 
+.dashboard1 {
+
+
+}
+
 .formFields1 {
-    height: 30px;
+    height: 50px;
 
 }
 .Enter{
@@ -44,8 +49,9 @@
     background-color: #FF690F;
 }
 .formFields {
-    padding-top: 15px;
+
     float: none;
+    height: 50px;
 }
 
 
@@ -70,7 +76,10 @@
     top: 0;
 
 }
+.col-sm-8{
 
+    display: flex;
+}
 .mainform {
 
     float:none;
@@ -83,17 +92,32 @@
 
 .searchbtn {
 
-    height: 50px;
+
+    height: 60px;
     width: 60px;
     background-color: #FF690F;
 
 }
 
+.searchbtn1 {
+    background-color: #FF690F;
+}
+.dropdown-menu {
+    height: 50px;
+    float:none;
+}
+.navbar-header {
+    background-color: #0f0f0f;
+    height: 20px;
+}
 .Kayak {
     display: flex;
 
     width: 400px;
 
+}
+.form-horizontal{
+padding-left: 10px;
 }
 
 .Statement{
@@ -162,3 +186,249 @@ transform ease 250ms);
     from { transform: rotate(0deg); }
     to { transform: rotate(360deg); }
 }
+.add {
+    float: right;
+    margin-left: 20px;
+}
+
+
+.ratingarea label {
+    float:none;
+    padding: 0;
+}
+/*rating stars*/
+.rating-stars {
+    display:inline-block;
+    /*
+        margin-bottom: 23px;
+    */
+}
+.rating-stars, .rating-stars label::before {
+    /*
+        display: inline-block;
+    */
+}
+.rating-stars label:hover, .rating-stars label:hover ~ label {
+    color: #e6b02d;
+}
+.rating-stars * {
+    margin: 0;
+    padding: 0;
+}
+.rating-stars input {
+    display: none;
+}
+.rating-stars {
+    position: relative;
+    top: -2px;
+}
+.rating-stars label {
+    color: #ddd;
+    float:right;
+}
+.rating-stars label::before {
+    font-family:'FontAwesome';
+    content:"\f005";
+    width: 35px;
+    font-size: 1em;
+    cursor: pointer;
+    /*
+        margin-right: -26px;
+    */
+}
+.rating-stars input:checked ~ label {
+    color: #e6b02d;
+}
+.sort {
+float:inherit;
+
+
+}
+.hotelList {
+    padding-top: 25px;
+}
+.dashboard2 {
+
+
+
+}
+.panel {
+    width: 750px;
+
+    margin-top: 15px;
+    padding-left: 25px;
+   padding-top: 10px;
+
+}
+.panel1 {
+    margin-left: 300px;
+    margin-top: 100px;
+
+}
+
+.hotelImage {
+    float: left;
+
+}
+.footer1 {
+
+    left: 0;
+    bottom: 0;
+    width: 1340px;
+    height: 100px;
+    background-color: black;
+    color: white;
+    text-align: center;
+}
+.footer_place {
+
+    margin-top: 200px;
+}
+.footer2 {
+    margin-top: 50px;
+    left: 0;
+    bottom: 0;
+    width: 1340px;
+    height: 100px;
+    background-color: black;
+    color: white;
+    text-align: center;
+}
+.dashboard3 {
+    background-color: #e4e5ea;
+     position: fixed;
+
+}
+.footer_place2 {
+    margin-top: 500px;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.creditCardForm {
+    margin-top: 20px;
+    margin-left: 300px;
+    margin-bottom: 50px;
+    max-width: 700px;
+    background-color: #fff;
+    overflow: hidden;
+    padding: 25px;
+    color: #4c4e56;
+}
+
+.creditCardForm label {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.creditCardForm .heading h1 {
+    text-align: center;
+    font-family: 'Open Sans', sans-serif;
+    color: #4c4e56;
+}
+
+.creditCardForm .payment {
+    float: left;
+    font-size: 18px;
+    padding: 10px 25px;
+    margin-top: 20px;
+    position: relative;
+}
+
+.creditCardForm .payment .form-group {
+    float: left;
+    margin-bottom: 15px;
+}
+
+.creditCardForm .payment .form-control {
+    line-height: 40px;
+    height: auto;
+    padding: 0 16px;
+}
+
+.creditCardForm .owner {
+    width: 63%;
+    margin-right: 10px;
+}
+
+.creditCardForm .CVV {
+    width: 35%;
+}
+
+.creditCardForm #card-number-field {
+    width: 100%;
+}
+
+.creditCardForm #expiration-date {
+    width: 49%;
+}
+
+.creditCardForm #credit_cards {
+    width: 50%;
+    margin-top: 25px;
+    text-align: right;
+}
+
+.creditCardForm #pay-now {
+    width: 100%;
+    margin-top: 25px;
+}
+
+.creditCardForm .payment .btn {
+    width: 100%;
+    margin-top: 3px;
+    font-size: 24px;
+    background-color: #2ec4a5;
+    color: white;
+}
+
+.creditCardForm .payment select {
+    padding: 10px;
+    margin-right: 15px;
+}
+
+.transparent {
+    opacity: 0.2;
+}
+
+@media(max-width: 650px) {
+    .creditCardForm .owner,
+    .creditCardForm .CVV,
+    .creditCardForm #expiration-date,
+    .creditCardForm #credit_cards {
+        width: 100%;
+    }
+    .creditCardForm #credit_cards {
+        text-align: left;
+    }
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font: normal 18px sans-serif;
+    color: #333;
+    background-color: #eee;
+}
+
+.container-fluid1 {
+    margin-bottom: 100px;
+}
+
+
+

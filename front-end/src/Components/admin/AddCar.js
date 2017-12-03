@@ -6,17 +6,18 @@ import {NotificationContainer, NotificationManager} from 'react-notifications';
 
 class AddCar extends Component {
 
-    static propTypes = {
+    /*static propTypes = {
         handleSignUp: PropTypes.func.isRequired
     };
-
+*/
     state = {
         carName: '',
         carType: '',
+        operator: '',
+        location: '',
         price: '',
         seatCount: '',
-        location: '',
-        operator: '',
+        ratings: 4,
         message: ''
     };
 
@@ -56,7 +57,7 @@ class AddCar extends Component {
         };
     };
 
-    componentWillMount(){
+  /*  componentWillMount(){
         this.setState({
             carName: '',
             carType: '',
@@ -66,7 +67,7 @@ class AddCar extends Component {
             operator: ''
         });
     }
-
+*/
     render() {
         return (
             <div id="wrapper">
@@ -265,7 +266,7 @@ class AddCar extends Component {
                                             <button
                                                 className="btn btn-primary"
                                                 type="button"
-                                                onClick={() => this.props.addListing(this.state)}>
+                                                onClick={() => this.addListing(this.state)}>
                                                 Add
                                             </button>
                                         </div>

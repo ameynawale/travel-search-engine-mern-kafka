@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { Route, withRouter } from 'react-router-dom';
 import * as API from '../api/API';
-import Login from "./Login";
+import Login from '../user/Login';
 import Message from "./Message";
 import Welcome from "./Welcome";
 
