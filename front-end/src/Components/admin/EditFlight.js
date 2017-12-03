@@ -11,7 +11,12 @@ import '../../assets/css/bootstrap.css';
 //import '../../assets/css/select2.min.css';
 
 
-class SearchFlight extends Component {
+class EditFlight extends Component {
+
+    static propTypes = {
+        flightDetails: PropTypes.array.flightDetails,
+        saveListing: PropTypes.func.isRequired
+    };
 
     constructor(props){
         super(props);
@@ -24,14 +29,17 @@ class SearchFlight extends Component {
             time: this.props.flightDetails.time,
             fromDate: this.props.flightDetails.fromDate,
             toDate: this.props.flightDetails.toDate,
-            seatCount: this.props.flightDetails.seatsCount,
-            price: this.props.flightDetails.amount
+            seatCount: this.props.flightDetails.maxSeats,
+            price: this.props.flightDetails.price,
+            departureTime: '2017-11-24T20:00:00.000Z',
+            
+            isSearchFlight: true,
+            isSearchCar: false,
+            isSearchHotel: false
         };
     }
 
-    static propTypes = {
-        flightDetails: PropTypes.array.isRequired
-    };
+
 
     addListing = (recordDetails) => {
         API.addFlight(recordDetails)
@@ -228,13 +236,13 @@ class SearchFlight extends Component {
                                         <div className="form-group col-md-6">
                                             <input
                                                 className="form-control"
-                                                type="datetime-local"
+                                                type="date"
                                                 label="fromDate"
-                                                placeholder={this.state.fromDate}
-                                                value={this.state.fromDate}
+                                                placeholder={this.state.departureTime}
+                                                value={this.state.departureTime}
                                                 onChange={(event) => {
                                                     this.setState({
-                                                        fromDate: event.target.value
+                                                        departureTime: event.target.value
                                                     });
                                                 }}
                                             />
@@ -242,18 +250,18 @@ class SearchFlight extends Component {
                                     </div>
                                     <div>
                                         <div display="block" className="col-md-6">
-                                            <label style={{float:'right'}}>Departure time:</label>
+                                            <label style={{float:'right'}}>Arrival time:</label>
                                         </div>
                                         <div className="form-group col-md-6">
                                             <input
                                                 className="form-control"
                                                 type="text"
-                                                label="departureTime"
-                                                placeholder={this.state.departureTime}
-                                                value={this.state.departureTime}
+                                                label="arrivalTime"
+                                                placeholder={this.state.arrivalTime}
+                                                value={this.state.arrivalTime}
                                                 onChange={(event) => {
                                                     this.setState({
-                                                        departureTime: event.target.value
+                                                        arrivalTime: event.target.value
                                                     });
                                                 }}
                                             />
@@ -321,7 +329,7 @@ class SearchFlight extends Component {
                                             <button
                                                 className="btn btn-primary"
                                                 type="button"
-                                                onClick={() => this.addListing(this.state)}>
+                                                onClick={() => this.props.saveListing(this.state)}>
                                                 Save
                                             </button>
                                         </div>
@@ -338,4 +346,4 @@ class SearchFlight extends Component {
     }
 }
 
-export default SearchFlight;
+export default EditFlight;

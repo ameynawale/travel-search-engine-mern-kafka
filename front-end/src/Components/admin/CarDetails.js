@@ -24,11 +24,16 @@ class CarDetails extends Component {
             operator: this.props.carDetails.operator,
             location: this.props.carDetails.location,
             ratings: this.props.carDetails.ratings,
+
+            isSearchFlight: false,
+            isSearchCar: true,
+            isSearchHotel: false
         };
     }
 
     static propTypes = {
         carDetails: PropTypes.array.isRequired,
+        editListing: PropTypes.func.isRequired
         //searchListing: PropTypes.func.isRequired
     };
 
@@ -216,7 +221,7 @@ class CarDetails extends Component {
                                             <button
                                                 className="btn btn-primary"
                                                 type="button"
-                                                onClick={() => this.props.searchListing(this.state)}
+                                                onClick={() => this.props.editListing(this.state)}
                                             >
                                                 Edit
                                             </button>

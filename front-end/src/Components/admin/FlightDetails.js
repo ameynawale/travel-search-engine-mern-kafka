@@ -13,6 +13,12 @@ import '../../assets/css/bootstrap.css';
 
 class FlightDetails extends Component {
 
+    static propTypes = {
+        flightDetails: PropTypes.array.isRequired,
+        editListing: PropTypes.func.isRequired
+    };
+
+
     constructor(props){
         super(props);
         this.state = {
@@ -24,16 +30,16 @@ class FlightDetails extends Component {
             time: this.props.flightDetails.time,
             fromDate: this.props.flightDetails.fromDate,
             toDate: this.props.flightDetails.toDate,
-            seatCount: this.props.flightDetails.seatsCount,
-            price: this.props.flightDetails.amount,
-            isSearchFlight: false
+            seatCount: this.props.flightDetails.maxSeats,
+            price: this.props.flightDetails.price,
+            departureTime: '2017-11-24T20:00:00.000Z',
+
+            isSearchFlight: true,
+            isSearchCar: false,
+            isSearchHotel: false
         };
     }
 
-    static propTypes = {
-        flightDetails: PropTypes.array.isRequired,
-        searchListing: PropTypes.func.isRequired
-    };
 
     addListing = (recordDetails) => {
         API.addFlight(recordDetails)
@@ -196,15 +202,7 @@ class FlightDetails extends Component {
                                                 <label style={{float:'right'}}>Departure date:</label>
                                             </div>
                                             <div className="form-group col-md-6">
-                                                <label style={{float:'left'}}>{this.state.fromDate}</label>
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <div display="block" className="col-md-6">
-                                                <label style={{float:'right'}}>Departure time:</label>
-                                            </div>
-                                            <div className="form-group col-md-6">
-                                                <label style={{float:'left'}}>{this.state.time}</label>
+                                                <label style={{float:'left'}}>{this.state.departureTime}</label>
                                             </div>
                                         </div>
                                         <div>
@@ -227,7 +225,7 @@ class FlightDetails extends Component {
                                             <button
                                                 className="btn btn-primary"
                                                 type="button"
-                                                onClick={() => this.props.searchListing(this.state)}
+                                                onClick={() => this.props.editListing(this.state)}
                                                 >
                                                 Edit
                                             </button>

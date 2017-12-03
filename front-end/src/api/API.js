@@ -280,6 +280,61 @@ export const addCar = (payload) =>
             return error;
         });
 
+export const updateFlight = (payload) =>
+    fetch(`${api}/admin/flights/editFlight`, {
+        method: 'POST',
+        headers: {
+            ...headers,
+            'Content-Type': 'application/json'
+        },
+        credentials:'include',
+        body: JSON.stringify(payload)
+    })
+        .then(res => {
+            return res.status;
+        })
+        .catch(error => {
+            console.log("This is error");
+            return error;
+        });
+
+export const updateHotel = (payload) =>
+    fetch(`${api}/admin/hotel/EditHotel`, {
+        method: 'POST',
+        headers: {
+            ...headers,
+            'Content-Type': 'application/json'
+        },
+        credentials:'include',
+        body: JSON.stringify(payload)
+    })
+        .then(res => {
+            return res.status;
+        })
+        .catch(error => {
+            console.log("This is error");
+            return error;
+        });
+
+export const updateCar = (payload) =>
+    fetch(`${api}/admin/cars/editcar`, {
+        method: 'POST',
+        headers: {
+            ...headers,
+            'Content-Type': 'application/json'
+        },
+        credentials:'include',
+        body: JSON.stringify(payload)
+    })
+        .then(res => {
+            return res.status;
+        })
+        .catch(error => {
+            console.log("This is error");
+            return error;
+        });
+
+
 export const logout = () =>
     fetch(`${api}/logout`, {
         method: 'POST',

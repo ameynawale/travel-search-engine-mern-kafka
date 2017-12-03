@@ -28,11 +28,16 @@ class HotelDetails extends Component {
             ratings: this.props.hotelDetails.ratings,
             amount: this.props.hotelDetails.amount,
             bookedRooms: this.props.hotelDetails.bookedRooms,
+
+            isSearchFlight: false,
+            isSearchCar: false,
+            isSearchHotel: true
         };
     }
 
     static propTypes = {
         hotelDetails: PropTypes.array.isRequired,
+        editListing: PropTypes.func.isRequired
         //searchListing: PropTypes.func.isRequired
     };
 
@@ -236,7 +241,7 @@ class HotelDetails extends Component {
                                             <button
                                                 className="btn btn-primary"
                                                 type="button"
-                                                onClick={() => this.props.searchListing(this.state)}
+                                                onClick={() => this.props.editListing(this.state)}
                                             >
                                                 Edit
                                             </button>

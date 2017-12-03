@@ -40,6 +40,8 @@ import CarDetails from "./admin/CarDetails";
 import EditFlight from "./admin/EditFlight";
 import AdminDashboard from './admin/AdminDashboard';
 
+import ListingSaveSuccess from './admin/ListingSaveSuccess';
+
 class NewerHomePage extends Component {
 
     state = {
@@ -113,23 +115,84 @@ class NewerHomePage extends Component {
 
     };
 
-   /* editListing = (listingDetails) => {
-        API.searchListing(listingDetails)
-            .then((res) => {
-                //if (res.status === 201) {
-                this.setState({
-                    flightDetails: res.file
-                });
-                this.props.history.push("/admin/flights/flightDetails/editPage");
-                //} else if (res.status === 401) {
-            /!*      this.setState({
-                      isLoggedIn: false,
-                      message: "Wrong username or password. Try again..!!"
-                  });
-*!/
-            });
-    };
+    editListing = (listingDetails) => {
+
+        //if (res.status === 201) {
+
+        if(listingDetails.isSearchFlight){
+            API.searchListingFlight(listingDetails)
+                .then((res) => {
+                    this.setState({
+                        flightDetailsAdmin: res.file
+                    });
+                    this.props.history.push("/admin/flights/editFlight");
+                })
+        }
+
+        else if(listingDetails.isSearchHotel){
+            API.searchListingHotel(listingDetails)
+                .then((res) => {
+                    this.setState({
+                        hotelDetailsAdmin: res.file
+                    });
+                    this.props.history.push("/admin/hotels/editHotel");
+                })
+        }
+
+        else if(listingDetails.isSearchCar){
+            API.searchListingCar(listingDetails)
+                .then((res) => {
+                    this.setState({
+                        carDetailsAdmin: res.file
+                    });
+                    this.props.history.push("/admin/cars/editCar");
+                })
+        }
+        //   this.props.history.push("/admin/flights/flightDetails/editPage");
+        //} else if (res.status === 401) {
+        /*  this.setState({
+              isLoggedIn: false,
+              message: "Wrong username or password. Try again..!!"
+          });
 */
+
+    };
+
+
+    saveListing = (listingDetails) => {
+
+        //if (res.status === 201) {
+
+        if(listingDetails.isSearchFlight){
+            API.updateFlight(listingDetails)
+                .then((res) => {
+                    this.props.history.push("/admin/ListingSaveSuccess");
+                })
+        }
+
+        else if(listingDetails.isSearchHotel){
+            API.updateHotel(listingDetails)
+                .then((res) => {
+                    this.props.history.push("/admin/ListingSaveSuccess");
+                })
+        }
+
+        else if(listingDetails.isSearchCar){
+            API.updateCar(listingDetails)
+                .then((res) => {
+                    this.props.history.push("/admin/ListingSaveSuccess");
+                })
+        }
+        //   this.props.history.push("/admin/flights/flightDetails/editPage");
+        //} else if (res.status === 401) {
+        /*  this.setState({
+              isLoggedIn: false,
+              message: "Wrong username or password. Try again..!!"
+          });
+*/
+
+    };
+
 
     getAdminDashboard = () => {
         API.getDashboardDetails()
@@ -639,19 +702,19 @@ class NewerHomePage extends Component {
                     }/>
                 <Route exact path='/admin/flights/editFlight' render={() => (
                         <div>
-                            <EditFlight/>
+                            <EditFlight flightDetails={this.state.flightDetailsAdmin} saveListing={this.saveListing}/>
                         </div>
                     )
                     }/>
                     <Route exact path='/admin/hotels/editHotel' render={() => (
                         <div>
-                            <EditHotel/>
+                            <EditHotel hotelDetails={this.state.hotelDetailsAdmin} saveListing={this.saveListing}/>
                         </div>
                     )
                     }/>
                 <Route exact path='/admin/cars/editCar' render={() => (
                         <div>
-                            <EditCar/>
+                            <EditCar carDetails={this.state.carDetailsAdmin} saveListing={this.saveListing}/>
                         </div>
                     )
                     }/>
@@ -663,37 +726,43 @@ class NewerHomePage extends Component {
                     }/>
                 <Route exact path='/admin/flights/flightDetails' render={() => (
                         <div>
-                            <FlightDetails flightDetails={this.state.flightDetailsAdmin}/>
+                            <FlightDetails flightDetails={this.state.flightDetailsAdmin} editListing={this.editListing}/>
                         </div>
                     )
                     }/>
                 <Route exact path='/admin/hotels/hotelDetails' render={() => (
                         <div>
-                            <HotelDetails hotelDetails={this.state.hotelDetailsAdmin}/>
+                            <HotelDetails hotelDetails={this.state.hotelDetailsAdmin} editListing={this.editListing}/>
                         </div>
                     )
                     }/>
                     <Route exact path='/admin/cars/carDetails' render={() => (
                             <div>
-                                <CarDetails carDetails={this.state.carDetailsAdmin}/>
+                                <CarDetails carDetails={this.state.carDetailsAdmin} editListing={this.editListing}/>
                             </div>
                         )
                         }/>
                         <Route exact path='/admin/flights/editFlight' render={() => (
                             <div>
-                                <EditFlight/>
+                                <EditFlight flightDetails={this.state.flightDetailsAdmin} saveListing={this.saveListing}/>
                             </div>
                         )
                         }/>
                     <Route exact path='/admin/hotels/editHotel' render={() => (
                             <div>
-                                <EditHotel/>
+                                <EditHotel hotelDetails={this.state.hotelDetailsAdmin} saveListing={this.saveListing}/>
                             </div>
                         )
                         }/>
                         <Route exact path='/admin/cars/editCar' render={() => (
                             <div>
-                                <EditCar/>
+                                <EditCar carDetails={this.state.carDetailsAdmin} saveListing={this.saveListing}/>
+                            </div>
+                        )
+                        }/>
+                        <Route exact path='/admin/ListingSaveSuccess' render={() => (
+                            <div>
+                                <ListingSaveSuccess/>
                             </div>
                         )
                         }/>
