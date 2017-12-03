@@ -28,7 +28,9 @@ class SearchFlight extends Component {
     state = {
         flightID: '',
         flightName: '',
-        isSearchFlight: true
+        isSearchFlight: true,
+        isSearchHotel: false,
+        isSearchCar: false
     };
 
     addListing = (recordDetails) => {

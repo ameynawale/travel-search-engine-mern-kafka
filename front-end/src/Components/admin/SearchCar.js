@@ -13,15 +13,19 @@ import '../../assets/css/bootstrap.css';
 
 class SearchCar extends Component {
 
-    static propTypes = {
+   /* static propTypes = {
         handleSignUp: PropTypes.func.isRequired
-    };
+    };*/
 
     state = {
         carID: '',
-        carName: ''
+        carName: '',
+        isSearchFlight: false,
+        isSearchHotel: false,
+        isSearchCar: true
     };
 
+/*
     addListing = (recordDetails) => {
         API.addFlight(recordDetails)
             .then((status) => {
@@ -36,6 +40,7 @@ class SearchCar extends Component {
                 }
             });
     };
+*/
 
     createNotification = (type) => {
         return () => {
@@ -58,12 +63,14 @@ class SearchCar extends Component {
         };
     };
 
+/*
     componentWillMount(){
         this.setState({
             carID: '',
             carName: ''
         });
     }
+*/
 
     render() {
         return (
@@ -189,7 +196,7 @@ class SearchCar extends Component {
                                             <button
                                                 className="btn btn-primary"
                                                 type="button"
-                                                onClick={() => this.searchListing(this.state)}>
+                                                onClick={() => this.props.searchListing(this.state)}>
                                                 Search
                                             </button>
                                         </div>

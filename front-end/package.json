@@ -15,6 +15,7 @@
     "react-grid-layout": "^0.16.0",
     "react-helmet": "^5.2.0",
     "react-highcharts": "^15.0.0",
+    "react-html5-slider": "^0.2.1",
     "react-material-icons": "^1.0.3",
     "react-notifications": "^1.4.3",
     "react-router-dom": "^4.2.2",

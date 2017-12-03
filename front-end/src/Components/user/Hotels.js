@@ -23,14 +23,15 @@ class Hotels extends Component {
 
 
     };*/
-    state={
+    state= {
         city: '',
         fromDate: '',
         toDate: '',
         guestCount: '',
-        roomCount: '',
-        username: 'first@last.com'
+        roomCount: ''
+        //username: 'f@l.com'
     }
+
 
 /*
     constructor(props) {
@@ -71,19 +72,15 @@ class Hotels extends Component {
 
 
 
-                                <a className="Kayak-logo" href="#" title="HOME"><img src={logo} className="App-logo" alt="logo" /></a>
+                                <a href="/"  className="Kayak-logo" title="HOME"><img src={logo} className="App-logo" alt="logo" /></a>
 
 
                                 <nav>
                                     <div className="navWide">
                                         <div className="wideDiv">
-                                            <a className= " Hotels text-white" onClick={() => {
-                                                this.props.history.push("/hotels")}}> <h4>Hotels</h4> </a>
-                                            <a className= "Flights text-white" onClick={() => {
-                                                this.props.history.push("/F" +
-                                                    "flights")}}> <h4>Flights</h4> </a>
-                                            <a className= "Cars text-white" onClick={() => {
-                                                this.props.history.push("/cars")}}> <h4>Cars</h4> </a>
+                                            <a href="/hotels" className=" Hotels text-white" > <h4>Hotels</h4> </a>
+                                            <a href="/flights" className= "Flights text-white" > <h4>Flights</h4> </a>
+                                            <a href="/cars" className= "Cars text-white" > <h4>Cars</h4> </a>
                                             <a className= "Packages text-white" href="#"> <h4>Packages</h4> </a>
                                             <a className= "Rentals text-white" href="#"> <h4>Rentals</h4> </a>
                                             <a className= "Cruisers text-white" href="#"> <h4>Cruisers</h4> </a>
@@ -100,6 +97,7 @@ class Hotels extends Component {
 
 
                                 <div className="Statement text-white" ><h2><b>Search Hundreds of Travel Sites at once</b></h2></div>
+                                <div> &nbsp;</div>
 
                                 <div className="mainform">
 
@@ -126,7 +124,7 @@ class Hotels extends Component {
                                                        });
                                                    }}
                                             />
-                                            <input type="date" className="formFields" style={{ width:"180px"}}
+                                            <input type="date" className="formFields1" style={{ width:"160px"}}
                                                    value={this.state.fromDate}
                                                    onChange={(event) => {
                                                        this.setState({
@@ -134,7 +132,7 @@ class Hotels extends Component {
                                                        });
                                                    }}
                                             />
-                                            <input type="date" className="formFields" style={{ width:"180px"}}
+                                            <input type="date" className="formFields1" style={{ width:"160px"}}
                                                    value={this.state.toDate}
                                                    onChange={(event) => {
                                                        this.setState({
@@ -142,7 +140,7 @@ class Hotels extends Component {
                                                        });
                                                    }}
                                             />
-                                            <input type="number" className="formFields" name="Guests"  min="1" max="16"
+                                            <input type="number" placeholder="Guest Count" className="formFields"  name="Guests"  min="1" max="16"
                                                    value={this.state.guestCount}
                                                    onChange={(event) => {
                                                        this.setState({
@@ -150,7 +148,7 @@ class Hotels extends Component {
                                                        });
                                                    }}
                                             />
-                                            <input type="number" className="formFields" name="Rooms"  min="1" max="8"
+                                            <input type="number" placeholder="Room Count" className="formFields"  name="Rooms"  min="1" max="8"
                                                    value={this.state.roomCount}
                                                    onChange={(event) => {
                                                        this.setState({

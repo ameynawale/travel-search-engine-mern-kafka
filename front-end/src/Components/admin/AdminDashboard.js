@@ -27,6 +27,10 @@ class AddRemoveLayout extends React.PureComponent {
         rowHeight: 100
     };
 
+    static propTypes = {
+        dashboardDetails: PropTypes.array.dashboardDetails
+    };
+
     constructor(props) {
         super(props);
 
@@ -35,14 +39,17 @@ class AddRemoveLayout extends React.PureComponent {
                 return {i: i.toString(), x: i * 2, y: 0, w: 4, h: 4, add: i === (list.length - 1).toString()};
             }),
             newCounter: 0,
-            layout: 'test-react-grid'
+            layout: 'test-react-grid',
+            registeredUsers: this.props.dashboardDetails.registeredUsers,
+            hotelsLocation: this.props.dashboardDetails.hotelsLocation,
+            flightsLocation: this.props.dashboardDetails.flightsLocation
         };
 
         this.onAddItem = this.onAddItem.bind(this);
         this.onBreakpointChange = this.onBreakpointChange.bind(this);
     }
 
-    createElement(el) {
+    createElement(el, state) {
         const removeStyle = {
             position: 'absolute',
             right: '2px',
@@ -56,27 +63,21 @@ class AddRemoveLayout extends React.PureComponent {
                 type: 'column'
             },
             title: {
-                text: 'Top cities for car bookings'
+                text: 'Top Flight Destinations'
             },
             xAxis: {
                 categories: [
-                    'Jan',
-                    'Feb',
-                    'Mar',
-                    'Apr',
-                    'May',
-                    'Jun',
-                    'Jul',
-                    'Aug',
-                    'Sep',
-                    'Oct',
-                    'Nov',
-                    'Dec'
+                    state.flightsLocation[0].toCity,
+                    state.flightsLocation[1].toCity,
+                    state.flightsLocation[2].toCity,
+                    state.flightsLocation[3].toCity,
+                    state.flightsLocation[4].toCity
                 ],
                 crosshair: true
             },
             yAxis: {
                 min: 0,
+                allowDecimals: false,
                 title: {
                     text: 'Number of bookings'
                 }
@@ -97,17 +98,17 @@ class AddRemoveLayout extends React.PureComponent {
             },
             series: [{
                 name: 'Cities',
-                data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
+                data: [state.flightsLocation[0].count,state.flightsLocation[1].count,state.flightsLocation[2].count,state.flightsLocation[3].count,state.flightsLocation[4].count]
             }]
         }
         return (
-            <div key={i} data-grid={el} style={{backgroundColor: "white"}}>
-                {el.add ?
-                    <span className="add text" onClick={this.onAddItem} title="You can add an item by clicking here, too.">Add +</span>
-                    : <span className="text">{i}</span>}
-                <span className="remove" style={removeStyle} onClick={this.onRemoveItem.bind(this, i)}>x</span>
-                <ReactHighcharts config={config}/>
-            </div>
+                <div key={i} data-grid={el} style={{backgroundColor: "white"}}>
+                    {el.add ?
+                        <span className="add text" onClick={this.onAddItem} title="You can add an item by clicking here, too.">Add +</span>
+                        : <span className="text">{i}</span>}
+                    <span className="remove" style={removeStyle} onClick={this.onRemoveItem.bind(this, i)}>x</span>
+                    <ReactHighcharts config={config}/>
+                </div>
         );
     }
 
@@ -120,8 +121,8 @@ class AddRemoveLayout extends React.PureComponent {
                 i: 'n' + this.state.newCounter,
                 x: this.state.items.length * 2 % (this.state.cols || 12),
                 y: Infinity, // puts it at the bottom
-                w: 2,
-                h: 2
+                w: 4,
+                h: 4
             }),
             // Increment the counter to ensure key is always unique.
             newCounter: this.state.newCounter + 1
@@ -231,7 +232,7 @@ class AddRemoveLayout extends React.PureComponent {
                                 <div className="panel panel-primary" style={{width: 300, align: "center"}}>
                                     <div className="number" style={{align: "center"}}>
                                         <h3 style={{width: 275}}>
-                                            <h3>44,023</h3>
+                                            <h3>{this.state.registeredUsers}</h3>
                                             <small>Registered Users</small>
                                         </h3>
                                     </div>
@@ -241,7 +242,7 @@ class AddRemoveLayout extends React.PureComponent {
                                 <div className="panel panel-primary" style={{width: 300, align: "center"}}>
                                     <div className="number" style={{align: "center"}}>
                                         <h3 style={{width: 275}}>
-                                            <h3>44,023</h3>
+                                            <h3>{this.state.hotelsLocation[0].hotelName}</h3>
                                             <small>Daily Visits</small>
                                         </h3>
                                     </div>
@@ -250,7 +251,7 @@ class AddRemoveLayout extends React.PureComponent {
                         </div>
                         <ResponsiveReactGridLayout onLayoutChange={this.onLayoutChange} onBreakpointChange={this.onBreakpointChange}
                                                    {...this.props}>
-                            {_.map(this.state.items, (el) => this.createElement(el))}
+                            {_.map(this.state.items, (el) => this.createElement(el, this.state))}
                         </ResponsiveReactGridLayout>
                     </div>
                 </div>
