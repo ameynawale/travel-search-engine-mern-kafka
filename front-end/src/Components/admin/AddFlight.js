@@ -76,9 +76,10 @@ class AddFlight extends Component {
             fromCity: '',
             toCity: '',
             price: '',
-            seatCount: '',
+            maxSeats: '',
             seatType: '',
-            fromDate: ''
+            fromDate: '',
+            availableSeats: ''
         });
     }
 
@@ -245,13 +246,13 @@ class AddFlight extends Component {
                                         <div className="form-group col-md-6">
                                         <input
                                             className="form-control"
-                                            type="text"
+                                            type="datetime-local"
                                             label="fromDate"
                                             placeholder="Enter departure date"
-                                            value={this.state.fromDate}
+                                            value={this.state.departureTime}
                                             onChange={(event) => {
                                                 this.setState({
-                                                    fromDate: event.target.value
+                                                    departureTime: event.target.value
                                                 });
                                             }}
                                         />
@@ -259,18 +260,18 @@ class AddFlight extends Component {
                                     </div>
                                     <div>
                                         <div display="block" className="col-md-6">
-                                            <label style={{float:'right'}}>Departure time:</label>
+                                            <label style={{float:'right'}}>Arrival date:</label>
                                         </div>
                                         <div className="form-group col-md-6">
                                         <input
                                             className="form-control"
-                                            type="text"
-                                            label="departureTime"
-                                            placeholder="Enter departure time"
-                                            value={this.state.departureTime}
+                                            type="datetime-local"
+                                            label="arrivalTime"
+                                            placeholder="Enter arrival time"
+                                            value={this.state.arrivalTime}
                                             onChange={(event) => {
                                                 this.setState({
-                                                    departureTime: event.target.value
+                                                    arrivalTime: event.target.value
                                                 });
                                             }}
                                         />
@@ -322,15 +323,34 @@ class AddFlight extends Component {
                                         <input
                                             className="form-control"
                                             type="text"
-                                            label="seatCount"
+                                            label="maxSeats"
                                             placeholder="Enter seat count"
-                                            value={this.state.seatCount}
+                                            value={this.state.maxSeats}
                                             onChange={(event) => {
                                                 this.setState({
-                                                    seatCount: event.target.value
+                                                    maxSeats: event.target.value
                                                 });
                                             }}
                                         />
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div display="block" className="col-md-6">
+                                            <label style={{float:'right'}}>Available Seats:</label>
+                                        </div>
+                                        <div className="form-group col-md-6">
+                                            <input
+                                                className="form-control"
+                                                type="text"
+                                                label="availableSeats"
+                                                placeholder="Enter available seats"
+                                                value={this.state.availableSeats}
+                                                onChange={(event) => {
+                                                    this.setState({
+                                                        availableSeats: event.target.value
+                                                    });
+                                                }}
+                                            />
                                         </div>
                                     </div>
                                     <div>

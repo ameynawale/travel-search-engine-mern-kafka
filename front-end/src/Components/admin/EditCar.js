@@ -30,6 +30,7 @@ class EditCar extends Component {
             location: this.props.carDetails.location,
             ratings: this.props.carDetails.ratings,
 
+            isSearchUser: false,
             isSearchFlight: false,
             isSearchCar: true,
             isSearchHotel: false

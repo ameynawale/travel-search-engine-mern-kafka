@@ -132,7 +132,7 @@ class Pay extends React.Component{
                                                 className="form-control"
                                                 type="text"
                                                 label="cardOwner"
-                                                placeholder="Name on Card"
+                                                placeholder="Card Number"
                                                 value={this.state.cardNo}
                                                 onChange={(event) => {
                                                     this.setState({

@@ -28,7 +28,8 @@ class Hotels extends Component {
         fromDate: '',
         toDate: '',
         guestCount: '',
-        roomCount: ''
+        roomCount: '',
+        filter: 0
         //username: 'f@l.com'
     }
 

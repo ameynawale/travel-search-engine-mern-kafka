@@ -63,6 +63,9 @@ class Login extends Component {
                                         </span>
                                         </div>
                                     </div>
+                                    <ul className="navSign navbar-right" style={{marginTop: "20px"}}>
+                                        <a href="/"> Sign Out </a>
+                                    </ul>
                                 </nav>
                             </div>
                         </nav>

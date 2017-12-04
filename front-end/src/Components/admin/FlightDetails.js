@@ -34,6 +34,7 @@ class FlightDetails extends Component {
             price: this.props.flightDetails.price,
             departureTime: '2017-11-24T20:00:00.000Z',
 
+            isSearchUser: false,
             isSearchFlight: true,
             isSearchCar: false,
             isSearchHotel: false

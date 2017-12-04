@@ -20,6 +20,8 @@ class SearchCar extends Component {
     state = {
         carID: '',
         carName: '',
+
+        isSearchUser: false,
         isSearchFlight: false,
         isSearchHotel: false,
         isSearchCar: true

@@ -5,6 +5,12 @@ import Login from './user/Login';
 //import Message from "./Message";
 import Welcome from "./user/Welcome";
 import Signup from './user/Signup';
+import FailurePage from './FailurePage';
+
+import SearchUser from './admin/SearchUser';
+import UserDetails from './admin/UserDetails';
+import EditUser from './admin/EditUser';
+
 import Flights from './user/Flights';
 import ViewFlight from './user/ViewFlight';
 import PayFlight from './user/PayFlight';
@@ -39,8 +45,10 @@ import HotelDetails from "./admin/HotelDetails";
 import CarDetails from "./admin/CarDetails";
 import EditFlight from "./admin/EditFlight";
 import AdminDashboard from './admin/AdminDashboard';
+import AdminDashboard1 from './admin/AdminDashboard';
 
 import ListingSaveSuccess from './admin/ListingSaveSuccess';
+import ViewBills from "./admin/ViewBills";
 
 class NewerHomePage extends Component {
 
@@ -59,6 +67,7 @@ class NewerHomePage extends Component {
         hotelList: '',
         hotelDetails: '',
         hotelRequested: '',
+        billList: '',
 
         carList: '',
         carDetails: '',
@@ -79,30 +88,56 @@ class NewerHomePage extends Component {
                     if(listingDetails.isSearchFlight){
                         API.searchListingFlight(listingDetails)
                             .then((res) => {
+                            if(res.value===201) {
                                 this.setState({
                                     flightDetailsAdmin: res.file
                                 });
                                 this.props.history.push("/admin/flights/flightDetails");
+                            }
+                            else
+                                this.props.history.push("/failurePage");
                             })
                     }
 
                     else if(listingDetails.isSearchHotel){
                         API.searchListingHotel(listingDetails)
                             .then((res) => {
+                            if(res.value===201) {
                                 this.setState({
                                     hotelDetailsAdmin: res.file
                                 });
                                 this.props.history.push("/admin/hotels/hotelDetails");
+                            }
+                            else
+                                this.props.history.push("/failurePage");
                             })
                     }
 
                     else if(listingDetails.isSearchCar){
                         API.searchListingCar(listingDetails)
                             .then((res) => {
+                            if(res.value===201) {
                                 this.setState({
                                     carDetailsAdmin: res.file
                                 });
                                 this.props.history.push("/admin/cars/carDetails");
+                            }
+                            else
+                                this.props.history.push("/failurePage");
+                            })
+                    }
+
+                    else if(listingDetails.isSearchUser){
+                        API.searchListingUser(listingDetails)
+                            .then((res) => {
+                            if(res.value===201) {
+                                this.setState({
+                                    userDetailsAdmin: res.file
+                                });
+                                this.props.history.push("/admin/users/userDetails");
+                            }
+                            else
+                                this.props.history.push("/failurePage");
                             })
                     }
                      //   this.props.history.push("/admin/flights/flightDetails/editPage");
@@ -122,30 +157,56 @@ class NewerHomePage extends Component {
         if(listingDetails.isSearchFlight){
             API.searchListingFlight(listingDetails)
                 .then((res) => {
+                if(res.value===201) {
                     this.setState({
                         flightDetailsAdmin: res.file
                     });
                     this.props.history.push("/admin/flights/editFlight");
+                }
+                else
+                    this.props.history.push("/failurePage");
                 })
         }
 
         else if(listingDetails.isSearchHotel){
             API.searchListingHotel(listingDetails)
                 .then((res) => {
+                if(res.value===201) {
                     this.setState({
                         hotelDetailsAdmin: res.file
                     });
                     this.props.history.push("/admin/hotels/editHotel");
+                }
+                else
+                    this.props.history.push("/failurePage");
                 })
         }
 
         else if(listingDetails.isSearchCar){
             API.searchListingCar(listingDetails)
                 .then((res) => {
+                if(res.value===201) {
                     this.setState({
                         carDetailsAdmin: res.file
                     });
                     this.props.history.push("/admin/cars/editCar");
+                }
+                else
+                    this.props.history.push("/failurePage");
+                })
+        }
+
+        else if(listingDetails.isSearchUser){
+            API.searchListingUser(listingDetails)
+                .then((res) => {
+                if(res.value===201) {
+                    this.setState({
+                        userDetailsAdmin: res.file
+                    });
+                    this.props.history.push("/admin/users/editUser");
+                }
+                else
+                    this.props.history.push("/failurePage");
                 })
         }
         //   this.props.history.push("/admin/flights/flightDetails/editPage");
@@ -166,21 +227,40 @@ class NewerHomePage extends Component {
         if(listingDetails.isSearchFlight){
             API.updateFlight(listingDetails)
                 .then((res) => {
-                    this.props.history.push("/admin/ListingSaveSuccess");
+                if(res.value===201)
+                    this.props.history.push("/successPage");
+                else
+                    this.props.history.push("/failurePage");
                 })
         }
 
         else if(listingDetails.isSearchHotel){
             API.updateHotel(listingDetails)
                 .then((res) => {
-                    this.props.history.push("/admin/ListingSaveSuccess");
+                    if(res.value===201)
+                        this.props.history.push("/successPage");
+                    else
+                        this.props.history.push("/failurePage");
                 })
         }
 
         else if(listingDetails.isSearchCar){
             API.updateCar(listingDetails)
                 .then((res) => {
-                    this.props.history.push("/admin/ListingSaveSuccess");
+                    if(res.value===201)
+                        this.props.history.push("/successPage");
+                    else
+                        this.props.history.push("/failurePage");
+                })
+        }
+
+        else if(listingDetails.isSearchUser){
+            API.updateUser(listingDetails)
+                .then((res) => {
+                    if(res.value===201)
+                        this.props.history.push("/successPage");
+                    else
+                        this.props.history.push("/failurePage");
                 })
         }
         //   this.props.history.push("/admin/flights/flightDetails/editPage");
@@ -197,35 +277,35 @@ class NewerHomePage extends Component {
     getAdminDashboard = () => {
         API.getDashboardDetails()
             .then((res) => {
-                //if (res.status === 201) {
+                if (res.value === 201) {
                 this.setState({
                     dashboardDetails: res.message
                 });
                 this.props.history.push("/admin/dashboard");
-                //} else if (res.status === 401) {
-                /*  this.setState({
+                } else if (res.value === 401) {
+                  this.setState({
                       isLoggedIn: false,
                       message: "Wrong username or password. Try again..!!"
                   });
-*/
-            });
+                    this.props.history.push("/failurePage");
+
+            }});
     };
 
     handleSubmit = (userdata) => {
         API.doLogin(userdata)
-            .then((status) => {
-                if (status === 201) {
-                    this.setState({
-                        isLoggedIn: true,
-                        message: "Welcome to my App..!!",
-                        username: userdata.username
-                    });
-                    this.props.history.push("/hotels");
-                } else if (status === 401) {
-                    this.setState({
+            .then((res) => {
+                if (res.value=== 201) {
+                    if(res.isAdmin === 0)
+                        this.props.history.push("/flights");
+                    else
+                        this.getAdminDashboard();
+                } else {
+                    /*this.setState({
                         isLoggedIn: false,
                         message: "Wrong username or password. Try again..!!"
-                    });
+                    });*/
+                    this.props.history.push("/failurePage");
                 }
             });
     };
@@ -234,24 +314,24 @@ class NewerHomePage extends Component {
     searchCar = (searchCriteria) => {
         API.getCar(searchCriteria)
             .then((res) => {
-                //if (status === 201) {
-                this.setState({
-                    carList: res.message,
-                    carRequested:{
-                        location: res.location,
-                        startDate: res.startDate,
-                        endDate: res.endDate,
-                        seatCount: res.seatCount
-                    }
-                });
-                this.props.history.push("/CarListDisplay");
-                //this.props.history.push("/hotelListDisplay");
-                //} else if (status === 401) {
-                /*  this.setState({
-                      isLoggedIn: false,
-                      message: "Wrong username or password. Try again..!!"
-                  });
-              }*/
+                if (res.value === 201) {
+                    this.setState({
+                        carList: res.message,
+                        carRequested: {
+                            location: res.location,
+                            startDate: res.startDate,
+                            endDate: res.endDate,
+                            seatCount: res.seatCount,
+                            filter: res.filter
+                        }
+                    });
+                    if (res.filter === 0)
+                        this.props.history.push("/CarListDisplay");
+                    else
+                        this.props.history.push("/CarListDisplayFiltered");
+                }
+                else(res.value===401)
+                    this.props.history.push("/failurePage");
             });
 
     };
@@ -259,10 +339,10 @@ class NewerHomePage extends Component {
     searchHotel = (searchCriteria) => {
         API.getHotel(searchCriteria)
             .then((res) => {
-                //if (status === 201) {
+                if (res.value === 201) {
                     this.setState({
                         hotelList: res.file,
-                        hotelRequested:{
+                        hotelRequested: {
                             city: res.city,
                             fromDate: res.fromDate,
                             toDate: res.toDate,
@@ -270,14 +350,10 @@ class NewerHomePage extends Component {
                             roomCount: res.roomCount
                         }
                     });
-                this.props.history.push("/HotelListDisplay");
-                    //this.props.history.push("/hotelListDisplay");
-                //} else if (status === 401) {
-                  /*  this.setState({
-                        isLoggedIn: false,
-                        message: "Wrong username or password. Try again..!!"
-                    });
-                }*/
+                    this.props.history.push("/HotelListDisplay");
+                }
+                else
+                    this.props.history.push("/failurePage");
             });
 
     };
@@ -285,19 +361,16 @@ class NewerHomePage extends Component {
     viewDeal = (searchCriteria) => {
         API.getHotelDetails(searchCriteria)
             .then((res) => {
-                //if (status === 201) {
-                this.setState({
-                    hotelDetails: res.file,
-                    hotelRequested: res.hotelRequested
-                });
-                this.props.history.push("/ViewHotel");
-                //this.props.history.push("/hotelListDisplay");
-                //} else if (status === 401) {
-                /*  this.setState({
-                      isLoggedIn: false,
-                      message: "Wrong username or password. Try again..!!"
-                  });
-              }*/
+                if (res.value === 201) {
+                    this.setState({
+                        hotelDetails: res.file,
+                        hotelRequested: res.hotelRequested
+                    });
+                    this.props.history.push("/ViewHotel");
+                }
+                else
+                    this.props.history.push("/failurePage");
+
             });
         //this.props.history.push("/ViewHotel");
     };
@@ -305,19 +378,15 @@ class NewerHomePage extends Component {
     viewDealCar = (searchCriteria) => {
         API.getCarDetails(searchCriteria)
             .then((res) => {
-                //if (status === 201) {
-                this.setState({
-                    carDetails: res.results,
-                    carRequested: res.carRequested
-                });
-                this.props.history.push("/ViewCar");
-                //this.props.history.push("/hotelListDisplay");
-                //} else if (status === 401) {
-                /*  this.setState({
-                      isLoggedIn: false,
-                      message: "Wrong username or password. Try again..!!"
-                  });
-              }*/
+                if (res.value === 201) {
+                    this.setState({
+                        carDetails: res.results,
+                        carRequested: res.carRequested
+                    });
+                    this.props.history.push("/ViewCar");
+                }
+                else
+                    this.props.history.push("/failurePage");
             });
         //this.props.history.push("/ViewHotel");
     };
@@ -325,19 +394,15 @@ class NewerHomePage extends Component {
     viewDealFlight = (searchCriteria) => {
         API.getFlightDetails(searchCriteria)
             .then((res) => {
-                //if (status === 201) {
-                this.setState({
-                    flightDetails: res.file,
-                    flightRequested: res.flightRequested
-                });
-                this.props.history.push("/ViewFlight");
-                //this.props.history.push("/hotelListDisplay");
-                //} else if (status === 401) {
-                /*  this.setState({
-                      isLoggedIn: false,
-                      message: "Wrong username or password. Try again..!!"
-                  });
-              }*/
+                if (res.value === 201) {
+                    this.setState({
+                        flightDetails: res.file,
+                        flightRequested: res.flightRequested
+                    });
+                    this.props.history.push("/ViewFlight");
+                }
+                else
+                    this.props.history.push("/failurePage");
             });
         //this.props.history.push("/ViewHotel");
     };
@@ -346,19 +411,15 @@ class NewerHomePage extends Component {
     bookHotel = (searchCriteria) => {
         API.doBookHotel(searchCriteria)
             .then((res) => {
-                //if (status === 201) {
-                this.setState({
-                    hotelDetails: res.hotelDetails,
-                    hotelRequested: res.hotelRequested
-                });
-                this.props.history.push("/Pay");
-                //this.props.history.push("/hotelListDisplay");
-                //} else if (status === 401) {
-                /*  this.setState({
-                      isLoggedIn: false,
-                      message: "Wrong username or password. Try again..!!"
-                  });
-              }*/
+                if (res.value === 201) {
+                    this.setState({
+                        hotelDetails: res.hotelDetails,
+                        hotelRequested: res.hotelRequested
+                    });
+                    this.props.history.push("/Pay");
+                }
+                else
+                    this.props.history.push("/failurePage");
             });
         //this.props.history.push("/ViewHotel");
     };
@@ -366,19 +427,15 @@ class NewerHomePage extends Component {
     bookCar = (searchCriteria) => {
         API.doBookCar(searchCriteria)
             .then((res) => {
-                //if (status === 201) {
-                this.setState({
-                    carDetails: res.carDetails,
-                    carRequested: res.carRequested
-                });
-                this.props.history.push("/payCar");
-                //this.props.history.push("/hotelListDisplay");
-                //} else if (status === 401) {
-                /*  this.setState({
-                      isLoggedIn: false,
-                      message: "Wrong username or password. Try again..!!"
-                  });
-              }*/
+                if (res.value === 201) {
+                    this.setState({
+                        carDetails: res.carDetails,
+                        carRequested: res.carRequested
+                    });
+                    this.props.history.push("/payCar");
+                }
+                else
+                    this.props.history.push("/failurePage");
             });
         //this.props.history.push("/ViewHotel");
     };
@@ -386,19 +443,15 @@ class NewerHomePage extends Component {
     bookFlight = (searchCriteria) => {
         API.doBookFlight(searchCriteria)
             .then((res) => {
-                //if (status === 201) {
-                this.setState({
-                    flightDetails: res.flightDetails,
-                    flightRequested: res.flightRequested
-                });
-                this.props.history.push("/payFlight");
-                //this.props.history.push("/hotelListDisplay");
-                //} else if (status === 401) {
-                /*  this.setState({
-                      isLoggedIn: false,
-                      message: "Wrong username or password. Try again..!!"
-                  });
-              }*/
+                if (res.value === 201) {
+                    this.setState({
+                        flightDetails: res.flightDetails,
+                        flightRequested: res.flightRequested
+                    });
+                    this.props.history.push("/payFlight");
+                }
+                else
+                    this.props.history.push("/failurePage");
             });
         //this.props.history.push("/ViewHotel");
     };
@@ -407,14 +460,17 @@ class NewerHomePage extends Component {
     makePayment = (paymentDetails) => {
         API.doPayment(paymentDetails)
             .then((res) => {
-                //if (status === 201) {
-                this.setState({
-                    paymentDetails: {
-                        bookingID: res.file.bookID,
-                        billAmount: res.file.billAmount,
-                    }
-                });
-                this.props.history.push("/confirmationHotel");
+                if (res.value === 201) {
+                    this.setState({
+                        paymentDetails: {
+                            bookingID: res.file.bookID,
+                            billAmount: res.file.billAmount,
+                        }
+                    });
+                    this.props.history.push("/confirmationHotel");
+                }
+                else
+                    this.props.history.push("/failurePage");
 
             });
         //this.props.history.push("/ViewHotel");
@@ -423,14 +479,17 @@ class NewerHomePage extends Component {
     makePaymentCar = (paymentDetails) => {
         API.doPaymentCar(paymentDetails)
             .then((res) => {
-                //if (status === 201) {
-                this.setState({
-                    paymentDetails: {
-                        bookingID: res.results.bookID,
-                        billAmount: res.billAmount,
-                    }
-                });
-                this.props.history.push("/confirmationCar");
+                if (res.value=== 201) {
+                    this.setState({
+                        paymentDetails: {
+                            bookingID: res.results.bookID,
+                            billAmount: res.billAmount,
+                        }
+                    });
+                    this.props.history.push("/confirmationCar");
+                }
+                else
+                    this.props.history.push("/failurePage");
 
             });
         //this.props.history.push("/ViewHotel");
@@ -439,14 +498,17 @@ class NewerHomePage extends Component {
     makePaymentFlight = (paymentDetails) => {
         API.doPaymentFlight(paymentDetails)
             .then((res) => {
-                //if (status === 201) {
-                this.setState({
-                    paymentDetails: {
-                        bookingID: res.file.bookID,
-                        billAmount: res.price,
-                    }
-                });
-                this.props.history.push("/confirmationFlight");
+                if (res.value === 201) {
+                    this.setState({
+                        paymentDetails: {
+                            bookingID: res.file.bookID,
+                            billAmount: res.price,
+                        }
+                    });
+                    this.props.history.push("/confirmationFlight");
+                }
+                else
+                    this.props.history.push("/failurePage");
 
             });
         //this.props.history.push("/ViewHotel");
@@ -456,19 +518,40 @@ class NewerHomePage extends Component {
     searchFlight = (searchCriteria) => {
         API.getFlight(searchCriteria)
             .then((res) => {
-                //if (status === 201) {
-                this.setState({
-                    flightList: res.file,
-                    flightRequested:{
-                        fromCity: res.fromCity,
-                        toCity: res.toCity,
-                        departureDate: res.departureDate,
-                        returnDate: res.returnDate,
-                        seatType: res.seatType,
-                        passengerCount: res.passengerCount
-                    }
+                if (res.value === 201) {
+                    this.setState({
+                        flightList: res.file,
+                        flightRequested: {
+                            fromCity: res.fromCity,
+                            toCity: res.toCity,
+                            departureDate: res.departureDate,
+                            returnDate: res.returnDate,
+                            seatType: res.seatType,
+                            passengerCount: res.passengerCount
+                        }
+                    });
+                    this.props.history.push("/FlightListDisplay");
+                }
+                else
+                    this.props.history.push("/failurePage");
+            });
+
+    };
+
+
+    searchBills = (searchCriteria) => {
+        API.getBills(searchCriteria)
+            .then((res) => {
+                if (res.value === 201) {
+                    this.setState({
+                        billList: res.results.message
+                    });
+                    this.props.history.push("/admin/bills/ViewBillList");
+                }
+                else
+                    this.props.history.push("/failurePage");
                 });
-                this.props.history.push("/FlightListDisplay");
+
                 //this.props.history.push("/hotelListDisplay");
                 //} else if (status === 401) {
                 /*  this.setState({
@@ -476,7 +559,7 @@ class NewerHomePage extends Component {
                       message: "Wrong username or password. Try again..!!"
                   });
               }*/
-            });
+            //});
 
     };
 
@@ -503,12 +586,12 @@ class NewerHomePage extends Component {
     handleSignUp = (userdata) => {
     	API.doSignUp(userdata)
     		.then((res) => {
-    			if(res.status === 201){
+    			if(res.value === 201){
     				this.setState({
     					message: 'Sign Up successful! Please login!!'
     				});
     				this.props.history.push('/');
-    			} else if (res.status === 401){
+    			} else if (res.value === 401){
     				this.setState({
     					message: 'User already exists! Please try with different details!!'
     				});
@@ -535,13 +618,15 @@ class NewerHomePage extends Component {
     handleLogout = () => {
         console.log('logout called');
         API.logout()
-            .then((status) => {
-                if(status === 200){
+            .then((res) => {
+                if(res.value=== 201){
                     this.setState({
                         isLoggedIn: false
                     });
                     this.props.history.push("/");
                 }
+                else
+                    this.props.history.push("/failurePage");
             });
     };
 
@@ -604,7 +689,12 @@ class NewerHomePage extends Component {
                 )}/>
                 <Route exact path="/CarListDisplay" render={() => (
                     <div>
-                        <CarListDisplay carList={this.state.carList} viewDealCar={this.viewDealCar} carRequested={this.state.carRequested}/>
+                        <CarListDisplay carList={this.state.carList} searchCar={this.searchCar} viewDealCar={this.viewDealCar} carRequested={this.state.carRequested}/>
+                    </div>
+                )}/>
+                <Route exact path="/CarListDisplayFiltered" render={() => (
+                    <div>
+                        <CarListDisplay carList={this.state.carList} searchCar={this.searchCar} viewDealCar={this.viewDealCar} carRequested={this.state.carRequested}/>
                     </div>
                 )}/>
                 <Route exact path="/ViewCar" render={() => (
@@ -700,6 +790,12 @@ class NewerHomePage extends Component {
                         </div>
                     )
                     }/>
+                <Route exact path='/admin/users/searchUser' render={() => (
+                    <div>
+                        <SearchUser searchListing={this.searchListing}/>
+                    </div>
+                )
+                }/>
                 <Route exact path='/admin/flights/editFlight' render={() => (
                         <div>
                             <EditFlight flightDetails={this.state.flightDetailsAdmin} saveListing={this.saveListing}/>
@@ -718,12 +814,24 @@ class NewerHomePage extends Component {
                         </div>
                     )
                     }/>
+                <Route exact path='/admin/users/editUser' render={() => (
+                    <div>
+                        <EditUser userDetails={this.state.userDetailsAdmin} saveListing={this.saveListing}/>
+                    </div>
+                )
+                }/>
                     <Route exact path='/admin/bills/searchBill' render={() => (
                         <div>
-                            <SearchBill/>
+                            <SearchBill searchBills={this.searchBills}/>
                         </div>
                     )
                     }/>
+                <Route exact path='/admin/bills/ViewBillList' render={() => (
+                    <div>
+                        <ViewBills billList={this.state.billList}/>
+                    </div>
+                )
+                }/>
                 <Route exact path='/admin/flights/flightDetails' render={() => (
                         <div>
                             <FlightDetails flightDetails={this.state.flightDetailsAdmin} editListing={this.editListing}/>
@@ -742,7 +850,13 @@ class NewerHomePage extends Component {
                             </div>
                         )
                         }/>
-                        <Route exact path='/admin/flights/editFlight' render={() => (
+                <Route exact path='/admin/users/userDetails' render={() => (
+                    <div>
+                        <UserDetails userDetails={this.state.userDetailsAdmin} editListing={this.editListing}/>
+                    </div>
+                )
+                }/>
+                <Route exact path='/admin/flights/editFlight' render={() => (
                             <div>
                                 <EditFlight flightDetails={this.state.flightDetailsAdmin} saveListing={this.saveListing}/>
                             </div>
@@ -768,10 +882,16 @@ class NewerHomePage extends Component {
                         }/>
                     <Route exact path='/admin/dashboard' render={() => (
                             <div>
-                                <AdminDashboard dashboardDetails={this.state.dashboardDetails}/>
+                                <AdminDashboard1 dashboardDetails={this.state.dashboardDetails}/>
                             </div>
                         )
                         }/>
+                <Route exact path='/failurePage' render={() => (
+                    <div>
+                        <FailurePage/>
+                    </div>
+                )
+                }/>
                 </div>
         );
     }

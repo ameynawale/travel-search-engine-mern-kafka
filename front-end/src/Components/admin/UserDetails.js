@@ -11,34 +11,35 @@ import '../../assets/css/bootstrap.css';
 //import '../../assets/css/select2.min.css';
 
 
-class CarDetails extends Component {
+class UserDetails extends Component {
+
+    static propTypes = {
+        userDetails: PropTypes.array.isRequired,
+        editListing: PropTypes.func.isRequired
+    };
+
 
     constructor(props){
         super(props);
         this.state = {
-            carID: this.props.carDetails.carID,
-            carType: this.props.carDetails.carType,
-            carName: this.props.carDetails.carName,
-            price: this.props.carDetails.price,
-            seatCount: this.props.carDetails.seatCount,
-            operator: this.props.carDetails.operator,
-            location: this.props.carDetails.location,
-            ratings: this.props.carDetails.ratings,
+            firstName: this.props.userDetails.firstName,
+            lastName: this.props.userDetails.lastName,
+            username: this.props.userDetails.username,
+            address: this.props.userDetails.address,
+            city: this.props.userDetails.city,
+            state: this.props.userDetails.state,
+            zipcode: this.props.userDetails.zipcode,
+            email: this.props.userDetails.email,
 
-            isSearchUser: false,
+            isSearchUser: true,
             isSearchFlight: false,
-            isSearchCar: true,
+            isSearchCar: false,
             isSearchHotel: false
         };
     }
 
-    static propTypes = {
-        carDetails: PropTypes.array.isRequired,
-        editListing: PropTypes.func.isRequired
-        //searchListing: PropTypes.func.isRequired
-    };
 
-    /*addListing = (recordDetails) => {
+    addListing = (recordDetails) => {
         API.addFlight(recordDetails)
             .then((status) => {
                 if (status === 201) {
@@ -52,7 +53,7 @@ class CarDetails extends Component {
                 }
             });
     };
-*/
+
     createNotification = (type) => {
         return () => {
             switch (type) {
@@ -151,71 +152,63 @@ class CarDetails extends Component {
 
                                 <form>
                                     <div className="form-group">
-                                        <h4><strong>CAR DETAILS</strong></h4>
+                                        <h4><strong>USER DETAILS</strong></h4>
                                     </div>
                                     <div>
                                         <div>
                                             <div display="block" className="col-md-6">
-                                                <label style={{float:'right'}}>Car ID:</label>
+                                                <label style={{float:'right'}}>First Name:</label>
                                             </div>
                                             <div className="form-group col-md-6">
-                                                <label style={{float:'left'}}>{this.state.carID}</label>
+                                                <label style={{float:'left'}}>{this.state.firstName}</label>
                                             </div>
                                         </div>
                                         <div>
                                             <div display="block" className="col-md-6">
-                                                <label style={{float:'right'}}>Car Name:</label>
+                                                <label style={{float:'right'}}>Last Name:</label>
                                             </div>
                                             <div className="form-group col-md-6">
-                                                <label style={{float:'left'}}>{this.state.carName}</label>
+                                                <label style={{float:'left'}}>{this.state.lastName}</label>
                                             </div>
                                         </div>
                                         <div>
                                             <div display="block" className="col-md-6">
-                                                <label style={{float:'right'}}>Car Type:</label>
+                                                <label style={{float:'right'}}>User Email:</label>
                                             </div>
                                             <div className="form-group col-md-6">
-                                                <label style={{float:'left'}}>{this.state.carType}</label>
+                                                <label style={{float:'left'}}>{this.state.email}</label>
                                             </div>
                                         </div>
                                         <div>
                                             <div display="block" className="col-md-6">
-                                                <label style={{float:'right'}}>Operator:</label>
+                                                <label style={{float:'right'}}>Address:</label>
                                             </div>
                                             <div className="form-group col-md-6">
-                                                <label style={{float:'left'}}>{this.state.operator}</label>
+                                                <label style={{float:'left'}}>{this.state.address}</label>
                                             </div>
                                         </div>
                                         <div>
                                             <div display="block" className="col-md-6">
-                                                <label style={{float:'right'}}>City:</label>
+                                                <label style={{float:'right'}}>User City:</label>
                                             </div>
                                             <div className="form-group col-md-6">
-                                                <label style={{float:'left'}}>{this.state.location}</label>
+                                                <label style={{float:'left'}}>{this.state.city}</label>
                                             </div>
                                         </div>
                                         <div>
                                             <div display="block" className="col-md-6">
-                                                <label style={{float:'right'}}>Seat Count</label>
+                                                <label style={{float:'right'}}>User State:</label>
                                             </div>
                                             <div className="form-group col-md-6">
-                                                <label style={{float:'left'}}>{this.state.seatCount}</label>
+                                                <label style={{float:'left'}}>{this.state.state}</label>
                                             </div>
                                         </div>
                                         <div>
                                             <div display="block" className="col-md-6">
-                                                <label style={{float:'right'}}>Price:</label>
+                                                <label style={{float:'right'}}>ZIP code:</label>
                                             </div>
                                             <div className="form-group col-md-6">
-                                                <label style={{float:'left'}}>{this.state.price}</label>
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <div display="block" className="col-md-6">
-                                                <label style={{float:'right'}}>Ratings:</label>
-                                            </div>
-                                            <div className="form-group col-md-6">
-                                                <label style={{float:'left'}}>{this.state.ratings}</label>
+                                                <label style={{float:'left'}}>{this.state.zipcode}</label>
                                             </div>
                                         </div>
                                         <div className="form-group">
@@ -240,4 +233,4 @@ class CarDetails extends Component {
     }
 }
 
-export default CarDetails;
+export default UserDetails;

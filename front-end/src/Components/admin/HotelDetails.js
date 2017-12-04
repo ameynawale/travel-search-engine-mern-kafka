@@ -29,6 +29,7 @@ class HotelDetails extends Component {
             amount: this.props.hotelDetails.amount,
             bookedRooms: this.props.hotelDetails.bookedRooms,
 
+            isSearchUser: false,
             isSearchFlight: false,
             isSearchCar: false,
             isSearchHotel: true

@@ -10,7 +10,8 @@ class CarListDisplay extends React.Component{
     static propTypes = {
         carList: PropTypes.array.carList,
         carRequested: PropTypes.array.carRequested,
-        viewDealCar: PropTypes.func.isRequired
+        viewDealCar: PropTypes.func.isRequired,
+        searchCar: PropTypes.func.isRequired
     };
 
 
@@ -18,7 +19,15 @@ class CarListDisplay extends React.Component{
         super(props);
         this.state = {
             cars: this.props.carList.message,
-            carRequested: this.props.carRequested
+            carRequested: this.props.carRequested,
+            filter: 0,
+            minPrice: '',
+            maxPrice: '',
+            carType: '',
+            location: this.props.carRequested.location,
+            startDate: this.props.carRequested.startDate,
+            endDate: this.props.carRequested.endDate,
+            seatCount: this.props.carRequested.seatCount,
         };
     }
     /*  constructor(props){
@@ -189,6 +198,9 @@ class CarListDisplay extends React.Component{
                                         </span>
                                     </div>
                                 </div>
+                                <ul className="navSign navbar-right" style={{marginTop: "20px"}}>
+                                    <a href="/"> Sign Out </a>
+                                </ul>
                             </nav>
                         </div>
                     </nav>
@@ -234,10 +246,35 @@ class CarListDisplay extends React.Component{
 
                             <h3>Price</h3>
                             <div className="initalPrice" style={{marginTop: "10px"}}>
-                                <input type="number" name="priceInitial" id="InputId" placeholder="Minimum Price" defaultValue="0"/>
+                                <input type="number"
+                                       placeholder="Min Price"
+                                       className="formFields"
+                                       style={{marginLeft: "5px", width:"200px", marginTop: "35px"}}
+                                       onChange={(event) => {
+                                           this.setState({
+                                               filter: 2,
+                                               minPrice: event.target.value
+                                           });
+                                       }}
+                                />
                             </div>
                             <div className="finalPrice" style={{marginTop: "5px"}}>
-                                <input type="number" name="priceInitial" id="InputId" placeholder="Maximum Price" defaultValue="1000"/>
+                                <input type="number" name="priceInitial" id="InputId" placeholder="Maximum Price"
+                                       onChange={(event) => {
+                                           this.setState({
+                                               filter: 2,
+                                               maxPrice: event.target.value
+                                           });
+                                       }}
+                                />
+                            </div>
+                            <div className="form-group">
+                                <button
+                                    className="btn btn-primary"
+                                    type="button"
+                                    onClick={() => this.props.searchCar(this.state)}>
+                                    Filter
+                                </button>
                             </div>
                             <h3>Car Types</h3>
 

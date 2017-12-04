@@ -13,9 +13,7 @@ export const doLogin = (payload) =>
         },
         credentials:'include',
         body: JSON.stringify(payload)
-    }).then(res =>
-    { return res.status;
-    })
+    }).then(res => res.json())
         .catch(error => {
             console.log("This is error");
             return error;
@@ -180,6 +178,22 @@ export const getFlight = (payload) =>
             return error;
         });
 
+export const getBills = (payload) =>
+    fetch(`${api}/bills/fromDate/toDate`, {
+        method: 'POST',
+        headers: {
+            ...headers,
+            'Content-Type': 'application/json'
+        },
+        credentials:'include',
+        body: JSON.stringify(payload)
+    }).then(res => res.json())
+        .catch(error => {
+            console.log("This is error");
+            return error;
+        });
+
+
 
 export const doPayment = (payload) =>
     fetch(`${api}/payHotel`, {
@@ -334,6 +348,23 @@ export const updateCar = (payload) =>
             return error;
         });
 
+export const updateUser = (payload) =>
+    fetch(`${api}/admin/users/editUser`, {
+        method: 'POST',
+        headers: {
+            ...headers,
+            'Content-Type': 'application/json'
+        },
+        credentials:'include',
+        body: JSON.stringify(payload)
+    })
+        .then(res => {
+            return res.status;
+        })
+        .catch(error => {
+            console.log("This is error");
+            return error;
+        });
 
 export const logout = () =>
     fetch(`${api}/logout`, {
@@ -380,6 +411,20 @@ export const searchListingHotel = (payload) =>
         });
 export const searchListingCar = (payload) =>
     fetch(`${api}/admin/cars/fetchCar`,{
+        method: 'POST',
+        headers: {
+            ...headers,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+    }).then(res => res.json())
+        .catch(error => {
+            console.log("This is error.");
+            return error;
+        });
+
+export const searchListingUser = (payload) =>
+    fetch(`${api}/admin/users/fetchUser`,{
         method: 'POST',
         headers: {
             ...headers,

@@ -19,7 +19,8 @@ class SearchCar extends Component {
 
     state = {
         fromDate: '',
-        toDate: ''
+        toDate: '',
+        bookingType: ''
     };
 
     /*addListing = (recordDetails) => {
@@ -182,11 +183,29 @@ class SearchCar extends Component {
                                         </div>
                                     </div>
                                     <div>
+                                        <div display="block" className="col-md-6">
+                                            <label style={{float:'right'}}>Booking Type:</label>
+                                        </div>
+                                        <div className="form-group col-md-6">
+                                            <input
+                                                className="form-control"
+                                                type="text"
+                                                label="bookingType"
+                                                name="bookingType"
+                                                onChange={(event) => {
+                                                    this.setState({
+                                                        bookingType: event.target.value
+                                                    });
+                                                }}
+                                            />
+                                        </div>
+                                    </div>
+                                    <div>
                                         <div className="form-group">
                                             <button
                                                 className="btn btn-primary"
                                                 type="button"
-                                                onClick={() => this.searchBills(this.state)}>
+                                                onClick={() => this.props.searchBills(this.state)}>
                                                 Search
                                             </button>
                                         </div>

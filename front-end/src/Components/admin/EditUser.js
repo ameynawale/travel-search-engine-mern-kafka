@@ -11,29 +11,33 @@ import '../../assets/css/bootstrap.css';
 //import '../../assets/css/select2.min.css';
 
 
-class SearchFlight extends Component {
-
-    /*constructor(props){
-        super(props);
-        this.state = {
-            flightID: '',
-            flightName: ''
-        };
-    }*/
+class EditUser extends Component {
 
     static propTypes = {
-        searchListing: PropTypes.func.isRequired
+        userDetails: PropTypes.string.userDetails,
+        saveListing: PropTypes.func.isRequired
     };
 
-    state = {
-        flightID: '',
-        flightName: '',
+    constructor(props){
+        super(props);
+        this.state = {
+            firstName: this.props.userDetails.firstName,
+            lastName: this.props.userDetails.lastName,
+            username: this.props.userDetails.username,
+            address: this.props.userDetails.address,
+            city: this.props.userDetails.city,
+            state: this.props.userDetails.state,
+            zipcode: this.props.userDetails.zipcode,
+            email: this.props.userDetails.email,
 
-        isSearchUser: false,
-        isSearchFlight: true,
-        isSearchHotel: false,
-        isSearchCar: false
-    };
+            isSearchUser: true,
+            isSearchFlight: false,
+            isSearchCar: false,
+            isSearchHotel: false
+        };
+    }
+
+
 
     addListing = (recordDetails) => {
         API.addFlight(recordDetails)
@@ -71,12 +75,6 @@ class SearchFlight extends Component {
         };
     };
 
-    componentWillMount(){
-        this.setState({
-            flightID: '',
-            flightName: ''
-        });
-    }
 
     render() {
         return (
@@ -154,44 +152,125 @@ class SearchFlight extends Component {
 
                                 <form>
                                     <div className="form-group">
-                                        <h4><strong>SEARCH FLIGHT</strong></h4>
+                                        <h4><strong>EDIT USER</strong></h4>
                                     </div>
                                     <div>
                                         <div display="block" className="col-md-6">
-                                            <label style={{float:'right'}}>Enter Flight ID:</label>
+                                            <label style={{float:'right'}}>User Name:</label>
+                                        </div>
+                                        <div display="block" className="col-md-6">
+                                            <label style={{float:'left'}}>{this.state.username}</label>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div display="block" className="col-md-6">
+                                            <label style={{float:'right'}}>First Name:</label>
                                         </div>
                                         <div className="form-group col-md-6">
                                             <input
                                                 className="form-control"
                                                 type="text"
-                                                label="flightID"
-                                                name="flightID"
-                                                placeholder="Flight ID"
-                                                value={this.state.flightID}
+                                                label="operator"
+                                                placeholder={this.state.firstName}
+                                                value={this.state.firstName}
                                                 onChange={(event) => {
                                                     this.setState({
-                                                        flightID: event.target.value
+                                                        firstName: event.target.value
                                                     });
                                                 }}
                                             />
                                         </div>
                                     </div>
-                                    <h5>OR</h5>
                                     <div>
                                         <div display="block" className="col-md-6">
-                                            <label style={{float:'right'}}>Enter Flight Name:</label>
+                                            <label style={{float:'right'}}>Last Name:</label>
                                         </div>
                                         <div className="form-group col-md-6">
                                             <input
                                                 className="form-control"
                                                 type="text"
-                                                label="flightName"
-                                                name="flightName"
-                                                placeholder="Flight Name"
-                                                value={this.state.flightName}
+                                                label="lastName"
+                                                placeholder={this.state.lastName}
+                                                value={this.state.lastName}
                                                 onChange={(event) => {
                                                     this.setState({
-                                                        flightName: event.target.value
+                                                        lastName: event.target.value
+                                                    });
+                                                }}
+                                            />
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div display="block" className="col-md-6">
+                                            <label style={{float:'right'}}>Address:</label>
+                                        </div>
+                                        <div className="form-group col-md-6">
+                                            <input
+                                                className="form-control"
+                                                type="text"
+                                                label="address"
+                                                placeholder={this.state.address}
+                                                value={this.state.address}
+                                                onChange={(event) => {
+                                                    this.setState({
+                                                        address: event.target.value
+                                                    });
+                                                }}
+                                            />
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div display="block" className="col-md-6">
+                                            <label style={{float:'right'}}>City:</label>
+                                        </div>
+                                        <div className="form-group col-md-6">
+                                            <input
+                                                className="form-control"
+                                                type="text"
+                                                label="city"
+                                                placeholder={this.state.city}
+                                                value={this.state.city}
+                                                onChange={(event) => {
+                                                    this.setState({
+                                                        city: event.target.value
+                                                    });
+                                                }}
+                                            />
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div display="block" className="col-md-6">
+                                            <label style={{float:'right'}}>State:</label>
+                                        </div>
+                                        <div className="form-group col-md-6">
+                                            <input
+                                                className="form-control"
+                                                type="text"
+                                                label="state"
+                                                placeholder={this.state.state}
+                                                value={this.state.state}
+                                                onChange={(event) => {
+                                                    this.setState({
+                                                        state: event.target.value
+                                                    });
+                                                }}
+                                            />
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div display="block" className="col-md-6">
+                                            <label style={{float:'right'}}>ZIP code:</label>
+                                        </div>
+                                        <div className="form-group col-md-6">
+                                            <input
+                                                className="form-control"
+                                                type="text"
+                                                label="zipcode"
+                                                placeholder={this.state.zipcode}
+                                                value={this.state.zipcode}
+                                                onChange={(event) => {
+                                                    this.setState({
+                                                        zipcode: event.target.value
                                                     });
                                                 }}
                                             />
@@ -202,8 +281,8 @@ class SearchFlight extends Component {
                                             <button
                                                 className="btn btn-primary"
                                                 type="button"
-                                                onClick={() => this.props.searchListing(this.state)}>
-                                                Search
+                                                onClick={() => this.props.saveListing(this.state)}>
+                                                Save
                                             </button>
                                         </div>
                                     </div>
@@ -219,4 +298,4 @@ class SearchFlight extends Component {
     }
 }
 
-export default SearchFlight;
+export default EditUser;

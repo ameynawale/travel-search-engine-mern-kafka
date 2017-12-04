@@ -20,7 +20,8 @@ class Cars extends Component {
         location: '',
         startDate: '',
         endDate: '',
-        seatCount: ''
+        seatCount: '',
+        filter: 0
     };
 
     /*constructor(props) {
