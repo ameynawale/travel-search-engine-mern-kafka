@@ -81,6 +81,11 @@ class ConfirmationFlight extends React.Component{
                                         </span>
                                     </div>
                                 </div>
+                                <ul className="nav navbar-right">
+
+                                    <a href="/">Sign Out</a>
+
+                                </ul>
                             </nav>
                         </div>
                     </nav>
@@ -91,7 +96,7 @@ class ConfirmationFlight extends React.Component{
                                 <p><h1>Congratulations..!!</h1></p>
 
                                 <div className="panel panel-default">
-                                    <img src={require('../../images/htl1.jpg')} alt="" className="hotelImage" style={{marginLeft: "5px", width:"180px", marginTop: "35px"}}/>
+                                    <img src={require('../../images/flight1.png')} alt="" className="hotelImage" style={{marginLeft: "5px", width:"180px", marginTop: "35px"}}/>
 
                                     <p>
                                         <h5> Your booking ID: {this.state.bookingID}</h5>

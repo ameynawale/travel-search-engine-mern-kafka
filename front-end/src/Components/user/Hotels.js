@@ -94,6 +94,11 @@ class Hotels extends Component {
                                         </span>
                                         </div>
                                     </div>
+                                    <ul className="nav navbar-right">
+
+                                        <a href="/">Sign Out</a>
+
+                                    </ul>
                                 </nav>
 
 

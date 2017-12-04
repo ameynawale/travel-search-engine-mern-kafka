@@ -595,6 +595,7 @@ class NewerHomePage extends Component {
     				this.setState({
     					message: 'User already exists! Please try with different details!!'
     				});
+                    this.props.history.push("/FailurePage");
     			}
     		});
     };

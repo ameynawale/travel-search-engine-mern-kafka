@@ -350,7 +350,7 @@ class CarListDisplay extends React.Component{
                                 {this.state.cars.map((cars,i) =>
 
                                     <div className="panel panel-default">
-                                        <img src={require('../../images/htl1.jpg')} alt="" className="hotelImage" style={{marginLeft: "5px", width:"180px", marginTop: "35px"}}/>
+                                        <img src={require('../../images/car1.png')} alt="" className="hotelImage" style={{marginLeft: "5px", width:"180px", marginTop: "35px"}}/>
 
                                         <div className="text-default">
 

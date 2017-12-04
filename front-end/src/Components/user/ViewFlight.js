@@ -92,6 +92,11 @@ class ViewFlight extends React.Component{
                                         </span>
                                     </div>
                                 </div>
+                                <ul className="nav navbar-right">
+
+                                    <a href="/">Sign Out</a>
+
+                                </ul>
                             </nav>
                         </div>
                     </nav>
@@ -102,7 +107,7 @@ class ViewFlight extends React.Component{
 
 
                                 <div className="panel panel-default">
-                                    <img src={require('../../images/flight5.png')} alt="" className="hotelImage" style={{marginLeft: "5px", width:"180px", marginTop: "35px"}}/>
+                                    <img src={require('../../images/flight1.png')} alt="" className="hotelImage" style={{marginLeft: "5px", width:"180px", marginTop: "35px"}}/>
                                     <h3>Flight Name: {this.state.flightName} - {this.state.operator}</h3>
                                     <h4>Flight Id: {this.state.flightID} </h4>
                                     <h4> Origin: {this.state.fromCity} at {this.state.departureTime} </h4>

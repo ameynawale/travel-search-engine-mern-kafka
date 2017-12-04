@@ -189,6 +189,11 @@ class FlightListDisplay extends React.Component{
                                         </span>
                                     </div>
                                 </div>
+                                <ul className="nav navbar-right">
+
+                                    <a href="/">Sign Out</a>
+
+                                </ul>
                             </nav>
                         </div>
                     </nav>
@@ -324,7 +329,7 @@ class FlightListDisplay extends React.Component{
                                 {this.state.flights.map((flights,i) =>
 
                                     <div className="panel panel-default">
-                                        <img src={require('../../images/htl1.jpg')} alt="" className="hotelImage" style={{marginLeft: "5px", width:"180px", marginTop: "35px"}}/>
+                                        <img src={require('../../images/flight1.png')} alt="" className="hotelImage" style={{marginLeft: "5px", width:"180px", marginTop: "35px"}}/>
 
                                         <div className="text-default">
 
