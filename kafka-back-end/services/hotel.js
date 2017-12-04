@@ -71,7 +71,7 @@ function handle_request(msg, callback){
                     var coll = mongo.collection('search');
                     //   process.nextTick(function(){
                           msg1 = JSON.stringify(results1[0]);
-                          console.log(msg1);
+                          console.log(msg1 );
                     var myobj = {
                         user: {
                             username: msg1.username,
