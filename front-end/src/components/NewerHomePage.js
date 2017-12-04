@@ -6,6 +6,9 @@ import Login from './user/Login';
 import Welcome from "./user/Welcome";
 import Signup from './user/Signup';
 import FailurePage from './FailurePage';
+import ReportCity from './admin/ReportCity';
+import CitywiseReport from './admin/CitywiseReport';
+import ListingSuccess from './admin/ListingSuccess';
 
 import SearchUser from './admin/SearchUser';
 import UserDetails from './admin/UserDetails';
@@ -31,6 +34,7 @@ import ConfirmationHotel from './user/ConfirmationHotel';
 import FlightListDisplay from './user/FlightListDisplay';
 
 import ReactiveGrid from  './admin/ReactiveGrid';
+
 import AddFlight from "./admin/AddFlight";
 import AddHotel from "./admin/AddHotel";
 import AddCar from "./admin/AddCar";
@@ -46,6 +50,7 @@ import CarDetails from "./admin/CarDetails";
 import EditFlight from "./admin/EditFlight";
 import AdminDashboard from './admin/AdminDashboard';
 import AdminDashboard1 from './admin/AdminDashboard';
+import AdminDashboard2 from './admin/AdminDashboard2';
 
 import ListingSaveSuccess from './admin/ListingSaveSuccess';
 import ViewBills from "./admin/ViewBills";
@@ -228,7 +233,7 @@ class NewerHomePage extends Component {
             API.updateFlight(listingDetails)
                 .then((res) => {
                 if(res.value===201)
-                    this.props.history.push("/successPage");
+                    this.props.history.push("/admin/ListingSaveSuccess");
                 else
                     this.props.history.push("/failurePage");
                 })
@@ -238,7 +243,7 @@ class NewerHomePage extends Component {
             API.updateHotel(listingDetails)
                 .then((res) => {
                     if(res.value===201)
-                        this.props.history.push("/successPage");
+                        this.props.history.push("/admin/ListingSaveSuccess");
                     else
                         this.props.history.push("/failurePage");
                 })
@@ -248,7 +253,7 @@ class NewerHomePage extends Component {
             API.updateCar(listingDetails)
                 .then((res) => {
                     if(res.value===201)
-                        this.props.history.push("/successPage");
+                        this.props.history.push("/admin/ListingSaveSuccess");
                     else
                         this.props.history.push("/failurePage");
                 })
@@ -258,7 +263,7 @@ class NewerHomePage extends Component {
             API.updateUser(listingDetails)
                 .then((res) => {
                     if(res.value===201)
-                        this.props.history.push("/successPage");
+                        this.props.history.push("/admin/ListingSaveSuccess");
                     else
                         this.props.history.push("/failurePage");
                 })
@@ -322,6 +327,7 @@ class NewerHomePage extends Component {
                             startDate: res.startDate,
                             endDate: res.endDate,
                             seatCount: res.seatCount,
+                            carType: res.carType,
                             filter: res.filter
                         }
                     });
@@ -535,6 +541,25 @@ class NewerHomePage extends Component {
                 else
                     this.props.history.push("/failurePage");
             });
+
+    };
+
+    getCityReport = (searchCriteria) => {
+        API.doGetCityReport(searchCriteria)
+            .then((res) => {
+                if (res.value === 201) {
+                    this.setState({
+                        cityReportDetails: res.message
+                    });
+                    this.props.history.push("/admin/reports");
+                } else if (res.value === 401) {
+                    this.setState({
+                        isLoggedIn: false,
+                        message: "Wrong username or password. Try again..!!"
+                    });
+                    this.props.history.push("/failurePage");
+
+                }});
 
     };
 
@@ -754,12 +779,19 @@ class NewerHomePage extends Component {
                         </div>
                     )
                     }/>
-                <Route exact path='/admin/reports' render={() => (
+                <Route exact path='/admin/entercity' render={() => (
                         <div>
-                            <ReactiveGrid/>
+                            <ReportCity getCityReport={this.getCityReport}/>
                         </div>
                     )
                     }
+                />
+                <Route exact path='/admin/reports' render={() => (
+                    <div>
+                        <CitywiseReport cityReportDetails={this.state.cityReportDetails}/>
+                    </div>
+                )
+                }
                 />
                 <Route exact path='/admin/hotels/addHotel' render={() => (
                         <div>
@@ -877,16 +909,22 @@ class NewerHomePage extends Component {
                         }/>
                         <Route exact path='/admin/ListingSaveSuccess' render={() => (
                             <div>
-                                <ListingSaveSuccess/>
+                                <ListingSuccess/>
                             </div>
                         )
                         }/>
                     <Route exact path='/admin/dashboard' render={() => (
                             <div>
-                                <AdminDashboard1 dashboardDetails={this.state.dashboardDetails}/>
+                                <AdminDashboard dashboardDetails={this.state.dashboardDetails}/>
                             </div>
                         )
                         }/>
+                <Route exact path='/listingSuccess' render={() => (
+                    <div>
+                        <ListingSuccess/>
+                    </div>
+                )
+                }/>
                 <Route exact path='/failurePage' render={() => (
                     <div>
                         <FailurePage/>

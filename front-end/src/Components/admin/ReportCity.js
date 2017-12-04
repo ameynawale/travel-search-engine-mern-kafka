@@ -11,44 +11,33 @@ import '../../assets/css/bootstrap.css';
 //import '../../assets/css/select2.min.css';
 
 
-class SearchFlight extends Component {
+class ReportCity extends Component {
 
-    /*constructor(props){
-        super(props);
-        this.state = {
-            flightID: '',
-            flightName: ''
-        };
-    }*/
-
-    static propTypes = {
-        searchListing: PropTypes.func.isRequired
-    };
+    /* static propTypes = {
+         handleSignUp: PropTypes.func.isRequired
+     };*/
 
     state = {
-        flightID: '',
-        flightName: '',
-
-        isSearchUser: false,
-        isSearchFlight: true,
-        isSearchHotel: false,
-        isSearchCar: false
+        city: '',
+        year: ''
     };
 
-    addListing = (recordDetails) => {
-        API.addFlight(recordDetails)
-            .then((status) => {
-                if (status === 201) {
-                    this.setState({
-                        message: 'Record added successfully!'
-                    })
-                } else if (status === 401) {
-                    this.setState({
-                        message: "Error is adding the record!"
-                    });
-                }
-            });
-    };
+    /*
+        addListing = (recordDetails) => {
+            API.addFlight(recordDetails)
+                .then((status) => {
+                    if (status === 201) {
+                        this.setState({
+                            message: 'Record added successfully!'
+                        })
+                    } else if (status === 401) {
+                        this.setState({
+                            message: "Error is adding the record!"
+                        });
+                    }
+                });
+        };
+    */
 
     createNotification = (type) => {
         return () => {
@@ -71,12 +60,14 @@ class SearchFlight extends Component {
         };
     };
 
-    componentWillMount(){
-        this.setState({
-            flightID: '',
-            flightName: ''
-        });
-    }
+    /*
+        componentWillMount(){
+            this.setState({
+                carID: '',
+                carName: ''
+            });
+        }
+    */
 
     render() {
         return (
@@ -153,44 +144,43 @@ class SearchFlight extends Component {
 
                                 <form>
                                     <div className="form-group">
-                                        <h4><strong>SEARCH FLIGHT</strong></h4>
+                                        <h4><strong>Report for:</strong></h4>
                                     </div>
                                     <div>
                                         <div display="block" className="col-md-6">
-                                            <label style={{float:'right'}}>Enter Flight ID:</label>
+                                            <label style={{float:'right'}}>Enter City:</label>
                                         </div>
                                         <div className="form-group col-md-6">
                                             <input
                                                 className="form-control"
                                                 type="text"
-                                                label="flightID"
-                                                name="flightID"
-                                                placeholder="Flight ID"
-                                                value={this.state.flightID}
+                                                label="city"
+                                                name="city"
+                                                placeholder="Enter city"
+                                                value={this.state.city}
                                                 onChange={(event) => {
                                                     this.setState({
-                                                        flightID: event.target.value
+                                                        city: event.target.value
                                                     });
                                                 }}
                                             />
                                         </div>
                                     </div>
-                                    <h5>OR</h5>
                                     <div>
                                         <div display="block" className="col-md-6">
-                                            <label style={{float:'right'}}>Enter Flight Name:</label>
+                                            <label style={{float:'right'}}>Enter Year:</label>
                                         </div>
                                         <div className="form-group col-md-6">
                                             <input
                                                 className="form-control"
                                                 type="text"
-                                                label="flightName"
-                                                name="flightName"
-                                                placeholder="Flight Name"
-                                                value={this.state.flightName}
+                                                label="year"
+                                                name="year"
+                                                placeholder="Enter year"
+                                                value={this.state.year}
                                                 onChange={(event) => {
                                                     this.setState({
-                                                        flightName: event.target.value
+                                                        year: event.target.value
                                                     });
                                                 }}
                                             />
@@ -201,8 +191,8 @@ class SearchFlight extends Component {
                                             <button
                                                 className="btn btn-primary"
                                                 type="button"
-                                                onClick={() => this.props.searchListing(this.state)}>
-                                                Search
+                                                onClick={() => this.props.getCityReport(this.state)}>
+                                                Get Reports
                                             </button>
                                         </div>
                                     </div>
@@ -218,4 +208,4 @@ class SearchFlight extends Component {
     }
 }
 
-export default SearchFlight;
+export default ReportCity;

@@ -30,10 +30,7 @@ fetch(`${api}/signup`, {
     },
     credentials:'include',
     body: JSON.stringify(payload)
-}).then(res => {
-    console.log(res);
-    return res;
-})
+}).then(res => res.json())
     .catch(error => {
         console.log("This is error");
         return error;
@@ -440,6 +437,20 @@ export const searchListingUser = (payload) =>
 
 export const getDashboardDetails = (payload) =>
     fetch(`${api}/admin/dashboard`,{
+        method: 'POST',
+        headers: {
+            ...headers,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+    }).then(res => res.json())
+        .catch(error => {
+            console.log("This is error.");
+            return error;
+        });
+
+export const doGetCityReport = (payload) =>
+    fetch(`${api}/admin/reports`,{
         method: 'POST',
         headers: {
             ...headers,

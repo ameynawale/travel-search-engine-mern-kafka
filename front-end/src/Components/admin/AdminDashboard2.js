@@ -12,6 +12,7 @@ import PropTypes from 'prop-types';
 import * as API from '../../api/API';
 import {NotificationContainer, NotificationManager} from 'react-notifications';
 //import '../../css/admin.css';
+import Graph1 from './Graph1';
 
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
 
@@ -36,7 +37,7 @@ class AddRemoveLayout extends React.PureComponent {
         super(props);
 
         this.state = {
-            items: [].map(function(i, key, list) {
+            items: [0,1].map(function(i, key, list) {
                 return {i: i.toString(), x: i * 2, y: 0, w: 4, h: 4, add: i === (list.length - 1).toString()};
             }),
             newCounter: 0,
@@ -112,7 +113,7 @@ class AddRemoveLayout extends React.PureComponent {
                               title="You can add an item by clicking here, too.">Add +</span>
                         : <span className="text">{i}</span>}
                     <span className="remove" style={removeStyle} onClick={this.onRemoveItem.bind(this, i)}>x</span>
-                    <ReactHighcharts1 config={config1}/>
+                    <Graph1/>
                 </div>
 
             );

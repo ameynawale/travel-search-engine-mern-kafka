@@ -6,11 +6,13 @@ import '../../assets/css/ResizeStyles.css';
 import '../../assets/css/custom-styles.css';
 import '../../assets/css/bootstrap.css';
 import ReactHighcharts from 'react-highcharts';
-import ReactHighcharts1 from 'react-highcharts';
 //import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import * as API from '../../api/API';
 import {NotificationContainer, NotificationManager} from 'react-notifications';
+import CityGraph1  from './CityGraph1';
+import CityGraph2 from './CityGraph2';
+import CityGraph3 from './CityGraph3';
 //import '../../css/admin.css';
 
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
@@ -28,23 +30,23 @@ class AddRemoveLayout extends React.PureComponent {
         rowHeight: 100
     };
 
-    propTypes = {
-        dashboardDetails: PropTypes.array.dashboardDetails
+    static propTypes = {
+        cityReportDetails: PropTypes.array.cityReportDetails
     };
 
     constructor(props) {
         super(props);
 
         this.state = {
-            items: [].map(function(i, key, list) {
+            items: [0, 1, 2, 3, 4].map(function(i, key, list) {
                 return {i: i.toString(), x: i * 2, y: 0, w: 4, h: 4, add: i === (list.length - 1).toString()};
             }),
             newCounter: 0,
             layout: 'test-react-grid',
-            registeredUsers: this.props.dashboardDetails.registeredUsers,
-            hotelsLocation: this.props.dashboardDetails.hotelsLocation,
-            flightsLocation: this.props.dashboardDetails.flightsLocation,
-            clickedButton: 0
+            destinationCities: this.props.cityReportDetails.destinationCities,
+            hotelBookings: this.props.cityReportDetails.hotelBookings,
+            carBookings: this.props.cityReportDetails.carBookings,
+            revenue: this.props.cityReportDetails.revenue
         };
 
         this.onAddItem = this.onAddItem.bind(this);
@@ -60,20 +62,20 @@ class AddRemoveLayout extends React.PureComponent {
             backgroundColor: "white"
         };
         const i = el.add ? '+' : el.i;
-        const config1 = {
+        const config = {
             chart: {
                 type: 'column'
             },
             title: {
-                text: 'Top Cities for Car Bookings'
+                text: 'Top Flight Destinations'
             },
             xAxis: {
                 categories: [
-                    "test1",
-                    "test2",
-                    "test3",
-                    "test4",
-                    "test5",
+                    state.destinationCities[0].toCity,
+                    state.destinationCities[1].toCity,
+                    state.destinationCities[2].toCity,
+                    state.destinationCities[3].toCity,
+                    state.destinationCities[4].toCity
                 ],
                 crosshair: true
             },
@@ -100,36 +102,19 @@ class AddRemoveLayout extends React.PureComponent {
             },
             series: [{
                 name: 'Cities',
-                data: ["test6","test7",state.hotelsLocation[2].count,state.hotelsLocation[3].count,state.hotelsLocation[4].count]
+                data: [state.destinationCities[0].count,state.destinationCities[1].count,state.destinationCities[2].count,state.destinationCities[3].count,state.destinationCities[4].count]
             }]
-        };
-
-        if(this.state.clickedButton) {
-            return (
-                <div key={i} data-grid={el} style={{backgroundColor: "white"}}>
-                    {el.add ?
-                        <span className="add text" onClick={this.onAddItem}
-                              title="You can add an item by clicking here, too.">Add +</span>
-                        : <span className="text">{i}</span>}
-                    <span className="remove" style={removeStyle} onClick={this.onRemoveItem.bind(this, i)}>x</span>
-                    <ReactHighcharts1 config={config1}/>
-                </div>
-
-            );
         }
-        else{
-            return (
-                <div key={i} data-grid={el} style={{backgroundColor: "white"}}>
-                    {el.add ?
-                        <span className="add text" onClick={this.onAddItem}
-                              title="You can add an item by clicking here, too.">Add +</span>
-                        : <span className="text">{i}</span>}
-                    <span className="remove" style={removeStyle} onClick={this.onRemoveItem.bind(this, i)}>x</span>
-                    <ReactHighcharts/>
-                </div>
-
-            );
-        }
+        return (
+            <div key={i} data-grid={el} style={{backgroundColor: "white"}}>
+                {el.add ?
+                    <span className="add text" onClick={this.onAddItem} title="You can add an item by clicking here, too.">Add +</span>
+                    : <span className="text">{i}</span>}
+                <span className="remove" style={removeStyle} onClick={this.onRemoveItem.bind(this, i)}>x</span>
+                <CityGraph1 destinationCities={this.state.destinationCities}/>
+                <CityGraph2 hotelBookings={this.state.hotelBookings}/>
+            </div>
+        );
     }
 
     onAddItem() {
@@ -190,7 +175,7 @@ class AddRemoveLayout extends React.PureComponent {
                             <ul className="nav" id="main-menu">
 
                                 <li>
-                                    <a href=""><i className="fa fa-dashboard"></i> Dashboard</a>
+                                    <a href="#"><i className="fa fa-dashboard"></i> Dashboard</a>
                                 </li>
                                 <li>
                                     <a href="#"><i className="fa fa-sitemap"></i> Add listing<span className="fa arrow"></span></a>
@@ -221,16 +206,15 @@ class AddRemoveLayout extends React.PureComponent {
                                     </ul>
                                 </li>
                                 <li>
-                                    <a href="activateCommunity"><i className="fa fa-dashboard"></i> User Account</a>
+                                    <a href="/admin/users/searchUser"><i className="fa fa-dashboard"></i> User Account</a>
                                 </li>
                                 <li>
-                                    <a href="activateCommunity"><i className="fa fa-dashboard"></i> Bills</a>
+                                    <a href="/admin/bills/searchBill"><i className="fa fa-dashboard"></i> Bills</a>
                                 </li>
                                 <li>
-                                    <a href="activateCommunity"><i className="fa fa-dashboard"></i> Reports</a>
+                                    <a href="/admin/entercity"><i className="fa fa-dashboard"></i> Reports</a>
                                 </li>
                             </ul>
-
                         </div>
 
                     </nav>
@@ -247,28 +231,6 @@ class AddRemoveLayout extends React.PureComponent {
                             <button className="btn btn-primary" onClick={this.onAddItem} style={{width: 100}}>Revenue</button>
                         </div>
                         <br/>
-                        <div style={{display: "block"}}>
-                            <div className="board" style={{width:300, align: "center", display: "inline"}}>
-                                <div className="panel panel-primary" style={{width: 300, align: "center"}}>
-                                    <div className="number" style={{align: "center"}}>
-                                        <h3 style={{width: 275}}>
-                                            <h3>{this.state.registeredUsers}</h3>
-                                            <small>Registered Users</small>
-                                        </h3>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="board" style={{width:300, align: "center", display: "inline"}}>
-                                <div className="panel panel-primary" style={{width: 300, align: "center"}}>
-                                    <div className="number" style={{align: "center"}}>
-                                        <h3 style={{width: 275}}>
-                                            <h3>{this.state.hotelsLocation[0].hotelName}</h3>
-                                            <small>Daily Visits</small>
-                                        </h3>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                         <ResponsiveReactGridLayout onLayoutChange={this.onLayoutChange} onBreakpointChange={this.onBreakpointChange}
                                                    {...this.props}>
                             {_.map(this.state.items, (el) => this.createElement(el, this.state))}

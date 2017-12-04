@@ -97,7 +97,7 @@ class SearchCar extends Component {
                             <ul className="nav" id="main-menu">
 
                                 <li>
-                                    <a href=""><i className="fa fa-dashboard"></i> Dashboard</a>
+                                    <a href="#"><i className="fa fa-dashboard"></i> Dashboard</a>
                                 </li>
                                 <li>
                                     <a href="#"><i className="fa fa-sitemap"></i> Add listing<span className="fa arrow"></span></a>
@@ -128,16 +128,15 @@ class SearchCar extends Component {
                                     </ul>
                                 </li>
                                 <li>
-                                    <a href="activateCommunity"><i className="fa fa-dashboard"></i> User Account</a>
+                                    <a href="/admin/users/searchUser"><i className="fa fa-dashboard"></i> User Account</a>
                                 </li>
                                 <li>
-                                    <a href="activateCommunity"><i className="fa fa-dashboard"></i> Bills</a>
+                                    <a href="/admin/bills/searchBill"><i className="fa fa-dashboard"></i> Bills</a>
                                 </li>
                                 <li>
-                                    <a href="activateCommunity"><i className="fa fa-dashboard"></i> Reports</a>
+                                    <a href="/admin/entercity"><i className="fa fa-dashboard"></i> Reports</a>
                                 </li>
                             </ul>
-
                         </div>
 
                     </nav>

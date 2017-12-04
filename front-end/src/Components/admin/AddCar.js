@@ -23,15 +23,17 @@ class AddCar extends Component {
 
     addListing = (recordDetails) => {
         API.addCar(recordDetails)
-            .then((status) => {
-                if (status === 201) {
+            .then((res) => {
+                if (res.value=== 201) {
                     this.setState({
                         message: 'Record added successfully!'
                     })
-                } else if (status === 401) {
+                    this.props.history.push("/admin/ListingSaveSuccess");
+                } else if (res.value === 401) {
                     this.setState({
                         message: "Error is adding the record!"
                     });
+                    this.props.history.push("/failurePage");
                 }
             });
     };
@@ -91,7 +93,7 @@ class AddCar extends Component {
                             <ul className="nav" id="main-menu">
 
                                 <li>
-                                    <a href=""><i className="fa fa-dashboard"></i> Dashboard</a>
+                                    <a href="#"><i className="fa fa-dashboard"></i> Dashboard</a>
                                 </li>
                                 <li>
                                     <a href="#"><i className="fa fa-sitemap"></i> Add listing<span className="fa arrow"></span></a>
@@ -111,27 +113,26 @@ class AddCar extends Component {
                                     <a href="#"><i className="fa fa-sitemap"></i> Edit listing<span className="fa arrow"></span></a>
                                     <ul className="nav nav-second-level">
                                         <li>
-                                            <a href="chart.html">Flights</a>
+                                            <a href="/admin/flights/searchFlight">Flights</a>
                                         </li>
                                         <li>
-                                            <a href="morris-chart.html">Hotels</a>
+                                            <a href="/admin/hotels/searchHotel">Hotels</a>
                                         </li>
                                         <li>
-                                            <a href="morris-chart.html">Cars</a>
+                                            <a href="/admin/cars/searchCar">Cars</a>
                                         </li>
                                     </ul>
                                 </li>
                                 <li>
-                                    <a href="activateCommunity"><i className="fa fa-dashboard"></i> User Account</a>
+                                    <a href="/admin/users/searchUser"><i className="fa fa-dashboard"></i> User Account</a>
                                 </li>
                                 <li>
-                                    <a href="activateCommunity"><i className="fa fa-dashboard"></i> Bills</a>
+                                    <a href="/admin/bills/searchBill"><i className="fa fa-dashboard"></i> Bills</a>
                                 </li>
                                 <li>
-                                    <a href="activateCommunity"><i className="fa fa-dashboard"></i> Reports</a>
+                                    <a href="/admin/entercity"><i className="fa fa-dashboard"></i> Reports</a>
                                 </li>
                             </ul>
-
                         </div>
 
                     </nav>

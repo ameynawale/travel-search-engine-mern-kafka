@@ -23,6 +23,7 @@ class PayCar extends React.Component{
             startDate: this.props.carRequested.startDate,
             endDate: this.props.carRequested.endDate,
             seatCount: this.props.carRequested.seatCount,
+            carType: this.props.carRequested.carType,
 
             cardOwner: '',
             cardNo: '',

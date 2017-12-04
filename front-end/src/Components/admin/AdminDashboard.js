@@ -10,6 +10,9 @@ import ReactHighcharts from 'react-highcharts';
 import PropTypes from 'prop-types';
 import * as API from '../../api/API';
 import {NotificationContainer, NotificationManager} from 'react-notifications';
+import Graph1 from './Graph1';
+import Graph2 from './Graph2';
+import Graph3 from './Graph3';
 //import '../../css/admin.css';
 
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
@@ -42,7 +45,8 @@ class AddRemoveLayout extends React.PureComponent {
             layout: 'test-react-grid',
             registeredUsers: this.props.dashboardDetails.registeredUsers,
             hotelsLocation: this.props.dashboardDetails.hotelsLocation,
-            flightsLocation: this.props.dashboardDetails.flightsLocation
+            flightsLocation: this.props.dashboardDetails.flightsLocation,
+            carsLocation: this.props.dashboardDetails.carsLocation
         };
 
         this.onAddItem = this.onAddItem.bind(this);
@@ -102,13 +106,14 @@ class AddRemoveLayout extends React.PureComponent {
             }]
         }
         return (
-                <div key={i} data-grid={el} style={{backgroundColor: "white"}}>
-                    {el.add ?
-                        <span className="add text" onClick={this.onAddItem} title="You can add an item by clicking here, too.">Add +</span>
-                        : <span className="text">{i}</span>}
-                    <span className="remove" style={removeStyle} onClick={this.onRemoveItem.bind(this, i)}>x</span>
-                    <ReactHighcharts config={config}/>
-                </div>
+            <div key={i} data-grid={el} style={{backgroundColor: "white"}}>
+                {el.add ?
+                    <span className="add text" onClick={this.onAddItem} title="You can add an item by clicking here, too.">Add +</span>
+                    : <span className="text">{i}</span>}
+                <span className="remove" style={removeStyle} onClick={this.onRemoveItem.bind(this, i)}>x</span>
+                <Graph1 flightsLocation={this.state.flightsLocation}/>
+                <Graph2 hotelsLocation={this.state.hotelsLocation}/>
+            </div>
         );
     }
 
@@ -170,7 +175,7 @@ class AddRemoveLayout extends React.PureComponent {
                             <ul className="nav" id="main-menu">
 
                                 <li>
-                                    <a href=""><i className="fa fa-dashboard"></i> Dashboard</a>
+                                    <a href="#"><i className="fa fa-dashboard"></i> Dashboard</a>
                                 </li>
                                 <li>
                                     <a href="#"><i className="fa fa-sitemap"></i> Add listing<span className="fa arrow"></span></a>
@@ -201,16 +206,15 @@ class AddRemoveLayout extends React.PureComponent {
                                     </ul>
                                 </li>
                                 <li>
-                                    <a href="activateCommunity"><i className="fa fa-dashboard"></i> User Account</a>
+                                    <a href="/admin/users/searchUser"><i className="fa fa-dashboard"></i> User Account</a>
                                 </li>
                                 <li>
-                                    <a href="activateCommunity"><i className="fa fa-dashboard"></i> Bills</a>
+                                    <a href="/admin/bills/searchBill"><i className="fa fa-dashboard"></i> Bills</a>
                                 </li>
                                 <li>
-                                    <a href="activateCommunity"><i className="fa fa-dashboard"></i> Reports</a>
+                                    <a href="/admin/entercity"><i className="fa fa-dashboard"></i> Reports</a>
                                 </li>
                             </ul>
-
                         </div>
 
                     </nav>

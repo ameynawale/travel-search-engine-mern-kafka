@@ -33,15 +33,17 @@ class AddFlight extends Component {
 
     addListing = (recordDetails) => {
         API.addFlight(recordDetails)
-            .then((status) => {
-                if (status === 201) {
+            .then((res) => {
+                if (res.value === 201) {
                     this.setState({
                         message: 'Record added successfully!'
                     })
-                } else if (status === 401) {
+                    this.props.history.push("/admin/ListingSaveSuccess");
+                } else if (res.value === 401) {
                     this.setState({
                         message: "Error is adding the record!"
                     });
+                    this.props.history.push("/failurePage");
                 }
             });
     };
@@ -104,50 +106,49 @@ class AddFlight extends Component {
                 <div>
                     <nav className="navbar-default navbar-side" role="navigation">
                             <div className="sidebar-collapse">
-                            <ul className="nav" id="main-menu">
+                                <ul className="nav" id="main-menu">
 
-                            <li>
-                            <a href=""><i className="fa fa-dashboard"></i> Dashboard</a>
-                        </li>
-                        <li>
-                            <a href="#"><i className="fa fa-sitemap"></i> Add listing<span className="fa arrow"></span></a>
-                            <ul className="nav nav-second-level">
-                                <li>
-                                    <a href="/admin/flights/addFlight">Flights</a>
-                                </li>
-                                <li>
-                                    <a href="/admin/hotels/addHotel">Hotels</a>
-                                </li>
-                                <li>
-                                    <a href="/admin/cars/addCar">Cars</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#"><i className="fa fa-sitemap"></i> Edit listing<span className="fa arrow"></span></a>
-                            <ul className="nav nav-second-level">
-                                <li>
-                                    <a href="chart.html">Flights</a>
-                                </li>
-                                <li>
-                                    <a href="morris-chart.html">Hotels</a>
-                                </li>
-                                <li>
-                                    <a href="morris-chart.html">Cars</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="activateCommunity"><i className="fa fa-dashboard"></i> User Account</a>
-                        </li>
-                        <li>
-                        <a href="activateCommunity"><i className="fa fa-dashboard"></i> Bills</a>
-                        </li>
-                        <li>
-                            <a href="activateCommunity"><i className="fa fa-dashboard"></i> Reports</a>
-                        </li>
-                        </ul>
-
+                                    <li>
+                                        <a href="#"><i className="fa fa-dashboard"></i> Dashboard</a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><i className="fa fa-sitemap"></i> Add listing<span className="fa arrow"></span></a>
+                                        <ul className="nav nav-second-level">
+                                            <li>
+                                                <a href="/admin/flights/addFlight">Flights</a>
+                                            </li>
+                                            <li>
+                                                <a href="/admin/hotels/addHotel">Hotels</a>
+                                            </li>
+                                            <li>
+                                                <a href="/admin/cars/addCar">Cars</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="#"><i className="fa fa-sitemap"></i> Edit listing<span className="fa arrow"></span></a>
+                                        <ul className="nav nav-second-level">
+                                            <li>
+                                                <a href="/admin/flights/searchFlight">Flights</a>
+                                            </li>
+                                            <li>
+                                                <a href="/admin/hotels/searchHotel">Hotels</a>
+                                            </li>
+                                            <li>
+                                                <a href="/admin/cars/searchCar">Cars</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="/admin/users/searchUser"><i className="fa fa-dashboard"></i> User Account</a>
+                                    </li>
+                                    <li>
+                                        <a href="/admin/bills/searchBill"><i className="fa fa-dashboard"></i> Bills</a>
+                                    </li>
+                                    <li>
+                                        <a href="/admin/entercity"><i className="fa fa-dashboard"></i> Reports</a>
+                                    </li>
+                                </ul>
                     </div>
 
                 </nav>
