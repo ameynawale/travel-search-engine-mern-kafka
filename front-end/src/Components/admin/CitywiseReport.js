@@ -39,7 +39,7 @@ class AddRemoveLayout extends React.PureComponent {
 
         this.state = {
             items: [0, 1, 2, 3, 4].map(function(i, key, list) {
-                return {i: i.toString(), x: i * 2, y: 0, w: 4, h: 4, add: i === (list.length - 1).toString()};
+                return {i: i.toString(), x: i * 2, y: 0, w: 4, h: 8, add: i === (list.length - 1).toString()};
             }),
             newCounter: 0,
             layout: 'test-react-grid',

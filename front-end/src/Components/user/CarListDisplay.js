@@ -366,8 +366,7 @@ class CarListDisplay extends React.Component{
                                             <span className="glyphicon">&#xe043;&nbsp;{this.state.cars[i].ratings}</span>
 
 
-                                            <h4>{this.state.cars[i].price}</h4>
-                                            <h5>{this.props.carRequested.seatCount}</h5>
+                                            <h4>Price: {this.state.cars[i].price}</h4>
                                         </div>
                                         <button className="searchbtn2 btn-search"
                                                 type="button"

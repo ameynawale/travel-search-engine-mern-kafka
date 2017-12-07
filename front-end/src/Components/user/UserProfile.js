@@ -16,22 +16,17 @@ class UserProfile extends React.Component{
 
 
     state= {
-        hotels: [
-            {
-                hotelName: "Downtown Mariot",
-                city: "sj",
-                fromDate: '15-11-2017',
-                toDate: '17-11-2017',
-                guestCount: '2',
-                roomCount: '1',
-                hotelPrice: '$159',
-                hotelStar: '4',
-                hotelRating: '8',
-                username: 'first@last.com'
-            },
+        userId: '',
+        username: '',
+        firstname: '',
+        lastname: '',
+        zipcode: '',
+        email: '',
+        city: '',
+        address: '',
 
-        ]
-    }
+
+    };
 
     componentWillMount(){
         this.setState({
@@ -96,45 +91,45 @@ class UserProfile extends React.Component{
                                 <form>
 
                                       <h4>User Id:</h4>
-                                      <h4> <input type="text"  className="form-control" defaultValue={this.state.hotels[0].hotelRating} /></h4>
+                                      <h4> <input type="text"  className="form-control" defaultValue={this.state.userId} /></h4>
 
                                                     <h4>First Name:
 
-                                                        <input type="text"  className="form-control" defaultValue={this.state.hotels[0].hotelName} /></h4>
+                                                        <input type="text"  className="form-control" defaultValue={this.state.firstname} /></h4>
 
-                                    <h4> Last Name: <input type="text" className="form-control" defaultValue={this.state.hotels[0].hotelName} /></h4>
+                                    <h4> Last Name: <input type="text" className="form-control" defaultValue={this.state.lastname} /></h4>
                                     <h4>Address:
 
-                                        <input type="text" className="form-control" defaultValue={this.state.hotels[0].hotelName} /></h4>
+                                        <input type="text" className="form-control" defaultValue={this.state.address} /></h4>
                                     <h4>City:
 
-                                        <input type="text" className="form-control" defaultValue={this.state.hotels[0].hotelName} /></h4>
+                                        <input type="text" className="form-control" defaultValue={this.state.city} /></h4>
                                     <h4>State:
 
-                                        <input type="text" className="form-control" defaultValue={this.state.hotels[0].hotelName} /></h4>
+                                        <input type="text" className="form-control" defaultValue={this.state.state} /></h4>
                                     <h4>Zip code:
 
-                                        <input type="number" className="form-control" defaultValue={this.state.hotels[0].hotelName} /></h4>
+                                        <input type="number" className="form-control" defaultValue={this.state.zipcode} /></h4>
 
                                     <h4>Phone Number:
 
-                                        <input type="number" className="form-control" defaultValue={this.state.hotels[0].hotelName} /></h4>
+                                        <input type="number" className="form-control" defaultValue={this.state.phoneNumber} /></h4>
                                     <h4>Email:
 
-                                        <input type="email" className="form-control" defaultValue={this.state.hotels[0].hotelName} /></h4>
+                                        <input type="email" className="form-control" defaultValue={this.state.email} /></h4>
                                     <h4>Trip Id:
 
-                                        <input type="number" className="form-control" defaultValue={this.state.hotels[0].hotelName} /></h4>
+                                        <input type="number" className="form-control" defaultValue={this.state.tripId} /></h4>
                                     <h4>Credit Card Details:
 
-                                        <input type="number" className="form-control" defaultValue={this.state.hotels[0].hotelName} /></h4>
+                                        <input type="number" className="form-control" defaultValue={this.state.creditCardDetails} /></h4>
                                             <br/>
 
                                           <button
                                               className="btn btn-primary"
                                               type="button"
                                               value="Save Changes"
-                                              /*onClick={() => this.props.handleSignUp(this.state)}*/>
+                                              onClick={() => this.props.userEdit(this.state)}>
                                               Save Changes
                                           </button>
                                           &nbsp;&nbsp;&nbsp;
@@ -150,7 +145,7 @@ class UserProfile extends React.Component{
                                         className="btn btn-danger"
                                         type="reset"
                                         value="Delete"
-                                        /*onClick={() => this.props.handleSignUp(this.state)}*/>
+                                        onClick={() => this.props.userDelete(this.state)}>
                                         Delete Profile
                                     </button>
 

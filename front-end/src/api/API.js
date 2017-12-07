@@ -462,3 +462,31 @@ export const doGetCityReport = (payload) =>
             console.log("This is error.");
             return error;
         });
+
+export const doGetUserReport = (payload) =>
+    fetch(`${api}/admin/userTrace`,{
+        method: 'POST',
+        headers: {
+            ...headers,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+    }).then(res => res.json())
+        .catch(error => {
+            console.log("This is error.");
+            return error;
+        });
+
+export const fetchUser= (payload) =>
+    fetch(`${api}/users/fetchUser`,{
+        method: 'POST',
+        headers: {
+            ...headers,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+    }).then(res => res.json())
+        .catch(error => {
+            console.log("This is error.");
+            return error;
+        });

@@ -1,15 +1,15 @@
 import React, {Component} from 'react';
 import {Link,Route,withRouter,Switch} from 'react-router-dom';
-import logo from './logo.png';
+import logo from '../admin/logo.png';
 import PropTypes from 'prop-types';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Message from './Message';
-import icon from './icon.png';
+import icon from '../admin/icon.png';
 
 
 
 
-class Signup extends Component {
+class DuplicateUser extends Component {
 
     static propTypes = {
         handleSignUp: PropTypes.func.isRequired
@@ -49,7 +49,7 @@ class Signup extends Component {
 
 
 
-                            <a href="/"  className="Kayak-logo" title="HOME"><img src={logo} className="App-logo" alt="logo" /></a>
+                            <a href="/" className="Kayak-logo" title="HOME"><img src={logo} className="App-logo" alt="logo" /></a>
 
 
                             <nav>
@@ -81,6 +81,11 @@ class Signup extends Component {
                     <div className="col-sm-4">
 
                         <form>
+                            <div className="form-group">
+                                <div className="text text-danger">
+                                    <h2>User already exists. Please try again with a different email.</h2>
+                                </div>
+                            </div>
                             <div className="form-group">
                                 <div className="text text-danger">
                                     <h2>New user, Register here</h2>
@@ -186,7 +191,7 @@ class Signup extends Component {
                                     }}
                                 />
                             </div>
-                                <div className="form-group">
+                            <div className="form-group">
                                 <input
                                     className="form-control"
                                     type="number"
@@ -199,8 +204,8 @@ class Signup extends Component {
                                         });
                                     }}
                                 />
-                                </div>
-                                <div className="form-group">
+                            </div>
+                            <div className="form-group">
                                 <input
                                     className="form-control"
                                     type="text"
@@ -249,7 +254,7 @@ class Signup extends Component {
                             </form>
                         </nav>
                     </div>
-        </div>
+                </div>
             </div>
 
 
@@ -261,8 +266,4 @@ class Signup extends Component {
     }
 }
 
-export default Signup;
-
-
-
-
+export default DuplicateUser;

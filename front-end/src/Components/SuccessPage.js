@@ -58,48 +58,48 @@ class SuccessPage extends Component {
                     </nav>
 
 
-                        <div className="dashboard" style={{marginTop: "150px", marginLeft: "250px"}}>
-                                <div className="text" style={{paddingTop: "25px"}}>
-                            <h1> Successfully updated the results...!!</h1>
+                    <div className="dashboard" style={{marginTop: "150px", marginLeft: "250px"}}>
+                        <div className="text" style={{paddingTop: "25px"}}>
+                            <h3> Record Successfully updated!!</h3>
                         </div>
-                        </div>
-
-
-
-
-
-
-
-                            <div className="space">
-                            </div>
-
-                            <div className="footer1" style={{marginTop: "200px"}}>
-                                <h3>Use our smart tools to make your search for cheap flights easier
-
-                                    Price Alerts</h3>
-
-                                <nav className="navbar navbar-light bg-faded">
-                                    <form className="form-inline">
-                                        <input className="form-control mr-sm-2" type="text" placeholder="Search"/>
-                                        <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                                    </form>
-                                </nav>
-                            </div>
-
-
-
-
-
-</div>
-
                     </div>
 
 
 
 
 
-                    )
-                    }
-                    }
 
-                    export default SuccessPage;
+
+                    <div className="space">
+                    </div>
+
+                    <div className="footer1" style={{marginTop: "200px"}}>
+                        <h3>Use our smart tools to make your search for cheap flights easier
+
+                            Price Alerts</h3>
+
+                        <nav className="navbar navbar-light bg-faded">
+                            <form className="form-inline">
+                                <input className="form-control mr-sm-2" type="text" placeholder="Search"/>
+                                <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                            </form>
+                        </nav>
+                    </div>
+
+
+
+
+
+                </div>
+
+            </div>
+
+
+
+
+
+        )
+    }
+}
+
+export default SuccessPage;

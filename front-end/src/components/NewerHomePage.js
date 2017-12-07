@@ -5,7 +5,14 @@ import Login from './user/Login';
 //import Message from "./Message";
 import Welcome from "./user/Welcome";
 import Signup from './user/Signup';
+import DuplicateUser from './user/DuplicateUser';
 import FailurePage from './FailurePage';
+import UserProfile from './user/UserProfile';
+
+import CitywiseReport from './admin/CitywiseReport';
+import ReportCity from './admin/ReportCity';
+import ReportUser from './admin/ReportUser';
+import UserTraceDiagram from './admin/UserTraceDiagram';
 
 import SearchUser from './admin/SearchUser';
 import UserDetails from './admin/UserDetails';
@@ -49,6 +56,7 @@ import AdminDashboard1 from './admin/AdminDashboard';
 
 import ListingSaveSuccess from './admin/ListingSaveSuccess';
 import ViewBills from "./admin/ViewBills";
+import SuccessPage from "./SuccessPage";
 
 
 class NewerHomePage extends Component {
@@ -69,6 +77,7 @@ class NewerHomePage extends Component {
         hotelDetails: '',
         hotelRequested: '',
         billList: '',
+        userReportDetails: '',
 
         carList: '',
         carDetails: '',
@@ -151,6 +160,45 @@ class NewerHomePage extends Component {
 
     };
 
+    getCityReport = (searchCriteria) => {
+        API.doGetCityReport(searchCriteria)
+            .then((res) => {
+                if (res.value === 201) {
+                    this.setState({
+                        cityReportDetails: res.message
+                    });
+                    this.props.history.push("/admin/reports");
+                } else if (res.value === 401) {
+                    this.setState({
+                        isLoggedIn: false,
+                        message: "Wrong username or password. Try again..!!"
+                    });
+                    this.props.history.push("/failurePage");
+
+                }});
+
+    };
+
+
+    getUserReport= (searchCriteria) => {
+        API.doGetUserReport(searchCriteria)
+            .then((res) => {
+                if (res.value === 201) {
+                    this.setState({
+                        userReportDetails: res.message
+                    });
+                    this.props.history.push("/admin/userTrace");
+                } else if (res.value === 401) {
+                    this.setState({
+                        isLoggedIn: false,
+                        message: "Wrong username or password. Try again..!!"
+                    });
+                    this.props.history.push("/failurePage");
+
+                }});
+
+    };
+
     editListing = (listingDetails) => {
 
         //if (res.status === 201) {
@@ -228,40 +276,41 @@ class NewerHomePage extends Component {
         if(listingDetails.isSearchFlight){
             API.updateFlight(listingDetails)
                 .then((res) => {
-                if(res.value===201)
+                //if(res.value===201)
                     this.props.history.push("/successPage");
-                else
-                    this.props.history.push("/failurePage");
-                })
+                //else
+                  //  this.props.history.push("/failurePage");
+                //})
+        })
         }
 
         else if(listingDetails.isSearchHotel){
             API.updateHotel(listingDetails)
                 .then((res) => {
-                    if(res.value===201)
+                    //if(res.value===201)
                         this.props.history.push("/successPage");
-                    else
-                        this.props.history.push("/failurePage");
+                    //else
+                      //  this.props.history.push("/failurePage");
                 })
         }
 
         else if(listingDetails.isSearchCar){
             API.updateCar(listingDetails)
                 .then((res) => {
-                    if(res.value===201)
+                    //if(res.value===201)
                         this.props.history.push("/successPage");
-                    else
-                        this.props.history.push("/failurePage");
+                    //else
+                      //  this.props.history.push("/failurePage");
                 })
         }
 
         else if(listingDetails.isSearchUser){
             API.updateUser(listingDetails)
                 .then((res) => {
-                    if(res.value===201)
+         //           if(res.value===201)
                         this.props.history.push("/successPage");
-                    else
-                        this.props.history.push("/failurePage");
+           //         else
+             //           this.props.history.push("/failurePage");
                 })
         }
         //   this.props.history.push("/admin/flights/flightDetails/editPage");
@@ -331,13 +380,13 @@ class NewerHomePage extends Component {
                     else
                         this.props.history.push("/CarListDisplayFiltered");
                 }
-                else(res.value===401)
+                else if(res.value===401)
                     this.props.history.push("/failurePage");
             });
 
     };
 
-    searchHotel = (searchCriteria) => {
+    /*searchHotel = (searchCriteria) => {
         API.getHotel(searchCriteria)
             .then((res) => {
                 if (res.value === 201) {
@@ -361,249 +410,306 @@ class NewerHomePage extends Component {
             });
 
     };
+*/
 
-    viewDeal = (searchCriteria) => {
-        API.getHotelDetails(searchCriteria)
+    searchHotel = (searchCriteria) => {
+        API.getHotel(searchCriteria)
             .then((res) => {
                 if (res.value === 201) {
                     this.setState({
-                        hotelDetails: res.file,
-                        hotelRequested: res.hotelRequested
-                    });
-                    this.props.history.push("/ViewHotel");
-                }
-                else
-                    this.props.history.push("/failurePage");
-
-            });
-        //this.props.history.push("/ViewHotel");
-    };
-
-    viewDealCar = (searchCriteria) => {
-        API.getCarDetails(searchCriteria)
-            .then((res) => {
-                if (res.value === 201) {
-                    this.setState({
-                        carDetails: res.results,
-                        carRequested: res.carRequested
-                    });
-                    this.props.history.push("/ViewCar");
-                }
-                else
-                    this.props.history.push("/failurePage");
-            });
-        //this.props.history.push("/ViewHotel");
-    };
-
-    viewDealFlight = (searchCriteria) => {
-        API.getFlightDetails(searchCriteria)
-            .then((res) => {
-                if (res.value === 201) {
-                    this.setState({
-                        flightDetails: res.file,
-                        flightRequested: res.flightRequested
-                    });
-                    this.props.history.push("/ViewFlight");
-                }
-                else
-                    this.props.history.push("/failurePage");
-            });
-        //this.props.history.push("/ViewHotel");
-    };
-
-
-    bookHotel = (searchCriteria) => {
-        API.doBookHotel(searchCriteria)
-            .then((res) => {
-                if (res.value === 201) {
-                    this.setState({
-                        hotelDetails: res.hotelDetails,
-                        hotelRequested: res.hotelRequested
-                    });
-                    this.props.history.push("/Pay");
-                }
-                else
-                    this.props.history.push("/failurePage");
-            });
-        //this.props.history.push("/ViewHotel");
-    };
-
-    bookCar = (searchCriteria) => {
-        API.doBookCar(searchCriteria)
-            .then((res) => {
-                if (res.value === 201) {
-                    this.setState({
-                        carDetails: res.carDetails,
-                        carRequested: res.carRequested
-                    });
-                    this.props.history.push("/payCar");
-                }
-                else
-                    this.props.history.push("/failurePage");
-            });
-        //this.props.history.push("/ViewHotel");
-    };
-
-    bookFlight = (searchCriteria) => {
-        API.doBookFlight(searchCriteria)
-            .then((res) => {
-                if (res.value === 201) {
-                    this.setState({
-                        flightDetails: res.flightDetails,
-                        flightRequested: res.flightRequested
-                    });
-                    this.props.history.push("/payFlight");
-                }
-                else
-                    this.props.history.push("/failurePage");
-            });
-        //this.props.history.push("/ViewHotel");
-    };
-
-
-    makePayment = (paymentDetails) => {
-        API.doPayment(paymentDetails)
-            .then((res) => {
-                if (res.value === 201) {
-                    this.setState({
-                        paymentDetails: {
-                            bookingID: res.file.bookID,
-                            billAmount: res.file.billAmount,
+                        hotelList: res.file,
+                        hotelRequested: {
+                            city: res.city,
+                            fromDate: res.fromDate,
+                            toDate: res.toDate,
+                            guestCount: res.guestCount,
+                            roomCount: res.roomCount,
+                            filter: res.filter
                         }
                     });
-                    this.props.history.push("/confirmationHotel");
-                }
-                else
-                    this.props.history.push("/failurePage");
-
-            });
-        //this.props.history.push("/ViewHotel");
-    };
-
-    makePaymentCar = (paymentDetails) => {
-        API.doPaymentCar(paymentDetails)
-            .then((res) => {
-                if (res.value=== 201) {
-                    this.setState({
-                        paymentDetails: {
-                            bookingID: res.results.bookID,
-                            billAmount: res.billAmount,
-                        }
-                    });
-                    this.props.history.push("/confirmationCar");
-                }
-                else
-                    this.props.history.push("/failurePage");
-
-            });
-        //this.props.history.push("/ViewHotel");
-    };
-
-    makePaymentFlight = (paymentDetails) => {
-        API.doPaymentFlight(paymentDetails)
-            .then((res) => {
-                if (res.value === 201) {
-                    this.setState({
-                        paymentDetails: {
-                            bookingID: res.file.bookID,
-                            billAmount: res.price,
-                        }
-                    });
-                    this.props.history.push("/confirmationFlight");
-                }
-                else
-                    this.props.history.push("/failurePage");
-
-            });
-        //this.props.history.push("/ViewHotel");
-    };
-
-
-    searchFlight = (searchCriteria) => {
-        API.getFlight(searchCriteria)
-            .then((res) => {
-                if (res.value === 201) {
-                    this.setState({
-                        flightList: res.file,
-                        flightRequested: {
-                            fromCity: res.fromCity,
-                            toCity: res.toCity,
-                            departureDate: res.departureDate,
-                            returnDate: res.returnDate,
-                            seatType: res.seatType,
-                            passengerCount: res.passengerCount
-                        }
-                    });
-                    this.props.history.push("/FlightListDisplay");
+                    if (res.filter === 0)
+                        this.props.history.push("/HotelListDisplay");
+                    else
+                        this.props.history.push("/HotelListDisplayFiltered")
                 }
                 else
                     this.props.history.push("/failurePage");
             });
+    }
+        viewDeal = (searchCriteria) => {
+            API.getHotelDetails(searchCriteria)
+                .then((res) => {
+                    if (res.value === 201) {
+                        this.setState({
+                            hotelDetails: res.file,
+                            hotelRequested: res.hotelRequested
+                        });
+                        this.props.history.push("/ViewHotel");
+                    }
+                    else
+                        this.props.history.push("/failurePage");
 
-    };
+                });
+            //this.props.history.push("/ViewHotel");
+        };
+
+        viewDealCar = (searchCriteria) => {
+            API.getCarDetails(searchCriteria)
+                .then((res) => {
+                    if (res.value === 201) {
+                        this.setState({
+                            carDetails: res.results,
+                            carRequested: res.carRequested
+                        });
+                        this.props.history.push("/ViewCar");
+                    }
+                    else
+                        this.props.history.push("/failurePage");
+                });
+            //this.props.history.push("/ViewHotel");
+        };
+
+        viewDealFlight = (searchCriteria) => {
+            API.getFlightDetails(searchCriteria)
+                .then((res) => {
+                    if (res.value === 201) {
+                        this.setState({
+                            flightDetails: res.file,
+                            flightRequested: res.flightRequested
+                        });
+                        this.props.history.push("/ViewFlight");
+                    }
+                    else
+                        this.props.history.push("/failurePage");
+                });
+            //this.props.history.push("/ViewHotel");
+        };
 
 
-    searchBills = (searchCriteria) => {
-        API.getBills(searchCriteria)
-            .then((res) => {
-                if (res.value === 201) {
-                    this.setState({
-                        billList: res.results.message
-                    });
-                    this.props.history.push("/admin/bills/ViewBillList");
-                }
-                else
-                    this.props.history.push("/failurePage");
+        bookHotel = (searchCriteria) => {
+            API.doBookHotel(searchCriteria)
+                .then((res) => {
+                    if (res.value === 201) {
+                        this.setState({
+                            hotelDetails: res.hotelDetails,
+                            hotelRequested: res.hotelRequested
+                        });
+                        this.props.history.push("/Pay");
+                    }
+                    else
+                        this.props.history.push("/failurePage");
+                });
+            //this.props.history.push("/ViewHotel");
+        };
+
+        bookCar = (searchCriteria) => {
+            API.doBookCar(searchCriteria)
+                .then((res) => {
+                    if (res.value === 201) {
+                        this.setState({
+                            carDetails: res.carDetails,
+                            carRequested: res.carRequested
+                        });
+                        this.props.history.push("/payCar");
+                    }
+                    else
+                        this.props.history.push("/failurePage");
+                });
+            //this.props.history.push("/ViewHotel");
+        };
+
+        bookFlight = (searchCriteria) => {
+            API.doBookFlight(searchCriteria)
+                .then((res) => {
+                    if (res.value === 201) {
+                        this.setState({
+                            flightDetails: res.flightDetails,
+                            flightRequested: res.flightRequested
+                        });
+                        this.props.history.push("/payFlight");
+                    }
+                    else
+                        this.props.history.push("/failurePage");
+                });
+            //this.props.history.push("/ViewHotel");
+        };
+
+
+        makePayment = (paymentDetails) => {
+            API.doPayment(paymentDetails)
+                .then((res) => {
+                    if (res.value === 201) {
+                        this.setState({
+                            paymentDetails: {
+                                bookingID: res.file.bookID,
+                                billAmount: res.file.billAmount,
+                            }
+                        });
+                        this.props.history.push("/confirmationHotel");
+                    }
+                    else
+                        this.props.history.push("/failurePage");
+
+                });
+            //this.props.history.push("/ViewHotel");
+        };
+
+        makePaymentCar = (paymentDetails) => {
+            API.doPaymentCar(paymentDetails)
+                .then((res) => {
+                    if (res.value === 201) {
+                        this.setState({
+                            paymentDetails: {
+                                bookingID: res.results.bookID,
+                                billAmount: res.billAmount,
+                            }
+                        });
+                        this.props.history.push("/confirmationCar");
+                    }
+                    else
+                        this.props.history.push("/failurePage");
+
+                });
+            //this.props.history.push("/ViewHotel");
+        };
+
+        makePaymentFlight = (paymentDetails) => {
+            API.doPaymentFlight(paymentDetails)
+                .then((res) => {
+                    if (res.value === 201) {
+                        this.setState({
+                            paymentDetails: {
+                                bookingID: res.file.bookID,
+                                billAmount: res.price,
+                            }
+                        });
+                        this.props.history.push("/confirmationFlight");
+                    }
+                    else
+                        this.props.history.push("/failurePage");
+
+                });
+            //this.props.history.push("/ViewHotel");
+        };
+
+
+        searchFlight = (searchCriteria) => {
+            API.getFlight(searchCriteria)
+                .then((res) => {
+                    if (res.value === 201) {
+                        this.setState({
+                            flightList: res.file,
+                            flightRequested: {
+                                fromCity: res.fromCity,
+                                toCity: res.toCity,
+                                departureDate: res.departureDate,
+                                returnDate: res.returnDate,
+                                seatType: res.seatType,
+                                passengerCount: res.passengerCount
+                            }
+                        });
+                        this.props.history.push("/FlightListDisplay");
+                    }
+                    else
+                        this.props.history.push("/failurePage");
                 });
 
-                //this.props.history.push("/hotelListDisplay");
-                //} else if (status === 401) {
-                /*  this.setState({
-                      isLoggedIn: false,
-                      message: "Wrong username or password. Try again..!!"
-                  });
-              }*/
+        };
+
+
+        searchBills = (searchCriteria) => {
+            API.getBills(searchCriteria)
+                .then((res) => {
+                    if (res.value === 201) {
+                        this.setState({
+                            billList: res.results
+                        });
+                        this.props.history.push("/admin/bills/ViewBillList");
+                    }
+                    else
+                        this.props.history.push("/failurePage");
+                });
+
+            //this.props.history.push("/hotelListDisplay");
+            //} else if (status === 401) {
+            /*  this.setState({
+                  isLoggedIn: false,
+                  message: "Wrong username or password. Try again..!!"
+              });
+          }*/
             //});
 
-    };
+        };
 
 
-    /*getSearchResults = (userdata) => {
-        API.getFlights(userdata)
-            .then((res) => {
-                if (res) {
-                    this.setState({
-                        isLoggedIn: true,
-                        message: "Welcome to my App..!!",
-                        username: userdata.username
-                    });
-                    this.props.history.push("/welcome");
-                } else if (status === 401) {
-                    this.setState({
-                        isLoggedIn: false,
-                        message: "Wrong username or password. Try again..!!"
-                    });
-                }
-            });
-    };*/
+        /*getSearchResults = (userdata) => {
+            API.getFlights(userdata)
+                .then((res) => {
+                    if (res) {
+                        this.setState({
+                            isLoggedIn: true,
+                            message: "Welcome to my App..!!",
+                            username: userdata.username
+                        });
+                        this.props.history.push("/welcome");
+                    } else if (status === 401) {
+                        this.setState({
+                            isLoggedIn: false,
+                            message: "Wrong username or password. Try again..!!"
+                        });
+                    }
+                });
+        };*/
 
+        /*handleSignUp = (userdata) => {
+            API.doSignUp(userdata)
+                .then((res) => {
+                    if (res.value === 201) {
+                        this.setState({
+                            message: 'Sign Up successful! Please login!!'
+                        });
+                        this.props.history.push('/');
+                    } else if (res.value === 401) {
+                        this.setState({
+                            message: 'User already exists! Please try with different details!!'
+                        });
+                        this.props.history.push("/FailurePage");
+                    }
+                });
+        };
+*/
     handleSignUp = (userdata) => {
-    	API.doSignUp(userdata)
-    		.then((res) => {
-    			if(res.value === 201){
-    				this.setState({
-    					message: 'Sign Up successful! Please login!!'
-    				});
-    				this.props.history.push('/');
-    			} else if (res.value === 401){
-    				this.setState({
-    					message: 'User already exists! Please try with different details!!'
-    				});
-                    this.props.history.push("/FailurePage");
-    			}
-    		});
+        var isValidZip = /(^\d{5}$)|(^\d{5}-\d{4}$)/.test(userdata.zipcode);
+        //var isValidPhone = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im.test(userdata.phoneNumber);
+        var isValidEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(userdata.email);
+        if (!isValidZip) {
+            alert("Please enter correct Zipcode");
+        }
+        else if (!isValidEmail) {
+            alert("Please enter valid email address");
+        }
+        /*else if (!isValidPhone) {
+            alert("Please enter valid Phone Number");
+        }*/
+        else {
+            API.doSignUp(userdata)
+                .then((res) => {
+                    if (res.value === 201) {
+                        this.setState({
+                            message: 'Sign Up successful! Please login!!',
+                            alert: "Signup successful, please login to continue"
+                        });
+                        this.props.history.push('/');
+                    } else if (res.value === 401) {
+                        this.setState({
+                            message: 'User already exists! Please try with different details!!',
+                            alert: "User already exists"
+                        });
+                        this.props.history.push('/duplicateUser');
+                    }
+                });
+        }
     };
-
 
 
     /*searchBills = (userdata) => {
@@ -622,20 +728,61 @@ class NewerHomePage extends Component {
             });
     };*/
 
-    handleLogout = () => {
-        console.log('logout called');
-        API.logout()
-            .then((res) => {
-                if(res.value=== 201){
-                    this.setState({
-                        isLoggedIn: false
-                    });
-                    this.props.history.push("/");
-                }
-                else
-                    this.props.history.push("/failurePage");
-            });
+    userEdit = (userdata) => {
+        var isValidZip = /(^\d{5}$)|(^\d{5}-\d{4}$)/.test(userdata.zipcode);
+        var isValidPhone= /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im.test(userdata.phoneNumber);
+        var isValidEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(userdata.email);
+        if (!isValidZip) {
+            alert("Please enter correct Zipcode");
+        }
+        else if(!isValidEmail)
+        {
+            alert("Please enter valid email address");
+        }
+        else if(!isValidPhone)
+        {
+            alert("Please enter valid Phone Number");
+        }
+        else {
+            API.fetchUser(userdata)
+                .then((res) => {
+                    if (res.value === 201) {
+                        this.setState({
+                            userRequested:{
+                                firstName:res.firstName,
+                                lastName:res.lastName,
+                                city: res.city,
+                                address: res.address,
+                                state: res.state,
+                                zipcode: res.zipcode,
+                                email: res.email
+                            }
+                        });
+                        this.props.history.push('/UserProfile');
+                    } else if (res.value=== 401) {
+                        this.setState({
+                            message: 'User already exists! Please try with different details!!',
+                            alert: "User already exists"
+                        });
+                    }
+                });
+        }
     };
+
+        handleLogout = () => {
+            console.log('logout called');
+            API.logout()
+                .then((res) => {
+                    if (res.value === 201) {
+                        this.setState({
+                            isLoggedIn: false
+                        });
+                        this.props.history.push("/");
+                    }
+                    else
+                        this.props.history.push("/failurePage");
+                });
+        };
 
 
     render() {
@@ -660,6 +807,19 @@ class NewerHomePage extends Component {
                     </div>
                 )}/>
 
+                <Route exact path="/userProfile" render={() => (
+                    <div>
+                        <UserProfile userEdit={this.userEdit}/>
+                    </div>
+                )}/>
+                <Route exact path="/duplicateUser" render={() => (
+                    <div>
+                        <DuplicateUser handleSignUp={this.handleSignUp}/>
+                    </div>
+                )}/>
+
+
+
                 <Route exact path="/flights" render={() => (
                     <div>
                         <Flights searchFlight={this.searchFlight}/>
@@ -667,12 +827,12 @@ class NewerHomePage extends Component {
                 )}/>
                 <Route exact path="/hotels" render={() => (
                     <div>
-                        <Hotels searchHotel={this.searchHotel}/>
+                        <Hotels searchHotel={this.searchHotel} handleLogout={this.handleLogout}/>
                     </div>
                 )}/>
                 <Route exact path="/HotelListDisplay" render={() => (
                     <div>
-                        <HotelListDisplay hotelList={this.state.hotelList} viewDeal={this.viewDeal} hotelRequested={this.state.hotelRequested}/>
+                        <HotelListDisplay hotelList={this.state.hotelList} searchHotel={this.searchHotel} viewDeal={this.viewDeal} hotelRequested={this.state.hotelRequested} handleLogout={this.handleLogout}/>
                     </div>
                 )}/>
                 <Route exact path="/ViewHotel" render={() => (
@@ -767,11 +927,32 @@ class NewerHomePage extends Component {
                     )
                     }/>
                 <Route exact path='/admin/reports' render={() => (
-                        <div>
-                            <ReactiveGrid/>
-                        </div>
-                    )
-                    }
+                    <div>
+                        <CitywiseReport cityReportDetails={this.state.cityReportDetails}/>
+                    </div>
+                )
+                }
+                />
+                <Route exact path='/admin/entercity' render={() => (
+                    <div>
+                        <ReportCity getCityReport={this.getCityReport}/>
+                    </div>
+                )
+                }
+                />
+                <Route exact path='/admin/enteruser' render={() => (
+                    <div>
+                        <ReportUser getUserReport={this.getUserReport}/>
+                    </div>
+                )
+                }
+                />
+                <Route exact path='/admin/userTrace' render={() => (
+                    <div>
+                        <UserTraceDiagram userReportDetails={this.state.userReportDetails.message}/>
+                    </div>
+                )
+                }
                 />
                 <Route exact path='/admin/hotels/addHotel' render={() => (
                         <div>
@@ -887,9 +1068,9 @@ class NewerHomePage extends Component {
                             </div>
                         )
                         }/>
-                        <Route exact path='/admin/ListingSaveSuccess' render={() => (
+                        <Route exact path='/SuccessPage' render={() => (
                             <div>
-                                <ListingSaveSuccess/>
+                                <SuccessPage/>
                             </div>
                         )
                         }/>
@@ -905,6 +1086,11 @@ class NewerHomePage extends Component {
                     </div>
                 )
                 }/>
+                <Route exact path="/HotelListDisplayFiltered" render={() => (
+                    <div>
+                        <HotelListDisplay hotelList={this.state.hotelList} viewDeal={this.viewDeal} hotelRequested={this.state.hotelRequested}/>
+                    </div>
+                )}/>
                 </div>
         );
     }
